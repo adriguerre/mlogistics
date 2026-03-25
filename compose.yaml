@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    container_name: mlogistics-app
+    ports:
+      - "8080:8080"
+    environment:
+      # ⚠️ Fake credentials for development/testing only (docker build) — override with real env vars in production
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mlogisticsdb
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-Hd3vP@ss!xK9mRv4}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-Hd3vP@ss!xK9mRv4}
+      SPRING_PROFILES_ACTIVE: docker
+      JWT_KEY: ${JWT_KEY:-JEdNgp6b8YixKZW3q0DrLPaanmgPafBlsEBpq4PcPYVxFLZ9B94HvlFbOawfnruE}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16
+    container_name: logistics_project
+    environment:
+      # ⚠️ Fake credentials for development/testing only (docker build) — override with real env vars in production
+      POSTGRES_USER: ${POSTGRES_USER:-Hd3vP@ss!xK9mRv4}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-Hd3vP@ss!xK9mRv4}
+      POSTGRES_DB: mlogisticsdb
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./docker/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-Hd3vP@ss!xK9mRv4} -d mlogisticsdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pg_data:
