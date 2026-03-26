@@ -1,0 +1,12 @@
+init_config:
+  collect_default_metrics: true
+  is_jmx: true
+
+instances:
+  - host: kafka
+    port: 9999
+    name: kafka
+    jmx_url: service:jmx:rmi:///jndi/rmi://kafka:9999/jmxrmi
+    collect_default_metrics: true
+    tags:
+      - env:docker

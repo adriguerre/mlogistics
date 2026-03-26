@@ -9,3 +9,8 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
+FROM gcr.io/datadoghq/agent:latest-jmx AS datadog
+RUN mkdir -p /opt/datadog-agent/bin/agent/dist/jmxfetch && \
+    curl -sSL -o /opt/datadog-agent/bin/agent/dist/jmxfetch/jmxfetch.jar \
+    "https://repo1.maven.org/maven2/com/datadoghq/jmxfetch/0.51.0/jmxfetch-0.51.0-jar-with-dependencies.jar"
