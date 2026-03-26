@@ -1,7 +1,7 @@
 package com.logistics.mlogistics.controllers;
 
-import com.logistics.mlogistics.domain.Base;
-import com.logistics.mlogistics.service.BaseService;
+import com.logistics.mlogistics.domain.Personnel;
+import com.logistics.mlogistics.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,45 +11,45 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/base")
-public class BaseController {
+@RequestMapping("/personnel")
+public class PersonnelController {
 
-    private final BaseService baseService;
+    private final PersonnelService personnelService;
 
     @Autowired
-    public BaseController(BaseService baseService) {
-        this.baseService = baseService;
+    public PersonnelController(PersonnelService personnelService) {
+        this.personnelService = personnelService;
     }
 
     @GetMapping
     public ResponseEntity<?> getAll() {
-        List<Base> list = baseService.getAll();
+        List<Personnel> list = personnelService.getAll();
         if (list.isEmpty()) return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No records found");
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id) {
-        return baseService.getById(id)
+        return personnelService.getById(id)
                 .<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found"));
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Base base) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(baseService.create(base));
+    public ResponseEntity<?> create(@RequestBody Personnel personnel) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(personnelService.create(personnel));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody Base base) {
-        return baseService.update(id, base)
+    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody Personnel personnel) {
+        return personnelService.update(id, personnel)
                 .<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found"));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        baseService.delete(id);
+        personnelService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

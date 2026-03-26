@@ -39,3 +39,6 @@ env.properties
 ### SQL ###
 *.sql
 !docker/init/*.sql
+
+/docs
+/test_kafka

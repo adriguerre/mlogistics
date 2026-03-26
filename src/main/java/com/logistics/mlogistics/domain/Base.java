@@ -1,123 +1,72 @@
 package com.logistics.mlogistics.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
+import com.logistics.mlogistics.domain.enums.BaseStatus;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Entity
+@Table(name = "base")
 public class Base {
 
     @Id
-    @JsonProperty("base_id")
-    @Column(name = "base_id")
-    private Integer baseId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false, updatable = false)
+    private UUID id;
 
+    @Column(name = "code", nullable = false, unique = true, length = 20)
     private String code;
+
+    @Column(name = "name", nullable = false, length = 150)
     private String name;
+
+    @Column(name = "country", nullable = false, length = 100)
     private String country;
+
+    @Column(name = "region", length = 100)
     private String region;
-    @JsonProperty("lat")
-    @Column(name = "lat")
+
+    @Column(name = "latitude")
     private Double latitude;
-    @JsonProperty("long")
-    @Column(name = "long")
+
+    @Column(name = "longitude")
     private Double longitude;
-    private String status;
-    private Integer commanding_unit_id;
-    private Timestamp created_at;
-    private Timestamp updated_at;
 
-    public Base() {
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private BaseStatus status;
 
-    public Integer getBaseId() {
-        return baseId;
-    }
+    @Column(name = "commanding_unit_id")
+    private UUID commandingUnitId;
 
-    public void setBaseId(Integer baseId) {
-        this.baseId = baseId;
-    }
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Timestamp createdAt;
 
-    public String getCode() {
-        return code;
-    }
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updatedAt;
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+    public Base() {}
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Integer getCommanding_unit_id() {
-        return commanding_unit_id;
-    }
-
-    public void setCommanding_unit_id(Integer commanding_unit_id) {
-        this.commanding_unit_id = commanding_unit_id;
-    }
-
-    public Timestamp getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
-
-    public Timestamp getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
-    }
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
+    public String getCode() { return code; }
+    public void setCode(String code) { this.code = code; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+    public String getRegion() { return region; }
+    public void setRegion(String region) { this.region = region; }
+    public Double getLatitude() { return latitude; }
+    public void setLatitude(Double latitude) { this.latitude = latitude; }
+    public Double getLongitude() { return longitude; }
+    public void setLongitude(Double longitude) { this.longitude = longitude; }
+    public BaseStatus getStatus() { return status; }
+    public void setStatus(BaseStatus status) { this.status = status; }
+    public UUID getCommandingUnitId() { return commandingUnitId; }
+    public void setCommandingUnitId(UUID commandingUnitId) { this.commandingUnitId = commandingUnitId; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Timestamp getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
 }
