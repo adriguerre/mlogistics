@@ -36,7 +36,7 @@ public class Unit {
     @Column(name = "commander_id")
     private UUID commanderId;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
     public Unit() {}

@@ -39,7 +39,13 @@ public class Base {
     @Column(name = "commanding_unit_id")
     private UUID commandingUnitId;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "equipment_slots", nullable = false)
+    private Integer equipmentSlots;
+
+    @Column(name = "fuel_capacity_l", nullable = false)
+    private Integer fuelCapacityL;
+
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
     @Column(name = "updated_at", nullable = false)
@@ -65,6 +71,10 @@ public class Base {
     public void setStatus(BaseStatus status) { this.status = status; }
     public UUID getCommandingUnitId() { return commandingUnitId; }
     public void setCommandingUnitId(UUID commandingUnitId) { this.commandingUnitId = commandingUnitId; }
+    public Integer getEquipmentSlots() { return equipmentSlots; }
+    public void setEquipmentSlots(Integer equipmentSlots) { this.equipmentSlots = equipmentSlots; }
+    public Integer getFuelCapacityL() { return fuelCapacityL; }
+    public void setFuelCapacityL(Integer fuelCapacityL) { this.fuelCapacityL = fuelCapacityL; }
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
     public Timestamp getUpdatedAt() { return updatedAt; }

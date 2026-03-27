@@ -41,6 +41,7 @@ public class VehicleService {
             if (updated.getCurrentBaseId() != null) existing.setCurrentBaseId(updated.getCurrentBaseId());
             if (updated.getMaxPayloadKg() != null) existing.setMaxPayloadKg(updated.getMaxPayloadKg());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
+            if (updated.getPassengerCapacity() != null) existing.setPassengerCapacity(updated.getPassengerCapacity());
             return vehicleRepository.save(existing);
         });
     }

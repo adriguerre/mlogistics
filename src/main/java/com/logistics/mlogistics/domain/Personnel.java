@@ -36,7 +36,7 @@ public class Personnel {
     @Column(name = "status", nullable = false)
     private PersonnelStatus status;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
     public Personnel() {}

@@ -46,7 +46,7 @@ public class Equipment {
     @Column(name = "maintenance_interval_days")
     private Integer maintenanceIntervalDays;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
     public Equipment() {}

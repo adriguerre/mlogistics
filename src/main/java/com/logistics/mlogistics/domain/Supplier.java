@@ -30,7 +30,7 @@ public class Supplier {
     @Column(name = "is_approved", nullable = false)
     private Boolean isApproved;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
     public Supplier() {}

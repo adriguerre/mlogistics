@@ -49,7 +49,7 @@ public class SupplyOrder {
     @Column(name = "notes")
     private String notes;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
     public SupplyOrder() {}

@@ -41,6 +41,8 @@ public class BaseService {
             if (updated.getLongitude() != null) existing.setLongitude(updated.getLongitude());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             if (updated.getCommandingUnitId() != null) existing.setCommandingUnitId(updated.getCommandingUnitId());
+            if (updated.getEquipmentSlots() != null) existing.setEquipmentSlots(updated.getEquipmentSlots());
+            if (updated.getFuelCapacityL() != null) existing.setFuelCapacityL(updated.getFuelCapacityL());
             if (updated.getUpdatedAt() != null) existing.setUpdatedAt(updated.getUpdatedAt());
             return baseRepository.save(existing);
         });

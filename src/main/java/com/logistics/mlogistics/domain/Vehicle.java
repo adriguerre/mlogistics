@@ -39,11 +39,14 @@ public class Vehicle {
     @Column(name = "status", nullable = false)
     private VehicleStatus status;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
     @Column(name = "current_base_id")
     private UUID currentBaseId;
+
+    @Column(name = "passenger_capacity")
+    private Integer passengerCapacity;
 
     public Vehicle() {}
 
@@ -65,6 +68,8 @@ public class Vehicle {
     public void setMaxPayloadKg(BigDecimal maxPayloadKg) { this.maxPayloadKg = maxPayloadKg; }
     public VehicleStatus getStatus() { return status; }
     public void setStatus(VehicleStatus status) { this.status = status; }
+    public Integer getPassengerCapacity() { return passengerCapacity; }
+    public void setPassengerCapacity(Integer passengerCapacity) { this.passengerCapacity = passengerCapacity; }
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 }
