@@ -66,7 +66,7 @@ Configuration: [`datadog/conf.d/kafka.d/`](datadog/conf.d/kafka.d/)
 ### Run
 
 ```bash
-docker compose up -d
+docker compose up --build -d
 ```
 
 Services started:
@@ -74,15 +74,6 @@ Services started:
 - `kafka` → `localhost:29092`
 - `datadog-agent` (metrics forwarded to Datadog)
 
-### Database setup
-
-```bash
-# Create schema
-psql -h localhost -U postgres -d mlogistics -f docs/military_logistics_schema.sql
-
-# Load sample data (Operación IRON SHIELD scenario)
-psql -h localhost -U postgres -d mlogistics -f docs/sample_data.sql
-```
 
 ### API
 
