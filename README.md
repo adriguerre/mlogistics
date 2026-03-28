@@ -2,6 +2,8 @@
 
 Military logistics management API built with Spring Boot. Designed to track and manage the operational resources of a military force: bases, units, personnel, vehicles, equipment, supply orders, shipments, missions, and maintenance records.
 
+> 🚧 Work in progress: This project is currently under active development. Endpoints, data models and features may change at any time. New functionality will be added progressively.
+
 ## Tech stack
 
 | Layer | Technology |
@@ -64,6 +66,8 @@ Configuration: [`datadog/conf.d/kafka.d/`](datadog/conf.d/kafka.d/)
 ### Environment variables
 
 ### Run
+
+Under normal circumstances the project connects to a real external database. However, for the purpose of showcasing the full behaviour of the API, a snapshot of the database at a specific point in time has been included in the repository (`docker/init/init.sql`). This allows anyone to run the project locally with realistic data without needing access to the original database.
 
 ```bash
 docker compose up --build -d
