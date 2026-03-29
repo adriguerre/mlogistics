@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Unit;
 import com.logistics.mlogistics.repository.UnitRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class UnitService {
 
     private final UnitRepository unitRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public UnitService(UnitRepository unitRepository) {
@@ -27,8 +33,11 @@ public class UnitService {
         return unitRepository.findById(id);
     }
 
+    @Transactional
     public Unit create(Unit unit) {
-        return unitRepository.save(unit);
+        Unit saved = unitRepository.saveAndFlush(unit);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Unit> update(UUID id, Unit updated) {

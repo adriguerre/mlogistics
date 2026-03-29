@@ -2,7 +2,7 @@
   "info": {
     "name": "mlogistics API — Full CRUD",
     "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "description": "Military Logistics API — CRUD completo para las 17 entidades.\nBase URL: {{baseUrl}}\n\nTodos los IDs de sample_data.sql están precargados como variables de colección. Las variables *_new se rellenan automáticamente al hacer POST.",
+    "description": "Military Logistics API — CRUD completo para las 17 entidades.\nBase URL: {{baseUrl}}\n\nTodos los IDs de sample_data.sql están precargados como variables de colección.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -10,19 +10,16 @@
 
     { "key": "rank_colonel",        "value": "00000000-0000-0000-0000-000000000007",     "type": "string" },
     { "key": "rank_sergeant",       "value": "00000000-0000-0000-0000-000000000003",     "type": "string" },
-    { "key": "rank_new",            "value": "",                                          "type": "string" },
 
     { "key": "base_alpha",          "value": "00000000-0000-0000-0000-000000000101",     "type": "string" },
     { "key": "base_bravo",          "value": "00000000-0000-0000-0000-000000000102",     "type": "string" },
     { "key": "base_depot",          "value": "00000000-0000-0000-0000-000000000103",     "type": "string" },
-    { "key": "base_new",            "value": "",                                          "type": "string" },
 
     { "key": "unit_brigade",        "value": "00000000-0000-0000-0000-000000000201",     "type": "string" },
     { "key": "unit_battalion",      "value": "00000000-0000-0000-0000-000000000202",     "type": "string" },
     { "key": "unit_company",        "value": "00000000-0000-0000-0000-000000000203",     "type": "string" },
     { "key": "unit_platoon",        "value": "00000000-0000-0000-0000-000000000204",     "type": "string" },
     { "key": "unit_logistics",      "value": "00000000-0000-0000-0000-000000000205",     "type": "string" },
-    { "key": "unit_new",            "value": "",                                          "type": "string" },
 
     { "key": "personnel_carter",    "value": "00000000-0000-0000-0000-000000000301",     "type": "string" },
     { "key": "personnel_gonzalez",  "value": "00000000-0000-0000-0000-000000000302",     "type": "string" },
@@ -34,7 +31,6 @@
     { "key": "personnel_reed",      "value": "00000000-0000-0000-0000-000000000308",     "type": "string" },
     { "key": "personnel_nguyen",    "value": "00000000-0000-0000-0000-000000000309",     "type": "string" },
     { "key": "personnel_evans",     "value": "00000000-0000-0000-0000-000000000310",     "type": "string" },
-    { "key": "personnel_new",       "value": "",                                          "type": "string" },
 
     { "key": "vehicle_lmtv",        "value": "00000000-0000-0000-0000-000000000401",     "type": "string" },
     { "key": "vehicle_humvee",      "value": "00000000-0000-0000-0000-000000000402",     "type": "string" },
@@ -43,13 +39,11 @@
     { "key": "vehicle_hercules",    "value": "00000000-0000-0000-0000-000000000405",     "type": "string" },
     { "key": "vehicle_lmtv_spare",  "value": "00000000-0000-0000-0000-000000000406",     "type": "string" },
     { "key": "vehicle_reaper",      "value": "00000000-0000-0000-0000-000000000407",     "type": "string" },
-    { "key": "vehicle_new",         "value": "",                                          "type": "string" },
 
     { "key": "squad_rangers",       "value": "00000000-0000-0000-0001-000000000001",     "type": "string" },
     { "key": "squad_engineers",     "value": "00000000-0000-0000-0001-000000000002",     "type": "string" },
     { "key": "squad_recon",         "value": "00000000-0000-0000-0001-000000000003",     "type": "string" },
     { "key": "squad_medics",        "value": "00000000-0000-0000-0001-000000000004",     "type": "string" },
-    { "key": "squad_new",           "value": "",                                          "type": "string" },
 
     { "key": "cat_weapons",         "value": "00000000-0000-0000-0000-000000000501",     "type": "string" },
     { "key": "cat_comms",           "value": "00000000-0000-0000-0000-000000000502",     "type": "string" },
@@ -58,7 +52,6 @@
     { "key": "cat_armor",           "value": "00000000-0000-0000-0000-000000000505",     "type": "string" },
     { "key": "cat_fuel",            "value": "00000000-0000-0000-0000-000000000506",     "type": "string" },
     { "key": "cat_engineer",        "value": "00000000-0000-0000-0000-000000000507",     "type": "string" },
-    { "key": "cat_new",             "value": "",                                          "type": "string" },
 
     { "key": "equip_rifle",         "value": "00000000-0000-0000-0000-000000000601",     "type": "string" },
     { "key": "equip_machinegun",    "value": "00000000-0000-0000-0000-000000000602",     "type": "string" },
@@ -70,41 +63,29 @@
     { "key": "equip_helmet",        "value": "00000000-0000-0000-0000-000000000608",     "type": "string" },
     { "key": "equip_jp8",           "value": "00000000-0000-0000-0000-000000000609",     "type": "string" },
     { "key": "equip_c4",            "value": "00000000-0000-0000-0000-000000000610",     "type": "string" },
-    { "key": "equip_new",           "value": "",                                          "type": "string" },
 
     { "key": "inv_rifles_alpha",    "value": "00000000-0000-0000-0000-000000000701",     "type": "string" },
-    { "key": "inv_new",             "value": "",                                          "type": "string" },
 
     { "key": "supplier_dod",        "value": "00000000-0000-0000-0000-000000000801",     "type": "string" },
     { "key": "supplier_lockheed",   "value": "00000000-0000-0000-0000-000000000802",     "type": "string" },
     { "key": "supplier_bae",        "value": "00000000-0000-0000-0000-000000000803",     "type": "string" },
     { "key": "supplier_nato",       "value": "00000000-0000-0000-0000-000000000804",     "type": "string" },
     { "key": "supplier_internal",   "value": "00000000-0000-0000-0000-000000000805",     "type": "string" },
-    { "key": "supplier_new",        "value": "",                                          "type": "string" },
 
     { "key": "order_001",           "value": "00000000-0000-0000-0000-000000000901",     "type": "string" },
     { "key": "order_002",           "value": "00000000-0000-0000-0000-000000000902",     "type": "string" },
     { "key": "order_003",           "value": "00000000-0000-0000-0000-000000000903",     "type": "string" },
-    { "key": "order_new",           "value": "",                                          "type": "string" },
-
-    { "key": "order_item_new",      "value": "",                                          "type": "string" },
 
     { "key": "shipment_001",        "value": "00000000-0000-0000-0000-000000000b01",     "type": "string" },
     { "key": "shipment_002",        "value": "00000000-0000-0000-0000-000000000b02",     "type": "string" },
     { "key": "shipment_003",        "value": "00000000-0000-0000-0000-000000000b03",     "type": "string" },
-    { "key": "shipment_new",        "value": "",                                          "type": "string" },
-
-    { "key": "shipment_item_new",   "value": "",                                          "type": "string" },
 
     { "key": "mission_iron_shield", "value": "00000000-0000-0000-0000-000000000d01",     "type": "string" },
     { "key": "mission_silent_arrow","value": "00000000-0000-0000-0000-000000000d02",     "type": "string" },
-    { "key": "mission_new",         "value": "",                                          "type": "string" },
 
     { "key": "mres_platoon",        "value": "00000000-0000-0000-0000-000000000e01",     "type": "string" },
-    { "key": "mres_new",            "value": "",                                          "type": "string" },
 
-    { "key": "maint_lmtv",         "value": "00000000-0000-0000-0000-000000000f01",     "type": "string" },
-    { "key": "maint_new",           "value": "",                                          "type": "string" }
+    { "key": "maint_lmtv",         "value": "00000000-0000-0000-0000-000000000f01",     "type": "string" }
   ],
   "item": [
 
@@ -124,7 +105,6 @@
         },
         {
           "name": "Create Rank",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('rank_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -145,7 +125,7 @@
           "name": "Delete Rank",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/rank/{{rank_new}}", "host": ["{{baseUrl}}"], "path": ["rank", "{{rank_new}}"] }
+            "url": { "raw": "{{baseUrl}}/rank/:id", "host": ["{{baseUrl}}"], "path": ["rank", ":id"], "variable": [{ "key": "id", "value": "", "description": "Rank UUID" }] }
           }
         }
       ]
@@ -167,7 +147,6 @@
         },
         {
           "name": "Create Base",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('base_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -188,7 +167,7 @@
           "name": "Delete Base",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/base/{{base_new}}", "host": ["{{baseUrl}}"], "path": ["base", "{{base_new}}"] }
+            "url": { "raw": "{{baseUrl}}/base/:id", "host": ["{{baseUrl}}"], "path": ["base", ":id"], "variable": [{ "key": "id", "value": "", "description": "Base UUID" }] }
           }
         }
       ]
@@ -210,7 +189,6 @@
         },
         {
           "name": "Create Unit",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('unit_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -231,7 +209,7 @@
           "name": "Delete Unit",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/unit/{{unit_new}}", "host": ["{{baseUrl}}"], "path": ["unit", "{{unit_new}}"] }
+            "url": { "raw": "{{baseUrl}}/unit/:id", "host": ["{{baseUrl}}"], "path": ["unit", ":id"], "variable": [{ "key": "id", "value": "", "description": "Unit UUID" }] }
           }
         }
       ]
@@ -253,7 +231,6 @@
         },
         {
           "name": "Create Personnel",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('personnel_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -274,7 +251,7 @@
           "name": "Delete Personnel",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/personnel/{{personnel_new}}", "host": ["{{baseUrl}}"], "path": ["personnel", "{{personnel_new}}"] }
+            "url": { "raw": "{{baseUrl}}/personnel/:id", "host": ["{{baseUrl}}"], "path": ["personnel", ":id"], "variable": [{ "key": "id", "value": "", "description": "Personnel UUID" }] }
           }
         }
       ]
@@ -296,7 +273,6 @@
         },
         {
           "name": "Create Vehicle",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('vehicle_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -317,7 +293,7 @@
           "name": "Delete Vehicle",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/vehicle/{{vehicle_new}}", "host": ["{{baseUrl}}"], "path": ["vehicle", "{{vehicle_new}}"] }
+            "url": { "raw": "{{baseUrl}}/vehicle/:id", "host": ["{{baseUrl}}"], "path": ["vehicle", ":id"], "variable": [{ "key": "id", "value": "", "description": "Vehicle UUID" }] }
           }
         }
       ]
@@ -339,7 +315,6 @@
         },
         {
           "name": "Create Squad",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('squad_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -369,7 +344,7 @@
           "name": "Delete Squad",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/squad/{{squad_new}}", "host": ["{{baseUrl}}"], "path": ["squad", "{{squad_new}}"] }
+            "url": { "raw": "{{baseUrl}}/squad/:id", "host": ["{{baseUrl}}"], "path": ["squad", ":id"], "variable": [{ "key": "id", "value": "", "description": "Squad UUID" }] }
           }
         }
       ]
@@ -391,7 +366,6 @@
         },
         {
           "name": "Create Category",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('cat_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -412,7 +386,7 @@
           "name": "Delete Category",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/equipment-category/{{cat_new}}", "host": ["{{baseUrl}}"], "path": ["equipment-category", "{{cat_new}}"] }
+            "url": { "raw": "{{baseUrl}}/equipment-category/:id", "host": ["{{baseUrl}}"], "path": ["equipment-category", ":id"], "variable": [{ "key": "id", "value": "", "description": "Equipment Category UUID" }] }
           }
         }
       ]
@@ -434,7 +408,6 @@
         },
         {
           "name": "Create Equipment",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('equip_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -455,7 +428,7 @@
           "name": "Delete Equipment",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/equipment/{{equip_new}}", "host": ["{{baseUrl}}"], "path": ["equipment", "{{equip_new}}"] }
+            "url": { "raw": "{{baseUrl}}/equipment/:id", "host": ["{{baseUrl}}"], "path": ["equipment", ":id"], "variable": [{ "key": "id", "value": "", "description": "Equipment UUID" }] }
           }
         }
       ]
@@ -477,7 +450,6 @@
         },
         {
           "name": "Create Inventory",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('inv_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -498,7 +470,7 @@
           "name": "Delete Inventory",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/inventory/{{inv_new}}", "host": ["{{baseUrl}}"], "path": ["inventory", "{{inv_new}}"] }
+            "url": { "raw": "{{baseUrl}}/inventory/:id", "host": ["{{baseUrl}}"], "path": ["inventory", ":id"], "variable": [{ "key": "id", "value": "", "description": "Inventory UUID" }] }
           }
         }
       ]
@@ -520,7 +492,6 @@
         },
         {
           "name": "Create Supplier",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('supplier_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -541,7 +512,7 @@
           "name": "Delete Supplier",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/supplier/{{supplier_new}}", "host": ["{{baseUrl}}"], "path": ["supplier", "{{supplier_new}}"] }
+            "url": { "raw": "{{baseUrl}}/supplier/:id", "host": ["{{baseUrl}}"], "path": ["supplier", ":id"], "variable": [{ "key": "id", "value": "", "description": "Supplier UUID" }] }
           }
         }
       ]
@@ -563,7 +534,6 @@
         },
         {
           "name": "Create Supply Order",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('order_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -584,7 +554,7 @@
           "name": "Delete Supply Order",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/supply-order/{{order_new}}", "host": ["{{baseUrl}}"], "path": ["supply-order", "{{order_new}}"] }
+            "url": { "raw": "{{baseUrl}}/supply-order/:id", "host": ["{{baseUrl}}"], "path": ["supply-order", ":id"], "variable": [{ "key": "id", "value": "", "description": "Supply Order UUID" }] }
           }
         }
       ]
@@ -606,7 +576,6 @@
         },
         {
           "name": "Create Supply Order Item",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('order_item_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -627,7 +596,7 @@
           "name": "Delete Supply Order Item",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/supply-order-item/{{order_item_new}}", "host": ["{{baseUrl}}"], "path": ["supply-order-item", "{{order_item_new}}"] }
+            "url": { "raw": "{{baseUrl}}/supply-order-item/:id", "host": ["{{baseUrl}}"], "path": ["supply-order-item", ":id"], "variable": [{ "key": "id", "value": "", "description": "Supply Order Item UUID" }] }
           }
         }
       ]
@@ -649,7 +618,6 @@
         },
         {
           "name": "Create Shipment",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('shipment_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -670,7 +638,7 @@
           "name": "Delete Shipment",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/shipment/{{shipment_new}}", "host": ["{{baseUrl}}"], "path": ["shipment", "{{shipment_new}}"] }
+            "url": { "raw": "{{baseUrl}}/shipment/:id", "host": ["{{baseUrl}}"], "path": ["shipment", ":id"], "variable": [{ "key": "id", "value": "", "description": "Shipment UUID" }] }
           }
         }
       ]
@@ -692,7 +660,6 @@
         },
         {
           "name": "Create Shipment Item",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('shipment_item_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -713,7 +680,7 @@
           "name": "Delete Shipment Item",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/shipment-item/{{shipment_item_new}}", "host": ["{{baseUrl}}"], "path": ["shipment-item", "{{shipment_item_new}}"] }
+            "url": { "raw": "{{baseUrl}}/shipment-item/:id", "host": ["{{baseUrl}}"], "path": ["shipment-item", ":id"], "variable": [{ "key": "id", "value": "", "description": "Shipment Item UUID" }] }
           }
         }
       ]
@@ -735,7 +702,6 @@
         },
         {
           "name": "Create Mission",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('mission_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -756,7 +722,7 @@
           "name": "Delete Mission",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/mission/{{mission_new}}", "host": ["{{baseUrl}}"], "path": ["mission", "{{mission_new}}"] }
+            "url": { "raw": "{{baseUrl}}/mission/:id", "host": ["{{baseUrl}}"], "path": ["mission", ":id"], "variable": [{ "key": "id", "value": "", "description": "Mission UUID" }] }
           }
         }
       ]
@@ -778,7 +744,6 @@
         },
         {
           "name": "Create Mission Resource",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('mres_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -799,7 +764,7 @@
           "name": "Delete Mission Resource",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/mission-resource/{{mres_new}}", "host": ["{{baseUrl}}"], "path": ["mission-resource", "{{mres_new}}"] }
+            "url": { "raw": "{{baseUrl}}/mission-resource/:id", "host": ["{{baseUrl}}"], "path": ["mission-resource", ":id"], "variable": [{ "key": "id", "value": "", "description": "Mission Resource UUID" }] }
           }
         }
       ]
@@ -821,7 +786,6 @@
         },
         {
           "name": "Create Maintenance Record",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('maint_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -842,7 +806,7 @@
           "name": "Delete Maintenance Record",
           "request": {
             "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/maintenance-record/{{maint_new}}", "host": ["{{baseUrl}}"], "path": ["maintenance-record", "{{maint_new}}"] }
+            "url": { "raw": "{{baseUrl}}/maintenance-record/:id", "host": ["{{baseUrl}}"], "path": ["maintenance-record", ":id"], "variable": [{ "key": "id", "value": "", "description": "Maintenance Record UUID" }] }
           }
         }
       ]

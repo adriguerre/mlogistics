@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.logistics.mlogistics.domain.enums.UnitType;
 import jakarta.persistence.*;
@@ -43,10 +44,12 @@ public class Unit {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "home_base_id", nullable = false)
     @JsonIgnoreProperties({"units", "commanding_unit"})
+    @JsonProperty("home_base")
     private Base homeBase;
 
     @OneToOne
     @JoinColumn(name = "commander_id")
+    @JsonProperty("commander_id")
     private Personnel commanderId;
 
     @Generated(event = EventType.INSERT)
