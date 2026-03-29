@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "vehicle")
@@ -22,8 +24,9 @@ public class Vehicle {
     @Column(name = "model", nullable = false, length = 150)
     private String model;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
+    @Column(name = "type", nullable = false, columnDefinition = "vehicle_type")
     private VehicleType type;
 
     @Column(name = "base_id")
@@ -35,8 +38,9 @@ public class Vehicle {
     @Column(name = "max_payload_kg", precision = 10, scale = 2)
     private BigDecimal maxPayloadKg;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "vehicle_status")
     private VehicleStatus status;
 
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)

@@ -3,6 +3,8 @@ package com.logistics.mlogistics.domain;
 import com.logistics.mlogistics.domain.enums.ResourceStatus;
 import jakarta.persistence.*;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "mission_resource")
@@ -28,8 +30,9 @@ public class MissionResource {
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "resource_status")
     private ResourceStatus status;
 
     public MissionResource() {}

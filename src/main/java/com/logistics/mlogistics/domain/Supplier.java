@@ -4,6 +4,8 @@ import com.logistics.mlogistics.domain.enums.SupplierType;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "supplier")
@@ -20,8 +22,9 @@ public class Supplier {
     @Column(name = "name", nullable = false, length = 150)
     private String name;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
+    @Column(name = "type", nullable = false, columnDefinition = "supplier_type")
     private SupplierType type;
 
     @Column(name = "country", length = 100)

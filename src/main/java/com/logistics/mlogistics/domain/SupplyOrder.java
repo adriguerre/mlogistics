@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "supply_order")
@@ -32,12 +34,14 @@ public class SupplyOrder {
     @Column(name = "approved_by")
     private UUID approvedBy;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "order_status")
     private OrderStatus status;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "priority", nullable = false)
+    @Column(name = "priority", nullable = false, columnDefinition = "order_priority")
     private OrderPriority priority;
 
     @Column(name = "required_by")

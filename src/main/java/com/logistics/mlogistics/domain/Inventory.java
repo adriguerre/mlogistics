@@ -1,6 +1,7 @@
 package com.logistics.mlogistics.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -37,7 +38,8 @@ public class Inventory {
     @Column(name = "reorder_threshold", nullable = false)
     private Integer reorderThreshold;
 
-    @Column(name = "updated_at", nullable = false)
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false, insertable = false)
     private Timestamp updatedAt;
 
     public Inventory() {}

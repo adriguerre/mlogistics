@@ -3,6 +3,8 @@ package com.logistics.mlogistics.domain;
 import com.logistics.mlogistics.domain.enums.ItemCondition;
 import jakarta.persistence.*;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "shipment_item")
@@ -22,8 +24,9 @@ public class ShipmentItem {
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "condition", nullable = false)
+    @Column(name = "condition", nullable = false, columnDefinition = "item_condition")
     private ItemCondition condition;
 
     public ShipmentItem() {}

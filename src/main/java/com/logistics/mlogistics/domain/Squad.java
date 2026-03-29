@@ -2,8 +2,11 @@ package com.logistics.mlogistics.domain;
 
 import com.logistics.mlogistics.domain.enums.SquadType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "squad")
@@ -17,8 +20,9 @@ public class Squad {
     @Column(name = "name", nullable = false, length = 150)
     private String name;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
+    @Column(name = "type", nullable = false, columnDefinition = "squad_type")
     private SquadType type;
 
     @Column(name = "unit_id")
@@ -36,7 +40,8 @@ public class Squad {
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false, insertable = false)
     private Timestamp updatedAt;
 
     public Squad() {}

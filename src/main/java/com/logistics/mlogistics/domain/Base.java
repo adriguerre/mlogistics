@@ -2,8 +2,11 @@ package com.logistics.mlogistics.domain;
 
 import com.logistics.mlogistics.domain.enums.BaseStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "base")
@@ -32,8 +35,9 @@ public class Base {
     @Column(name = "longitude")
     private Double longitude;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "base_status")
     private BaseStatus status;
 
     @Column(name = "commanding_unit_id")
@@ -48,7 +52,8 @@ public class Base {
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false, insertable = false)
     private Timestamp updatedAt;
 
     public Base() {}

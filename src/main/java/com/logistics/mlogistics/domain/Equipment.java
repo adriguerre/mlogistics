@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "equipment")
@@ -36,8 +38,9 @@ public class Equipment {
     @Column(name = "unit_cost_usd")
     private BigDecimal unitCostUsd;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "classification", nullable = false)
+    @Column(name = "classification", nullable = false, columnDefinition = "equip_classification")
     private EquipClassification classification;
 
     @Column(name = "requires_maintenance", nullable = false)

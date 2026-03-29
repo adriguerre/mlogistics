@@ -6,7 +6,7 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseUrl",             "value": "http://localhost:8080",                    "type": "string" },
+    { "key": "baseUrl",             "value": "http://localhost:8080/mlogistics/api/v1",                    "type": "string" },
 
     { "key": "rank_colonel",        "value": "00000000-0000-0000-0000-000000000007",     "type": "string" },
     { "key": "rank_sergeant",       "value": "00000000-0000-0000-0000-000000000003",     "type": "string" },
@@ -172,7 +172,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/base", "host": ["{{baseUrl}}"], "path": ["base"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BASE-DELTA\",\n  \"name\": \"Fort Delta\",\n  \"country\": \"USA\",\n  \"region\": \"Nevada\",\n  \"latitude\": 36.1699,\n  \"longitude\": -115.1398,\n  \"status\": \"ACTIVE\",\n  \"equipmentSlots\": 3000,\n  \"fuelCapacityL\": 30000\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BASE-DELTA\",\n  \"name\": \"Fort Delta\",\n  \"country\": \"USA\",\n  \"region\": \"Nevada\",\n  \"latitude\": 36.1699,\n  \"longitude\": -115.1398,\n  \"status\": \"ACTIVE\",\n  \"equipment_slots\": 3000,\n  \"fuel_capacity_l\": 30000\n}" }
           }
         },
         {
@@ -181,7 +181,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/base/{{base_alpha}}", "host": ["{{baseUrl}}"], "path": ["base", "{{base_alpha}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"equipmentSlots\": 6000,\n  \"fuelCapacityL\": 75000\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"equipment_slots\": 6000,\n  \"fuel_capacity_l\": 75000\n}" }
           }
         },
         {
@@ -215,7 +215,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/unit", "host": ["{{baseUrl}}"], "path": ["unit"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BRAVO-CO\",\n  \"name\": \"Bravo Company\",\n  \"type\": \"COMPANY\",\n  \"sizeHeadcount\": 120,\n  \"parentUnitId\": \"{{unit_battalion}}\",\n  \"homeBaseId\": \"{{base_alpha}}\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BRAVO-CO\",\n  \"name\": \"Bravo Company\",\n  \"type\": \"COMPANY\",\n  \"size_headcount\": 120,\n  \"parent_unit_id\": \"{{unit_battalion}}\",\n  \"home_base_id\": \"{{base_alpha}}\"\n}" }
           }
         },
         {
@@ -224,7 +224,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/unit/{{unit_battalion}}", "host": ["{{baseUrl}}"], "path": ["unit", "{{unit_battalion}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"sizeHeadcount\": 850\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"size_headcount\": 850\n}" }
           }
         },
         {
@@ -258,7 +258,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/personnel", "host": ["{{baseUrl}}"], "path": ["personnel"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"serviceId\": \"US-011\",\n  \"firstName\": \"Thomas\",\n  \"lastName\": \"Wright\",\n  \"rankId\": \"{{rank_sergeant}}\",\n  \"unitId\": \"{{unit_platoon}}\",\n  \"baseId\": \"{{base_bravo}}\",\n  \"status\": \"ACTIVE\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"service_id\": \"US-011\",\n  \"first_name\": \"Thomas\",\n  \"last_name\": \"Wright\",\n  \"rank_id\": \"{{rank_sergeant}}\",\n  \"unit_id\": \"{{unit_platoon}}\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"status\": \"ACTIVE\"\n}" }
           }
         },
         {
@@ -301,7 +301,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/vehicle", "host": ["{{baseUrl}}"], "path": ["vehicle"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"plate\": \"V-0008\",\n  \"model\": \"M1151 HMMWV\",\n  \"type\": \"HUMVEE\",\n  \"baseId\": \"{{base_bravo}}\",\n  \"unitId\": \"{{unit_platoon}}\",\n  \"maxPayloadKg\": 1134.0,\n  \"status\": \"AVAILABLE\",\n  \"currentBaseId\": \"{{base_bravo}}\",\n  \"passengerCapacity\": 4\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"plate\": \"V-0008\",\n  \"model\": \"M1151 HMMWV\",\n  \"type\": \"HUMVEE\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"unit_id\": \"{{unit_platoon}}\",\n  \"max_payload_kg\": 1134.0,\n  \"status\": \"AVAILABLE\",\n  \"current_base_id\": \"{{base_bravo}}\",\n  \"passenger_capacity\": 4\n}" }
           }
         },
         {
@@ -310,7 +310,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/vehicle/{{vehicle_humvee}}", "host": ["{{baseUrl}}"], "path": ["vehicle", "{{vehicle_humvee}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"currentBaseId\": \"{{base_depot}}\",\n  \"status\": \"IN_MISSION\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"current_base_id\": \"{{base_depot}}\",\n  \"status\": \"IN_MISSION\"\n}" }
           }
         },
         {
@@ -344,7 +344,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/squad", "host": ["{{baseUrl}}"], "path": ["squad"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"name\": \"Bravo Snipers\",\n  \"type\": \"INFANTRY\",\n  \"unitId\": \"{{unit_platoon}}\",\n  \"personnelCount\": 4,\n  \"currentBaseId\": \"{{base_bravo}}\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"name\": \"Bravo Snipers\",\n  \"type\": \"INFANTRY\",\n  \"unit_id\": \"{{unit_platoon}}\",\n  \"personnel_count\": 4,\n  \"current_base_id\": \"{{base_bravo}}\"\n}" }
           }
         },
         {
@@ -353,7 +353,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/squad/{{squad_rangers}}", "host": ["{{baseUrl}}"], "path": ["squad", "{{squad_rangers}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"currentVehicleId\": \"{{vehicle_apc}}\",\n  \"currentBaseId\": null\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"current_vehicle_id\": \"{{vehicle_apc}}\",\n  \"current_base_id\": null\n}" }
           }
         },
         {
@@ -362,7 +362,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/squad/{{squad_rangers}}", "host": ["{{baseUrl}}"], "path": ["squad", "{{squad_rangers}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"currentBaseId\": \"{{base_bravo}}\",\n  \"currentVehicleId\": null\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"current_base_id\": \"{{base_bravo}}\",\n  \"current_vehicle_id\": null\n}" }
           }
         },
         {
@@ -439,7 +439,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/equipment", "host": ["{{baseUrl}}"], "path": ["equipment"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"sku\": \"WPN-M9\",\n  \"name\": \"Pistol\",\n  \"model\": \"M9 Beretta\",\n  \"manufacturer\": \"Beretta\",\n  \"categoryId\": \"{{cat_weapons}}\",\n  \"unitWeightKg\": 0.95,\n  \"unitCostUsd\": 600.00,\n  \"classification\": \"UNCLASSIFIED\",\n  \"requiresMaintenance\": true,\n  \"maintenanceIntervalDays\": 365\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"sku\": \"WPN-M9\",\n  \"name\": \"Pistol\",\n  \"model\": \"M9 Beretta\",\n  \"manufacturer\": \"Beretta\",\n  \"category_id\": \"{{cat_weapons}}\",\n  \"unit_weight_kg\": 0.95,\n  \"unit_cost_usd\": 600.00,\n  \"classification\": \"UNCLASSIFIED\",\n  \"requires_maintenance\": true,\n  \"maintenance_interval_days\": 365\n}" }
           }
         },
         {
@@ -448,7 +448,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/equipment/{{equip_rifle}}", "host": ["{{baseUrl}}"], "path": ["equipment", "{{equip_rifle}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"unitCostUsd\": 1350.00\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"unit_cost_usd\": 1350.00\n}" }
           }
         },
         {
@@ -482,7 +482,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/inventory", "host": ["{{baseUrl}}"], "path": ["inventory"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"equipmentId\": \"{{equip_rifle}}\",\n  \"baseId\": \"{{base_bravo}}\",\n  \"qtyTotal\": 50,\n  \"qtyAvailable\": 45,\n  \"qtyReserved\": 5,\n  \"qtyDamaged\": 0,\n  \"reorderThreshold\": 10\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"equipment_id\": \"{{equip_rifle}}\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"qty_total\": 50,\n  \"qty_available\": 45,\n  \"qty_reserved\": 5,\n  \"qty_damaged\": 0,\n  \"reorder_threshold\": 10\n}" }
           }
         },
         {
@@ -491,7 +491,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/inventory/{{inv_rifles_alpha}}", "host": ["{{baseUrl}}"], "path": ["inventory", "{{inv_rifles_alpha}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"qtyAvailable\": 350,\n  \"qtyReserved\": 120\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"qty_available\": 350,\n  \"qty_reserved\": 120\n}" }
           }
         },
         {
@@ -525,7 +525,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/supplier", "host": ["{{baseUrl}}"], "path": ["supplier"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"SUP-RHEIN\",\n  \"name\": \"Rheinmetall AG\",\n  \"type\": \"CONTRACTOR\",\n  \"country\": \"Germany\",\n  \"isApproved\": true\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"SUP-RHEIN\",\n  \"name\": \"Rheinmetall AG\",\n  \"type\": \"CONTRACTOR\",\n  \"country\": \"Germany\",\n  \"is_approved\": true\n}" }
           }
         },
         {
@@ -534,7 +534,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/supplier/{{supplier_dod}}", "host": ["{{baseUrl}}"], "path": ["supplier", "{{supplier_dod}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"isApproved\": true\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"is_approved\": true\n}" }
           }
         },
         {
@@ -568,7 +568,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/supply-order", "host": ["{{baseUrl}}"], "path": ["supply-order"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"orderNumber\": \"ORD-2024-004\",\n  \"requestingUnitId\": \"{{unit_company}}\",\n  \"requestingBaseId\": \"{{base_bravo}}\",\n  \"supplierId\": \"{{supplier_dod}}\",\n  \"status\": \"DRAFT\",\n  \"priority\": \"ROUTINE\",\n  \"requiredBy\": \"2024-05-20\",\n  \"notes\": \"Quarterly armor replenishment\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"order_number\": \"ORD-2024-004\",\n  \"requesting_unit_id\": \"{{unit_company}}\",\n  \"requesting_base_id\": \"{{base_bravo}}\",\n  \"supplier_id\": \"{{supplier_dod}}\",\n  \"status\": \"DRAFT\",\n  \"priority\": \"ROUTINE\",\n  \"required_by\": \"2024-05-20\",\n  \"notes\": \"Quarterly armor replenishment\"\n}" }
           }
         },
         {
@@ -611,7 +611,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/supply-order-item", "host": ["{{baseUrl}}"], "path": ["supply-order-item"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"orderId\": \"{{order_001}}\",\n  \"equipmentId\": \"{{equip_armor}}\",\n  \"qtyRequested\": 50,\n  \"qtyApproved\": 50,\n  \"unitPriceUsd\": 1500.00\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"order_id\": \"{{order_001}}\",\n  \"equipment_id\": \"{{equip_armor}}\",\n  \"qty_requested\": 50,\n  \"qty_approved\": 50,\n  \"unit_price_usd\": 1500.00\n}" }
           }
         },
         {
@@ -620,7 +620,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/supply-order-item/{{order_item_001}}", "host": ["{{baseUrl}}"], "path": ["supply-order-item", "{{order_item_001}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"qtyApproved\": 90\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"qty_approved\": 90\n}" }
           }
         },
         {
@@ -654,7 +654,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/shipment", "host": ["{{baseUrl}}"], "path": ["shipment"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"trackingCode\": \"TRK-2024-004-A\",\n  \"orderId\": \"{{order_003}}\",\n  \"originBaseId\": \"{{base_alpha}}\",\n  \"destinationBaseId\": \"{{base_bravo}}\",\n  \"vehicleId\": \"{{vehicle_lmtv}}\",\n  \"driverId\": \"{{personnel_reed}}\",\n  \"status\": \"PREPARING\",\n  \"totalWeightKg\": 450.0,\n  \"estimatedArrivalAt\": \"2024-04-12T10:00:00Z\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"tracking_code\": \"TRK-2024-004-A\",\n  \"order_id\": \"{{order_003}}\",\n  \"origin_base_id\": \"{{base_alpha}}\",\n  \"destination_base_id\": \"{{base_bravo}}\",\n  \"vehicle_id\": \"{{vehicle_lmtv}}\",\n  \"driver_id\": \"{{personnel_reed}}\",\n  \"status\": \"PREPARING\",\n  \"total_weight_kg\": 450.0,\n  \"estimated_arrival_at\": \"2024-04-12T10:00:00Z\"\n}" }
           }
         },
         {
@@ -663,7 +663,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/shipment/{{shipment_002}}", "host": ["{{baseUrl}}"], "path": ["shipment", "{{shipment_002}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"DELIVERED\",\n  \"deliveredAt\": \"2024-03-21T17:30:00Z\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"DELIVERED\",\n  \"delivered_at\": \"2024-03-21T17:30:00Z\"\n}" }
           }
         },
         {
@@ -697,7 +697,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/shipment-item", "host": ["{{baseUrl}}"], "path": ["shipment-item"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"shipmentId\": \"{{shipment_003}}\",\n  \"equipmentId\": \"{{equip_mre}}\",\n  \"quantity\": 200,\n  \"condition\": \"NEW\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"shipment_id\": \"{{shipment_003}}\",\n  \"equipment_id\": \"{{equip_mre}}\",\n  \"quantity\": 200,\n  \"condition\": \"NEW\"\n}" }
           }
         },
         {
@@ -740,7 +740,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/mission", "host": ["{{baseUrl}}"], "path": ["mission"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"codename\": \"THUNDER RUN\",\n  \"commandingUnitId\": \"{{unit_battalion}}\",\n  \"baseId\": \"{{base_alpha}}\",\n  \"classification\": \"CONFIDENTIAL\",\n  \"status\": \"PLANNING\",\n  \"startAt\": \"2024-06-01T04:00:00Z\",\n  \"objective\": \"Rapid armored advance to secure northern checkpoint\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"codename\": \"THUNDER RUN\",\n  \"commanding_unit_id\": \"{{unit_battalion}}\",\n  \"base_id\": \"{{base_alpha}}\",\n  \"classification\": \"CONFIDENTIAL\",\n  \"status\": \"PLANNING\",\n  \"start_at\": \"2024-06-01T04:00:00Z\",\n  \"objective\": \"Rapid armored advance to secure northern checkpoint\"\n}" }
           }
         },
         {
@@ -783,7 +783,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/mission-resource", "host": ["{{baseUrl}}"], "path": ["mission-resource"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"missionId\": \"{{mission_iron_shield}}\",\n  \"vehicleId\": \"{{vehicle_blackhawk}}\",\n  \"quantity\": 1,\n  \"status\": \"ALLOCATED\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"mission_id\": \"{{mission_iron_shield}}\",\n  \"vehicle_id\": \"{{vehicle_blackhawk}}\",\n  \"quantity\": 1,\n  \"status\": \"ALLOCATED\"\n}" }
           }
         },
         {
@@ -826,7 +826,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/maintenance-record", "host": ["{{baseUrl}}"], "path": ["maintenance-record"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"vehicleId\": \"{{vehicle_humvee}}\",\n  \"performedBy\": \"{{personnel_brown}}\",\n  \"baseId\": \"{{base_bravo}}\",\n  \"type\": \"PREVENTIVE\",\n  \"status\": \"SCHEDULED\",\n  \"description\": \"Oil change and brake inspection\",\n  \"costUsd\": 250.00,\n  \"scheduledAt\": \"2024-04-05T08:00:00Z\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"vehicle_id\": \"{{vehicle_humvee}}\",\n  \"performed_by\": \"{{personnel_brown}}\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"type\": \"PREVENTIVE\",\n  \"status\": \"SCHEDULED\",\n  \"description\": \"Oil change and brake inspection\",\n  \"cost_usd\": 250.00,\n  \"scheduled_at\": \"2024-04-05T08:00:00Z\"\n}" }
           }
         },
         {
@@ -835,7 +835,7 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/maintenance-record/{{maint_lmtv}}", "host": ["{{baseUrl}}"], "path": ["maintenance-record", "{{maint_lmtv}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"COMPLETED\",\n  \"outcome\": \"Engine overhauled. Vehicle operational.\",\n  \"completedAt\": \"2024-03-25T16:00:00Z\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"COMPLETED\",\n  \"outcome\": \"Engine overhauled. Vehicle operational.\",\n  \"completed_at\": \"2024-03-25T16:00:00Z\"\n}" }
           }
         },
         {

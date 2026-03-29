@@ -5,6 +5,8 @@ import com.logistics.mlogistics.domain.enums.MissionStatus;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "mission")
@@ -24,12 +26,14 @@ public class Mission {
     @Column(name = "base_id")
     private UUID baseId;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "classification", nullable = false)
+    @Column(name = "classification", nullable = false, columnDefinition = "mission_classification")
     private MissionClassification classification;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "mission_status")
     private MissionStatus status;
 
     @Column(name = "target_latitude")

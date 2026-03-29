@@ -4,6 +4,8 @@ import com.logistics.mlogistics.domain.enums.BranchType;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "rank")
@@ -20,8 +22,9 @@ public class Rank {
     @Column(name = "title", nullable = false, length = 100)
     private String title;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "branch", nullable = false)
+    @Column(name = "branch", nullable = false, columnDefinition = "branch_type")
     private BranchType branch;
 
     @Column(name = "precedence", nullable = false)

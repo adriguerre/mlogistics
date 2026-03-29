@@ -4,6 +4,8 @@ import com.logistics.mlogistics.domain.enums.PersonnelStatus;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "personnel")
@@ -32,8 +34,9 @@ public class Personnel {
     @Column(name = "base_id")
     private UUID baseId;
 
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "personnel_status")
     private PersonnelStatus status;
 
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
