@@ -3,12 +3,16 @@ package com.logistics.mlogistics.domain;
 import com.logistics.mlogistics.domain.enums.MissionClassification;
 import com.logistics.mlogistics.domain.enums.MissionStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import java.sql.Timestamp;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@DynamicInsert
 @Table(name = "mission")
 public class Mission {
 
@@ -51,6 +55,7 @@ public class Mission {
     @Column(name = "objective", columnDefinition = "TEXT")
     private String objective;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 

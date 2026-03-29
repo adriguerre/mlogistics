@@ -124,7 +124,7 @@
         },
         {
           "name": "Create Rank",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('rank_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('rank_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -167,7 +167,7 @@
         },
         {
           "name": "Create Base",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('base_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('base_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -210,12 +210,12 @@
         },
         {
           "name": "Create Unit",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('unit_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('unit_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "url": { "raw": "{{baseUrl}}/unit", "host": ["{{baseUrl}}"], "path": ["unit"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BRAVO-CO\",\n  \"name\": \"Bravo Company\",\n  \"type\": \"COMPANY\",\n  \"size_headcount\": 120,\n  \"parent_unit_id\": \"{{unit_battalion}}\",\n  \"home_base_id\": \"{{base_alpha}}\"\n}" }
+            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BRAVO-CO\",\n  \"name\": \"Bravo Company\",\n  \"type\": \"COMPANY\",\n  \"size_headcount\": 120,\n  \"parent_unit_id\": \"{{unit_battalion}}\",\n  \"home_base\": { \"id\": \"{{base_alpha}}\" }\n}" }
           }
         },
         {
@@ -253,7 +253,7 @@
         },
         {
           "name": "Create Personnel",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('personnel_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('personnel_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -296,7 +296,7 @@
         },
         {
           "name": "Create Vehicle",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('vehicle_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('vehicle_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -339,7 +339,7 @@
         },
         {
           "name": "Create Squad",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('squad_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('squad_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -391,7 +391,7 @@
         },
         {
           "name": "Create Category",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('cat_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('cat_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -434,7 +434,7 @@
         },
         {
           "name": "Create Equipment",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('equip_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('equip_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -477,7 +477,7 @@
         },
         {
           "name": "Create Inventory",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('inv_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('inv_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -520,7 +520,7 @@
         },
         {
           "name": "Create Supplier",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('supplier_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('supplier_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -563,7 +563,7 @@
         },
         {
           "name": "Create Supply Order",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('order_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('order_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -606,7 +606,7 @@
         },
         {
           "name": "Create Supply Order Item",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('order_item_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('order_item_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -649,7 +649,7 @@
         },
         {
           "name": "Create Shipment",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('shipment_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('shipment_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -692,7 +692,7 @@
         },
         {
           "name": "Create Shipment Item",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('shipment_item_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('shipment_item_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -735,7 +735,7 @@
         },
         {
           "name": "Create Mission",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('mission_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('mission_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -778,7 +778,7 @@
         },
         {
           "name": "Create Mission Resource",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('mres_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('mres_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -821,7 +821,7 @@
         },
         {
           "name": "Create Maintenance Record",
-          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('maint_new', r.id);"], "type": "text/javascript" } }],
+          "event": [{ "listen": "test", "script": { "exec": ["const r = pm.response.json(); if (r.id) pm.collectionVariables.set('maint_new', String(r.id).trim());"], "type": "text/javascript" } }],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],

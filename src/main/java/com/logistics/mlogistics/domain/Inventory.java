@@ -1,11 +1,13 @@
 package com.logistics.mlogistics.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
+@DynamicInsert
 @Table(name = "inventory")
 public class Inventory {
 

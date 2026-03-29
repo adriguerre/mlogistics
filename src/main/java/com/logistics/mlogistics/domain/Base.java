@@ -2,13 +2,19 @@ package com.logistics.mlogistics.domain;
 
 import com.logistics.mlogistics.domain.enums.BaseStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
 @Entity
+@DynamicInsert
 @Table(name = "base")
 public class Base {
 
@@ -40,8 +46,14 @@ public class Base {
     @Column(name = "status", nullable = false, columnDefinition = "base_status")
     private BaseStatus status;
 
-    @Column(name = "commanding_unit_id")
-    private UUID commandingUnitId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "commanding_unit_id")
+    @JsonIgnoreProperties({"home_base", "units"})
+    private Unit commandingUnit;
+
+    @OneToMany(mappedBy = "homeBase", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"home_base", "commanding_unit"})
+    private List<Unit> units;
 
     @Column(name = "equipment_slots", nullable = false)
     private Integer equipmentSlots;
@@ -49,6 +61,7 @@ public class Base {
     @Column(name = "fuel_capacity_l", nullable = false)
     private Integer fuelCapacityL;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
@@ -74,8 +87,10 @@ public class Base {
     public void setLongitude(Double longitude) { this.longitude = longitude; }
     public BaseStatus getStatus() { return status; }
     public void setStatus(BaseStatus status) { this.status = status; }
-    public UUID getCommandingUnitId() { return commandingUnitId; }
-    public void setCommandingUnitId(UUID commandingUnitId) { this.commandingUnitId = commandingUnitId; }
+    public Unit getCommandingUnit() { return commandingUnit; }
+    public void setCommandingUnit(Unit commandingUnit) { this.commandingUnit = commandingUnit; }
+    public List<Unit> getUnits() { return units; }
+    public void setUnits(List<Unit> units) { this.units = units; }
     public Integer getEquipmentSlots() { return equipmentSlots; }
     public void setEquipmentSlots(Integer equipmentSlots) { this.equipmentSlots = equipmentSlots; }
     public Integer getFuelCapacityL() { return fuelCapacityL; }

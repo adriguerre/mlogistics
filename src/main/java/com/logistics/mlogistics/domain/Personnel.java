@@ -2,12 +2,16 @@ package com.logistics.mlogistics.domain;
 
 import com.logistics.mlogistics.domain.enums.PersonnelStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import java.sql.Timestamp;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@DynamicInsert
 @Table(name = "personnel")
 public class Personnel {
 
@@ -39,6 +43,7 @@ public class Personnel {
     @Column(name = "status", nullable = false, columnDefinition = "personnel_status")
     private PersonnelStatus status;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 

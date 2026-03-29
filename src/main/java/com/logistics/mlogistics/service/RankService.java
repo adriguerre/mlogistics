@@ -41,7 +41,9 @@ public class RankService {
         });
     }
 
-    public void delete(UUID id) {
+    public boolean delete(UUID id) {
+        if (!rankRepository.existsById(id)) return false;
         rankRepository.deleteById(id);
+        return true;
     }
 }

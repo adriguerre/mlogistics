@@ -2,6 +2,9 @@ package com.logistics.mlogistics.domain;
 
 import com.logistics.mlogistics.domain.enums.EquipClassification;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -9,6 +12,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@DynamicInsert
 @Table(name = "equipment")
 public class Equipment {
 
@@ -49,6 +53,7 @@ public class Equipment {
     @Column(name = "maintenance_interval_days")
     private Integer maintenanceIntervalDays;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 

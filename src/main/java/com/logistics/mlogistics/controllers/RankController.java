@@ -49,7 +49,7 @@ public class RankController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        rankService.delete(id);
+        if (!rankService.delete(id)) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
         return ResponseEntity.noContent().build();
     }
 }

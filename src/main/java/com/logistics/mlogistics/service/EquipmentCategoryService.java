@@ -40,7 +40,9 @@ public class EquipmentCategoryService {
         });
     }
 
-    public void delete(UUID id) {
+    public boolean delete(UUID id) {
+        if (!repository.existsById(id)) return false;
         repository.deleteById(id);
+        return true;
     }
 }

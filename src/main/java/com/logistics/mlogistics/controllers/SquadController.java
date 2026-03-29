@@ -49,7 +49,7 @@ public class SquadController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        squadService.delete(id);
+        if (!squadService.delete(id)) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
         return ResponseEntity.noContent().build();
     }
 }

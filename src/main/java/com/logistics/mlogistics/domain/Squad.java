@@ -2,6 +2,9 @@ package com.logistics.mlogistics.domain;
 
 import com.logistics.mlogistics.domain.enums.SquadType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -9,6 +12,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@DynamicInsert
 @Table(name = "squad")
 public class Squad {
 
@@ -37,6 +41,7 @@ public class Squad {
     @Column(name = "current_vehicle_id")
     private UUID currentVehicleId;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 

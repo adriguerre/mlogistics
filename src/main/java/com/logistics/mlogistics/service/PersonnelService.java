@@ -44,7 +44,9 @@ public class PersonnelService {
         });
     }
 
-    public void delete(UUID id) {
+    public boolean delete(UUID id) {
+        if (!personnelRepository.existsById(id)) return false;
         personnelRepository.deleteById(id);
+        return true;
     }
 }

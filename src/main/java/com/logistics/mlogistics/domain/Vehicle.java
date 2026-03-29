@@ -3,6 +3,9 @@ package com.logistics.mlogistics.domain;
 import com.logistics.mlogistics.domain.enums.VehicleStatus;
 import com.logistics.mlogistics.domain.enums.VehicleType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -10,6 +13,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@DynamicInsert
 @Table(name = "vehicle")
 public class Vehicle {
 
@@ -43,6 +47,7 @@ public class Vehicle {
     @Column(name = "status", nullable = false, columnDefinition = "vehicle_status")
     private VehicleStatus status;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 

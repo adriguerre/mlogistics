@@ -46,7 +46,9 @@ public class VehicleService {
         });
     }
 
-    public void delete(UUID id) {
+    public boolean delete(UUID id) {
+        if (!vehicleRepository.existsById(id)) return false;
         vehicleRepository.deleteById(id);
+        return true;
     }
 }

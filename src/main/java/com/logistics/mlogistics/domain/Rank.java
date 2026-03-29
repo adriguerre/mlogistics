@@ -2,12 +2,16 @@ package com.logistics.mlogistics.domain;
 
 import com.logistics.mlogistics.domain.enums.BranchType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import java.sql.Timestamp;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@DynamicInsert
 @Table(name = "rank")
 public class Rank {
 
@@ -30,6 +34,7 @@ public class Rank {
     @Column(name = "precedence", nullable = false)
     private Short precedence;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 

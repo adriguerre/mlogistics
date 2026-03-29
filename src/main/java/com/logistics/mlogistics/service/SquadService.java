@@ -43,7 +43,9 @@ public class SquadService {
         });
     }
 
-    public void delete(UUID id) {
+    public boolean delete(UUID id) {
+        if (!squadRepository.existsById(id)) return false;
         squadRepository.deleteById(id);
+        return true;
     }
 }

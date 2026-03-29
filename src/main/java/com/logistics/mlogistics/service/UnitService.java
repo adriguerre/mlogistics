@@ -38,13 +38,15 @@ public class UnitService {
             if (updated.getType() != null) existing.setType(updated.getType());
             if (updated.getSizeHeadcount() != null) existing.setSizeHeadcount(updated.getSizeHeadcount());
             if (updated.getParentUnitId() != null) existing.setParentUnitId(updated.getParentUnitId());
-            if (updated.getHomeBaseId() != null) existing.setHomeBaseId(updated.getHomeBaseId());
+            if (updated.getHomeBase() != null) existing.setHomeBase(updated.getHomeBase());
             if (updated.getCommanderId() != null) existing.setCommanderId(updated.getCommanderId());
             return unitRepository.save(existing);
         });
     }
 
-    public void delete(UUID id) {
+    public boolean delete(UUID id) {
+        if (!unitRepository.existsById(id)) return false;
         unitRepository.deleteById(id);
+        return true;
     }
 }

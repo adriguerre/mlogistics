@@ -40,7 +40,7 @@ public class BaseService {
             if (updated.getLatitude() != null) existing.setLatitude(updated.getLatitude());
             if (updated.getLongitude() != null) existing.setLongitude(updated.getLongitude());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
-            if (updated.getCommandingUnitId() != null) existing.setCommandingUnitId(updated.getCommandingUnitId());
+            if (updated.getCommandingUnit() != null) existing.setCommandingUnit(updated.getCommandingUnit());
             if (updated.getEquipmentSlots() != null) existing.setEquipmentSlots(updated.getEquipmentSlots());
             if (updated.getFuelCapacityL() != null) existing.setFuelCapacityL(updated.getFuelCapacityL());
             if (updated.getUpdatedAt() != null) existing.setUpdatedAt(updated.getUpdatedAt());
@@ -48,7 +48,9 @@ public class BaseService {
         });
     }
 
-    public void delete(UUID id) {
+    public boolean delete(UUID id) {
+        if (!baseRepository.existsById(id)) return false;
         baseRepository.deleteById(id);
+        return true;
     }
 }

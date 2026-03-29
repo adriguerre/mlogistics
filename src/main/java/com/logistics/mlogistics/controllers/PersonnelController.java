@@ -49,7 +49,7 @@ public class PersonnelController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        personnelService.delete(id);
+        if (!personnelService.delete(id)) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
         return ResponseEntity.noContent().build();
     }
 }

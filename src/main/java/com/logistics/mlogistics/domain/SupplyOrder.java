@@ -3,6 +3,9 @@ package com.logistics.mlogistics.domain;
 import com.logistics.mlogistics.domain.enums.OrderPriority;
 import com.logistics.mlogistics.domain.enums.OrderStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -11,6 +14,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@DynamicInsert
 @Table(name = "supply_order")
 public class SupplyOrder {
 
@@ -53,6 +57,7 @@ public class SupplyOrder {
     @Column(name = "notes")
     private String notes;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 

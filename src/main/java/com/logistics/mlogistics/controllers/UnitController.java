@@ -49,7 +49,7 @@ public class UnitController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        unitService.delete(id);
+        if (!unitService.delete(id)) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
         return ResponseEntity.noContent().build();
     }
 }

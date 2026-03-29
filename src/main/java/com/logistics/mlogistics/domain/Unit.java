@@ -1,14 +1,21 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.logistics.mlogistics.domain.enums.UnitType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.DynamicInsert;
 import java.sql.Timestamp;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@DynamicInsert
 @Table(name = "unit")
+@JsonPropertyOrder({"id", "code", "name", "type", "size_headcount", "created_at"})
 public class Unit {
 
     @Id
@@ -33,12 +40,16 @@ public class Unit {
     @Column(name = "parent_unit_id")
     private UUID parentUnitId;
 
-    @Column(name = "home_base_id", nullable = false)
-    private UUID homeBaseId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "home_base_id", nullable = false)
+    @JsonIgnoreProperties({"units", "commanding_unit"})
+    private Base homeBase;
 
-    @Column(name = "commander_id")
-    private UUID commanderId;
+    @OneToOne
+    @JoinColumn(name = "commander_id")
+    private Personnel commanderId;
 
+    @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
@@ -56,10 +67,17 @@ public class Unit {
     public void setSizeHeadcount(Integer sizeHeadcount) { this.sizeHeadcount = sizeHeadcount; }
     public UUID getParentUnitId() { return parentUnitId; }
     public void setParentUnitId(UUID parentUnitId) { this.parentUnitId = parentUnitId; }
-    public UUID getHomeBaseId() { return homeBaseId; }
-    public void setHomeBaseId(UUID homeBaseId) { this.homeBaseId = homeBaseId; }
-    public UUID getCommanderId() { return commanderId; }
-    public void setCommanderId(UUID commanderId) { this.commanderId = commanderId; }
+    public Base getHomeBase() { return homeBase; }
+    public void setHomeBase(Base homeBase) { this.homeBase = homeBase; }
+
+    public Personnel getCommanderId() {
+        return commanderId;
+    }
+
+    public void setCommanderId(Personnel commanderId) {
+        this.commanderId = commanderId;
+    }
+
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 }
