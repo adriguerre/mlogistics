@@ -53,7 +53,7 @@ public class Base {
     @JsonIgnoreProperties({"home_base", "units"})
     private Unit commandingUnit;
 
-    @OneToMany(mappedBy = "homeBase", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "homeBase", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"home_base", "commanding_unit"})
     private List<Unit> units;
 

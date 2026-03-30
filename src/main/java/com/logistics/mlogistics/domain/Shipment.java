@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.ShipmentStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
@@ -24,20 +25,30 @@ public class Shipment {
     @Column(name = "tracking_code", nullable = false, unique = true, length = 80)
     private String trackingCode;
 
-    @Column(name = "order_id")
-    private UUID orderId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    @JsonIgnoreProperties({"requesting_unit", "requesting_base", "supplier", "approved_by"})
+    private SupplyOrder order;
 
-    @Column(name = "origin_base_id")
-    private UUID originBaseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "origin_base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base originBase;
 
-    @Column(name = "destination_base_id")
-    private UUID destinationBaseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "destination_base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base destinationBase;
 
-    @Column(name = "vehicle_id")
-    private UUID vehicleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id")
+    @JsonIgnoreProperties({"base", "unit", "current_base"})
+    private Vehicle vehicle;
 
-    @Column(name = "driver_id")
-    private UUID driverId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "driver_id")
+    @JsonIgnoreProperties({"unit", "base"})
+    private Personnel driver;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
@@ -66,16 +77,16 @@ public class Shipment {
     public void setId(UUID id) { this.id = id; }
     public String getTrackingCode() { return trackingCode; }
     public void setTrackingCode(String trackingCode) { this.trackingCode = trackingCode; }
-    public UUID getOrderId() { return orderId; }
-    public void setOrderId(UUID orderId) { this.orderId = orderId; }
-    public UUID getOriginBaseId() { return originBaseId; }
-    public void setOriginBaseId(UUID originBaseId) { this.originBaseId = originBaseId; }
-    public UUID getDestinationBaseId() { return destinationBaseId; }
-    public void setDestinationBaseId(UUID destinationBaseId) { this.destinationBaseId = destinationBaseId; }
-    public UUID getVehicleId() { return vehicleId; }
-    public void setVehicleId(UUID vehicleId) { this.vehicleId = vehicleId; }
-    public UUID getDriverId() { return driverId; }
-    public void setDriverId(UUID driverId) { this.driverId = driverId; }
+    public SupplyOrder getOrder() { return order; }
+    public void setOrder(SupplyOrder order) { this.order = order; }
+    public Base getOriginBase() { return originBase; }
+    public void setOriginBase(Base originBase) { this.originBase = originBase; }
+    public Base getDestinationBase() { return destinationBase; }
+    public void setDestinationBase(Base destinationBase) { this.destinationBase = destinationBase; }
+    public Vehicle getVehicle() { return vehicle; }
+    public void setVehicle(Vehicle vehicle) { this.vehicle = vehicle; }
+    public Personnel getDriver() { return driver; }
+    public void setDriver(Personnel driver) { this.driver = driver; }
     public ShipmentStatus getStatus() { return status; }
     public void setStatus(ShipmentStatus status) { this.status = status; }
     public BigDecimal getTotalWeightKg() { return totalWeightKg; }

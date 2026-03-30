@@ -36,9 +36,9 @@ public class PersonnelService {
             if (updated.getServiceId() != null) existing.setServiceId(updated.getServiceId());
             if (updated.getFirstName() != null) existing.setFirstName(updated.getFirstName());
             if (updated.getLastName() != null) existing.setLastName(updated.getLastName());
-            if (updated.getRankId() != null) existing.setRankId(updated.getRankId());
-            if (updated.getUnitId() != null) existing.setUnitId(updated.getUnitId());
-            if (updated.getBaseId() != null) existing.setBaseId(updated.getBaseId());
+            if (updated.getRank() != null) existing.setRank(updated.getRank());
+            if (updated.getUnit() != null) existing.setUnit(updated.getUnit());
+            if (updated.getBase() != null) existing.setBase(updated.getBase());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             return personnelRepository.save(existing);
         });

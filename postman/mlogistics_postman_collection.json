@@ -6,811 +6,2454 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseUrl",             "value": "http://localhost:8080/mlogistics/api/v1",                    "type": "string" },
-
-    { "key": "rank_colonel",        "value": "00000000-0000-0000-0000-000000000007",     "type": "string" },
-    { "key": "rank_sergeant",       "value": "00000000-0000-0000-0000-000000000003",     "type": "string" },
-
-    { "key": "base_alpha",          "value": "00000000-0000-0000-0000-000000000101",     "type": "string" },
-    { "key": "base_bravo",          "value": "00000000-0000-0000-0000-000000000102",     "type": "string" },
-    { "key": "base_depot",          "value": "00000000-0000-0000-0000-000000000103",     "type": "string" },
-
-    { "key": "unit_brigade",        "value": "00000000-0000-0000-0000-000000000201",     "type": "string" },
-    { "key": "unit_battalion",      "value": "00000000-0000-0000-0000-000000000202",     "type": "string" },
-    { "key": "unit_company",        "value": "00000000-0000-0000-0000-000000000203",     "type": "string" },
-    { "key": "unit_platoon",        "value": "00000000-0000-0000-0000-000000000204",     "type": "string" },
-    { "key": "unit_logistics",      "value": "00000000-0000-0000-0000-000000000205",     "type": "string" },
-
-    { "key": "personnel_carter",    "value": "00000000-0000-0000-0000-000000000301",     "type": "string" },
-    { "key": "personnel_gonzalez",  "value": "00000000-0000-0000-0000-000000000302",     "type": "string" },
-    { "key": "personnel_park",      "value": "00000000-0000-0000-0000-000000000303",     "type": "string" },
-    { "key": "personnel_mitchell",  "value": "00000000-0000-0000-0000-000000000304",     "type": "string" },
-    { "key": "personnel_hall",      "value": "00000000-0000-0000-0000-000000000305",     "type": "string" },
-    { "key": "personnel_brown",     "value": "00000000-0000-0000-0000-000000000306",     "type": "string" },
-    { "key": "personnel_torres",    "value": "00000000-0000-0000-0000-000000000307",     "type": "string" },
-    { "key": "personnel_reed",      "value": "00000000-0000-0000-0000-000000000308",     "type": "string" },
-    { "key": "personnel_nguyen",    "value": "00000000-0000-0000-0000-000000000309",     "type": "string" },
-    { "key": "personnel_evans",     "value": "00000000-0000-0000-0000-000000000310",     "type": "string" },
-
-    { "key": "vehicle_lmtv",        "value": "00000000-0000-0000-0000-000000000401",     "type": "string" },
-    { "key": "vehicle_humvee",      "value": "00000000-0000-0000-0000-000000000402",     "type": "string" },
-    { "key": "vehicle_apc",         "value": "00000000-0000-0000-0000-000000000403",     "type": "string" },
-    { "key": "vehicle_blackhawk",   "value": "00000000-0000-0000-0000-000000000404",     "type": "string" },
-    { "key": "vehicle_hercules",    "value": "00000000-0000-0000-0000-000000000405",     "type": "string" },
-    { "key": "vehicle_lmtv_spare",  "value": "00000000-0000-0000-0000-000000000406",     "type": "string" },
-    { "key": "vehicle_reaper",      "value": "00000000-0000-0000-0000-000000000407",     "type": "string" },
-
-    { "key": "squad_rangers",       "value": "00000000-0000-0000-0001-000000000001",     "type": "string" },
-    { "key": "squad_engineers",     "value": "00000000-0000-0000-0001-000000000002",     "type": "string" },
-    { "key": "squad_recon",         "value": "00000000-0000-0000-0001-000000000003",     "type": "string" },
-    { "key": "squad_medics",        "value": "00000000-0000-0000-0001-000000000004",     "type": "string" },
-
-    { "key": "cat_weapons",         "value": "00000000-0000-0000-0000-000000000501",     "type": "string" },
-    { "key": "cat_comms",           "value": "00000000-0000-0000-0000-000000000502",     "type": "string" },
-    { "key": "cat_medic",           "value": "00000000-0000-0000-0000-000000000503",     "type": "string" },
-    { "key": "cat_rations",         "value": "00000000-0000-0000-0000-000000000504",     "type": "string" },
-    { "key": "cat_armor",           "value": "00000000-0000-0000-0000-000000000505",     "type": "string" },
-    { "key": "cat_fuel",            "value": "00000000-0000-0000-0000-000000000506",     "type": "string" },
-    { "key": "cat_engineer",        "value": "00000000-0000-0000-0000-000000000507",     "type": "string" },
-
-    { "key": "equip_rifle",         "value": "00000000-0000-0000-0000-000000000601",     "type": "string" },
-    { "key": "equip_machinegun",    "value": "00000000-0000-0000-0000-000000000602",     "type": "string" },
-    { "key": "equip_radio",         "value": "00000000-0000-0000-0000-000000000603",     "type": "string" },
-    { "key": "equip_vsat",          "value": "00000000-0000-0000-0000-000000000604",     "type": "string" },
-    { "key": "equip_ifak",          "value": "00000000-0000-0000-0000-000000000605",     "type": "string" },
-    { "key": "equip_mre",           "value": "00000000-0000-0000-0000-000000000606",     "type": "string" },
-    { "key": "equip_armor",         "value": "00000000-0000-0000-0000-000000000607",     "type": "string" },
-    { "key": "equip_helmet",        "value": "00000000-0000-0000-0000-000000000608",     "type": "string" },
-    { "key": "equip_jp8",           "value": "00000000-0000-0000-0000-000000000609",     "type": "string" },
-    { "key": "equip_c4",            "value": "00000000-0000-0000-0000-000000000610",     "type": "string" },
-
-    { "key": "inv_rifles_alpha",    "value": "00000000-0000-0000-0000-000000000701",     "type": "string" },
-
-    { "key": "supplier_dod",        "value": "00000000-0000-0000-0000-000000000801",     "type": "string" },
-    { "key": "supplier_lockheed",   "value": "00000000-0000-0000-0000-000000000802",     "type": "string" },
-    { "key": "supplier_bae",        "value": "00000000-0000-0000-0000-000000000803",     "type": "string" },
-    { "key": "supplier_nato",       "value": "00000000-0000-0000-0000-000000000804",     "type": "string" },
-    { "key": "supplier_internal",   "value": "00000000-0000-0000-0000-000000000805",     "type": "string" },
-
-    { "key": "order_001",           "value": "00000000-0000-0000-0000-000000000901",     "type": "string" },
-    { "key": "order_002",           "value": "00000000-0000-0000-0000-000000000902",     "type": "string" },
-    { "key": "order_003",           "value": "00000000-0000-0000-0000-000000000903",     "type": "string" },
-
-    { "key": "shipment_001",        "value": "00000000-0000-0000-0000-000000000b01",     "type": "string" },
-    { "key": "shipment_002",        "value": "00000000-0000-0000-0000-000000000b02",     "type": "string" },
-    { "key": "shipment_003",        "value": "00000000-0000-0000-0000-000000000b03",     "type": "string" },
-
-    { "key": "mission_iron_shield", "value": "00000000-0000-0000-0000-000000000d01",     "type": "string" },
-    { "key": "mission_silent_arrow","value": "00000000-0000-0000-0000-000000000d02",     "type": "string" },
-
-    { "key": "mres_platoon",        "value": "00000000-0000-0000-0000-000000000e01",     "type": "string" },
-
-    { "key": "maint_lmtv",         "value": "00000000-0000-0000-0000-000000000f01",     "type": "string" }
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/mlogistics/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "rank_colonel",
+      "value": "00000000-0000-0000-0000-000000000007",
+      "type": "string"
+    },
+    {
+      "key": "rank_sergeant",
+      "value": "00000000-0000-0000-0000-000000000003",
+      "type": "string"
+    },
+    {
+      "key": "base_alpha",
+      "value": "00000000-0000-0000-0000-000000000101",
+      "type": "string"
+    },
+    {
+      "key": "base_bravo",
+      "value": "00000000-0000-0000-0000-000000000102",
+      "type": "string"
+    },
+    {
+      "key": "base_depot",
+      "value": "00000000-0000-0000-0000-000000000103",
+      "type": "string"
+    },
+    {
+      "key": "unit_brigade",
+      "value": "00000000-0000-0000-0000-000000000201",
+      "type": "string"
+    },
+    {
+      "key": "unit_battalion",
+      "value": "00000000-0000-0000-0000-000000000202",
+      "type": "string"
+    },
+    {
+      "key": "unit_company",
+      "value": "00000000-0000-0000-0000-000000000203",
+      "type": "string"
+    },
+    {
+      "key": "unit_platoon",
+      "value": "00000000-0000-0000-0000-000000000204",
+      "type": "string"
+    },
+    {
+      "key": "unit_logistics",
+      "value": "00000000-0000-0000-0000-000000000205",
+      "type": "string"
+    },
+    {
+      "key": "personnel_carter",
+      "value": "00000000-0000-0000-0000-000000000301",
+      "type": "string"
+    },
+    {
+      "key": "personnel_gonzalez",
+      "value": "00000000-0000-0000-0000-000000000302",
+      "type": "string"
+    },
+    {
+      "key": "personnel_park",
+      "value": "00000000-0000-0000-0000-000000000303",
+      "type": "string"
+    },
+    {
+      "key": "personnel_mitchell",
+      "value": "00000000-0000-0000-0000-000000000304",
+      "type": "string"
+    },
+    {
+      "key": "personnel_hall",
+      "value": "00000000-0000-0000-0000-000000000305",
+      "type": "string"
+    },
+    {
+      "key": "personnel_brown",
+      "value": "00000000-0000-0000-0000-000000000306",
+      "type": "string"
+    },
+    {
+      "key": "personnel_torres",
+      "value": "00000000-0000-0000-0000-000000000307",
+      "type": "string"
+    },
+    {
+      "key": "personnel_reed",
+      "value": "00000000-0000-0000-0000-000000000308",
+      "type": "string"
+    },
+    {
+      "key": "personnel_nguyen",
+      "value": "00000000-0000-0000-0000-000000000309",
+      "type": "string"
+    },
+    {
+      "key": "personnel_evans",
+      "value": "00000000-0000-0000-0000-000000000310",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_lmtv",
+      "value": "00000000-0000-0000-0000-000000000401",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_humvee",
+      "value": "00000000-0000-0000-0000-000000000402",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_apc",
+      "value": "00000000-0000-0000-0000-000000000403",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_blackhawk",
+      "value": "00000000-0000-0000-0000-000000000404",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_hercules",
+      "value": "00000000-0000-0000-0000-000000000405",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_lmtv_spare",
+      "value": "00000000-0000-0000-0000-000000000406",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_reaper",
+      "value": "00000000-0000-0000-0000-000000000407",
+      "type": "string"
+    },
+    {
+      "key": "squad_rangers",
+      "value": "00000000-0000-0000-0001-000000000001",
+      "type": "string"
+    },
+    {
+      "key": "squad_engineers",
+      "value": "00000000-0000-0000-0001-000000000002",
+      "type": "string"
+    },
+    {
+      "key": "squad_recon",
+      "value": "00000000-0000-0000-0001-000000000003",
+      "type": "string"
+    },
+    {
+      "key": "squad_medics",
+      "value": "00000000-0000-0000-0001-000000000004",
+      "type": "string"
+    },
+    {
+      "key": "cat_weapons",
+      "value": "00000000-0000-0000-0000-000000000501",
+      "type": "string"
+    },
+    {
+      "key": "cat_comms",
+      "value": "00000000-0000-0000-0000-000000000502",
+      "type": "string"
+    },
+    {
+      "key": "cat_medic",
+      "value": "00000000-0000-0000-0000-000000000503",
+      "type": "string"
+    },
+    {
+      "key": "cat_rations",
+      "value": "00000000-0000-0000-0000-000000000504",
+      "type": "string"
+    },
+    {
+      "key": "cat_armor",
+      "value": "00000000-0000-0000-0000-000000000505",
+      "type": "string"
+    },
+    {
+      "key": "cat_fuel",
+      "value": "00000000-0000-0000-0000-000000000506",
+      "type": "string"
+    },
+    {
+      "key": "cat_engineer",
+      "value": "00000000-0000-0000-0000-000000000507",
+      "type": "string"
+    },
+    {
+      "key": "equip_rifle",
+      "value": "00000000-0000-0000-0000-000000000601",
+      "type": "string"
+    },
+    {
+      "key": "equip_machinegun",
+      "value": "00000000-0000-0000-0000-000000000602",
+      "type": "string"
+    },
+    {
+      "key": "equip_radio",
+      "value": "00000000-0000-0000-0000-000000000603",
+      "type": "string"
+    },
+    {
+      "key": "equip_vsat",
+      "value": "00000000-0000-0000-0000-000000000604",
+      "type": "string"
+    },
+    {
+      "key": "equip_ifak",
+      "value": "00000000-0000-0000-0000-000000000605",
+      "type": "string"
+    },
+    {
+      "key": "equip_mre",
+      "value": "00000000-0000-0000-0000-000000000606",
+      "type": "string"
+    },
+    {
+      "key": "equip_armor",
+      "value": "00000000-0000-0000-0000-000000000607",
+      "type": "string"
+    },
+    {
+      "key": "equip_helmet",
+      "value": "00000000-0000-0000-0000-000000000608",
+      "type": "string"
+    },
+    {
+      "key": "equip_jp8",
+      "value": "00000000-0000-0000-0000-000000000609",
+      "type": "string"
+    },
+    {
+      "key": "equip_c4",
+      "value": "00000000-0000-0000-0000-000000000610",
+      "type": "string"
+    },
+    {
+      "key": "inv_rifles_alpha",
+      "value": "00000000-0000-0000-0000-000000000701",
+      "type": "string"
+    },
+    {
+      "key": "supplier_dod",
+      "value": "00000000-0000-0000-0000-000000000801",
+      "type": "string"
+    },
+    {
+      "key": "supplier_lockheed",
+      "value": "00000000-0000-0000-0000-000000000802",
+      "type": "string"
+    },
+    {
+      "key": "supplier_bae",
+      "value": "00000000-0000-0000-0000-000000000803",
+      "type": "string"
+    },
+    {
+      "key": "supplier_nato",
+      "value": "00000000-0000-0000-0000-000000000804",
+      "type": "string"
+    },
+    {
+      "key": "supplier_internal",
+      "value": "00000000-0000-0000-0000-000000000805",
+      "type": "string"
+    },
+    {
+      "key": "order_001",
+      "value": "00000000-0000-0000-0000-000000000901",
+      "type": "string"
+    },
+    {
+      "key": "order_002",
+      "value": "00000000-0000-0000-0000-000000000902",
+      "type": "string"
+    },
+    {
+      "key": "order_003",
+      "value": "00000000-0000-0000-0000-000000000903",
+      "type": "string"
+    },
+    {
+      "key": "shipment_001",
+      "value": "00000000-0000-0000-0000-000000000b01",
+      "type": "string"
+    },
+    {
+      "key": "shipment_002",
+      "value": "00000000-0000-0000-0000-000000000b02",
+      "type": "string"
+    },
+    {
+      "key": "shipment_003",
+      "value": "00000000-0000-0000-0000-000000000b03",
+      "type": "string"
+    },
+    {
+      "key": "mission_iron_shield",
+      "value": "00000000-0000-0000-0000-000000000d01",
+      "type": "string"
+    },
+    {
+      "key": "mission_silent_arrow",
+      "value": "00000000-0000-0000-0000-000000000d02",
+      "type": "string"
+    },
+    {
+      "key": "mres_platoon",
+      "value": "00000000-0000-0000-0000-000000000e01",
+      "type": "string"
+    },
+    {
+      "key": "maint_lmtv",
+      "value": "00000000-0000-0000-0000-000000000f01",
+      "type": "string"
+    }
   ],
   "item": [
-
     {
       "name": "01 — Rank",
       "item": [
         {
           "name": "Get All Ranks",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/rank", "host": ["{{baseUrl}}"], "path": ["rank"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/rank",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rank"
+              ]
+            }
+          }
         },
         {
           "name": "Get Rank by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/rank/{{rank_colonel}}", "host": ["{{baseUrl}}"], "path": ["rank", "{{rank_colonel}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/rank/{{rank_colonel}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rank",
+                "{{rank_colonel}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Rank",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/rank", "host": ["{{baseUrl}}"], "path": ["rank"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"WO1\",\n  \"title\": \"Warrant Officer 1\",\n  \"branch\": \"ARMY\",\n  \"precedence\": 4\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rank",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rank"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"code\": \"WO1\",\n  \"title\": \"Warrant Officer 1\",\n  \"branch\": \"ARMY\",\n  \"precedence\": 4\n}"
+            }
           }
         },
         {
           "name": "Update Rank",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/rank/{{rank_colonel}}", "host": ["{{baseUrl}}"], "path": ["rank", "{{rank_colonel}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"title\": \"Colonel (Updated)\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rank/{{rank_colonel}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rank",
+                "{{rank_colonel}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"title\": \"Colonel (Updated)\"\n}"
+            }
           }
         },
         {
           "name": "Delete Rank",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/rank/:id", "host": ["{{baseUrl}}"], "path": ["rank", ":id"], "variable": [{ "key": "id", "value": "", "description": "Rank UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/rank/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rank",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Rank UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "02 — Base",
       "item": [
         {
           "name": "Get All Bases",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/base", "host": ["{{baseUrl}}"], "path": ["base"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/base",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "base"
+              ]
+            }
+          }
         },
         {
           "name": "Get Base by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/base/{{base_alpha}}", "host": ["{{baseUrl}}"], "path": ["base", "{{base_alpha}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/base/{{base_alpha}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "base",
+                "{{base_alpha}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Base",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/base", "host": ["{{baseUrl}}"], "path": ["base"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BASE-DELTA\",\n  \"name\": \"Fort Delta\",\n  \"country\": \"USA\",\n  \"region\": \"Nevada\",\n  \"latitude\": 36.1699,\n  \"longitude\": -115.1398,\n  \"status\": \"ACTIVE\",\n  \"equipment_slots\": 3000,\n  \"fuel_capacity_l\": 30000\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/base",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "base"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"code\": \"BASE-DELTA\",\n  \"name\": \"Fort Delta\",\n  \"country\": \"USA\",\n  \"region\": \"Nevada\",\n  \"latitude\": 36.1699,\n  \"longitude\": -115.1398,\n  \"status\": \"ACTIVE\",\n  \"equipment_slots\": 3000,\n  \"fuel_capacity_l\": 30000\n}"
+            }
           }
         },
         {
           "name": "Update Base",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/base/{{base_alpha}}", "host": ["{{baseUrl}}"], "path": ["base", "{{base_alpha}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"equipment_slots\": 6000,\n  \"fuel_capacity_l\": 75000\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/base/{{base_alpha}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "base",
+                "{{base_alpha}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"equipment_slots\": 6000,\n  \"fuel_capacity_l\": 75000\n}"
+            }
           }
         },
         {
           "name": "Delete Base",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/base/:id", "host": ["{{baseUrl}}"], "path": ["base", ":id"], "variable": [{ "key": "id", "value": "", "description": "Base UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/base/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "base",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Base UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "03 — Unit",
       "item": [
         {
           "name": "Get All Units",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/unit", "host": ["{{baseUrl}}"], "path": ["unit"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/unit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "unit"
+              ]
+            }
+          }
         },
         {
           "name": "Get Unit by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/unit/{{unit_battalion}}", "host": ["{{baseUrl}}"], "path": ["unit", "{{unit_battalion}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/unit/{{unit_battalion}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "unit",
+                "{{unit_battalion}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Unit",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/unit", "host": ["{{baseUrl}}"], "path": ["unit"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"BRAVO-CO\",\n  \"name\": \"Bravo Company\",\n  \"type\": \"COMPANY\",\n  \"size_headcount\": 120,\n  \"parent_unit_id\": \"{{unit_battalion}}\",\n  \"home_base\": { \"id\": \"{{base_alpha}}\" }\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/unit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "unit"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"code\": \"BRAVO-CO\",\n  \"name\": \"Bravo Company\",\n  \"type\": \"COMPANY\",\n  \"size_headcount\": 120,\n  \"parent_unit_id\": \"{{unit_battalion}}\",\n  \"home_base\": { \"id\": \"{{base_alpha}}\" }\n}"
+            }
           }
         },
         {
           "name": "Update Unit",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/unit/{{unit_battalion}}", "host": ["{{baseUrl}}"], "path": ["unit", "{{unit_battalion}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"size_headcount\": 850\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/unit/{{unit_battalion}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "unit",
+                "{{unit_battalion}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"size_headcount\": 850\n}"
+            }
           }
         },
         {
           "name": "Delete Unit",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/unit/:id", "host": ["{{baseUrl}}"], "path": ["unit", ":id"], "variable": [{ "key": "id", "value": "", "description": "Unit UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/unit/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "unit",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Unit UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "04 — Personnel",
       "item": [
         {
           "name": "Get All Personnel",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/personnel", "host": ["{{baseUrl}}"], "path": ["personnel"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/personnel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "personnel"
+              ]
+            }
+          }
         },
         {
           "name": "Get Personnel by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/personnel/{{personnel_carter}}", "host": ["{{baseUrl}}"], "path": ["personnel", "{{personnel_carter}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/personnel/{{personnel_carter}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "personnel",
+                "{{personnel_carter}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Personnel",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/personnel", "host": ["{{baseUrl}}"], "path": ["personnel"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"service_id\": \"US-011\",\n  \"first_name\": \"Thomas\",\n  \"last_name\": \"Wright\",\n  \"rank_id\": \"{{rank_sergeant}}\",\n  \"unit_id\": \"{{unit_platoon}}\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"status\": \"ACTIVE\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/personnel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "personnel"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"service_id\": \"US-011\",\n  \"first_name\": \"Thomas\",\n  \"last_name\": \"Wright\",\n  \"rank\": { \"id\": \"{{rank_sergeant}}\" },\n  \"unit\": { \"id\": \"{{unit_platoon}}\" },\n  \"base\": { \"id\": \"{{base_bravo}}\" },\n  \"status\": \"ACTIVE\"\n}"
+            }
           }
         },
         {
           "name": "Update Personnel",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/personnel/{{personnel_carter}}", "host": ["{{baseUrl}}"], "path": ["personnel", "{{personnel_carter}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"ON_LEAVE\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/personnel/{{personnel_carter}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "personnel",
+                "{{personnel_carter}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"status\": \"ON_LEAVE\"\n}"
+            }
           }
         },
         {
           "name": "Delete Personnel",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/personnel/:id", "host": ["{{baseUrl}}"], "path": ["personnel", ":id"], "variable": [{ "key": "id", "value": "", "description": "Personnel UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/personnel/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "personnel",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Personnel UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "05 — Vehicle",
       "item": [
         {
           "name": "Get All Vehicles",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/vehicle", "host": ["{{baseUrl}}"], "path": ["vehicle"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicle",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vehicle"
+              ]
+            }
+          }
         },
         {
           "name": "Get Vehicle by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/vehicle/{{vehicle_humvee}}", "host": ["{{baseUrl}}"], "path": ["vehicle", "{{vehicle_humvee}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicle/{{vehicle_humvee}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vehicle",
+                "{{vehicle_humvee}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Vehicle",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/vehicle", "host": ["{{baseUrl}}"], "path": ["vehicle"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"plate\": \"V-0008\",\n  \"model\": \"M1151 HMMWV\",\n  \"type\": \"HUMVEE\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"unit_id\": \"{{unit_platoon}}\",\n  \"max_payload_kg\": 1134.0,\n  \"status\": \"AVAILABLE\",\n  \"current_base_id\": \"{{base_bravo}}\",\n  \"passenger_capacity\": 4\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/vehicle",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vehicle"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"plate\": \"V-0008\",\n  \"model\": \"M1151 HMMWV\",\n  \"type\": \"HUMVEE\",\n  \"base\": { \"id\": \"{{base_bravo}}\" },\n  \"unit\": { \"id\": \"{{unit_platoon}}\" },\n  \"max_payload_kg\": 1134.0,\n  \"status\": \"AVAILABLE\",\n  \"current_base\": { \"id\": \"{{base_bravo}}\" },\n  \"passenger_capacity\": 4\n}"
+            }
           }
         },
         {
           "name": "Update Vehicle — mover a otra base",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/vehicle/{{vehicle_humvee}}", "host": ["{{baseUrl}}"], "path": ["vehicle", "{{vehicle_humvee}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"current_base_id\": \"{{base_depot}}\",\n  \"status\": \"IN_MISSION\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/vehicle/{{vehicle_humvee}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vehicle",
+                "{{vehicle_humvee}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"current_base\": { \"id\": \"{{base_depot}}\" },\n  \"status\": \"IN_MISSION\"\n}"
+            }
           }
         },
         {
           "name": "Delete Vehicle",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/vehicle/:id", "host": ["{{baseUrl}}"], "path": ["vehicle", ":id"], "variable": [{ "key": "id", "value": "", "description": "Vehicle UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vehicle/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vehicle",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Vehicle UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "06 — Squad",
       "item": [
         {
           "name": "Get All Squads",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/squad", "host": ["{{baseUrl}}"], "path": ["squad"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/squad",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "squad"
+              ]
+            }
+          }
         },
         {
           "name": "Get Squad by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/squad/{{squad_rangers}}", "host": ["{{baseUrl}}"], "path": ["squad", "{{squad_rangers}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/squad/{{squad_rangers}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "squad",
+                "{{squad_rangers}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Squad",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/squad", "host": ["{{baseUrl}}"], "path": ["squad"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"name\": \"Bravo Snipers\",\n  \"type\": \"INFANTRY\",\n  \"unit_id\": \"{{unit_platoon}}\",\n  \"personnel_count\": 4,\n  \"current_base_id\": \"{{base_bravo}}\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/squad",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "squad"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"name\": \"Bravo Snipers\",\n  \"type\": \"INFANTRY\",\n  \"unit\": { \"id\": \"{{unit_platoon}}\" },\n  \"personnel_count\": 4,\n  \"current_base\": { \"id\": \"{{base_bravo}}\" }\n}"
+            }
           }
         },
         {
           "name": "Update Squad — embarcar en vehículo",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/squad/{{squad_rangers}}", "host": ["{{baseUrl}}"], "path": ["squad", "{{squad_rangers}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"current_vehicle_id\": \"{{vehicle_apc}}\",\n  \"current_base_id\": null\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/squad/{{squad_rangers}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "squad",
+                "{{squad_rangers}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"current_vehicle\": { \"id\": \"{{vehicle_apc}}\" },\n  \"current_base\": null\n}"
+            }
           }
         },
         {
           "name": "Update Squad — llegar a base",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/squad/{{squad_rangers}}", "host": ["{{baseUrl}}"], "path": ["squad", "{{squad_rangers}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"current_base_id\": \"{{base_bravo}}\",\n  \"current_vehicle_id\": null\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/squad/{{squad_rangers}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "squad",
+                "{{squad_rangers}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"current_base\": { \"id\": \"{{base_bravo}}\" },\n  \"current_vehicle\": null\n}"
+            }
           }
         },
         {
           "name": "Delete Squad",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/squad/:id", "host": ["{{baseUrl}}"], "path": ["squad", ":id"], "variable": [{ "key": "id", "value": "", "description": "Squad UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/squad/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "squad",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Squad UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "07 — Equipment Category",
       "item": [
         {
           "name": "Get All Categories",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/equipment-category", "host": ["{{baseUrl}}"], "path": ["equipment-category"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipment-category",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment-category"
+              ]
+            }
+          }
         },
         {
           "name": "Get Category by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/equipment-category/{{cat_weapons}}", "host": ["{{baseUrl}}"], "path": ["equipment-category", "{{cat_weapons}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipment-category/{{cat_weapons}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment-category",
+                "{{cat_weapons}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Category",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/equipment-category", "host": ["{{baseUrl}}"], "path": ["equipment-category"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"OPTICS\",\n  \"name\": \"Optics & Sensors\",\n  \"description\": \"Night vision, thermal, laser rangefinders\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/equipment-category",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment-category"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"code\": \"OPTICS\",\n  \"name\": \"Optics & Sensors\",\n  \"description\": \"Night vision, thermal, laser rangefinders\"\n}"
+            }
           }
         },
         {
           "name": "Update Category",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/equipment-category/{{cat_weapons}}", "host": ["{{baseUrl}}"], "path": ["equipment-category", "{{cat_weapons}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"description\": \"Firearms, explosives, munitions and accessories\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/equipment-category/{{cat_weapons}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment-category",
+                "{{cat_weapons}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"description\": \"Firearms, explosives, munitions and accessories\"\n}"
+            }
           }
         },
         {
           "name": "Delete Category",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/equipment-category/:id", "host": ["{{baseUrl}}"], "path": ["equipment-category", ":id"], "variable": [{ "key": "id", "value": "", "description": "Equipment Category UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipment-category/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment-category",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Equipment Category UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "08 — Equipment",
       "item": [
         {
           "name": "Get All Equipment",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/equipment", "host": ["{{baseUrl}}"], "path": ["equipment"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment"
+              ]
+            }
+          }
         },
         {
           "name": "Get Equipment by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/equipment/{{equip_rifle}}", "host": ["{{baseUrl}}"], "path": ["equipment", "{{equip_rifle}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipment/{{equip_rifle}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment",
+                "{{equip_rifle}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Equipment",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/equipment", "host": ["{{baseUrl}}"], "path": ["equipment"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"sku\": \"WPN-M9\",\n  \"name\": \"Pistol\",\n  \"model\": \"M9 Beretta\",\n  \"manufacturer\": \"Beretta\",\n  \"category_id\": \"{{cat_weapons}}\",\n  \"unit_weight_kg\": 0.95,\n  \"unit_cost_usd\": 600.00,\n  \"classification\": \"UNCLASSIFIED\",\n  \"requires_maintenance\": true,\n  \"maintenance_interval_days\": 365\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/equipment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"sku\": \"WPN-M9\",\n  \"name\": \"Pistol\",\n  \"model\": \"M9 Beretta\",\n  \"manufacturer\": \"Beretta\",\n  \"category\": { \"id\": \"{{cat_weapons}}\" },\n  \"unit_weight_kg\": 0.95,\n  \"unit_cost_usd\": 600.00,\n  \"classification\": \"UNCLASSIFIED\",\n  \"requires_maintenance\": true,\n  \"maintenance_interval_days\": 365\n}"
+            }
           }
         },
         {
           "name": "Update Equipment",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/equipment/{{equip_rifle}}", "host": ["{{baseUrl}}"], "path": ["equipment", "{{equip_rifle}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"unit_cost_usd\": 1350.00\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/equipment/{{equip_rifle}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment",
+                "{{equip_rifle}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"unit_cost_usd\": 1350.00\n}"
+            }
           }
         },
         {
           "name": "Delete Equipment",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/equipment/:id", "host": ["{{baseUrl}}"], "path": ["equipment", ":id"], "variable": [{ "key": "id", "value": "", "description": "Equipment UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/equipment/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "equipment",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Equipment UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "09 — Inventory",
       "item": [
         {
           "name": "Get All Inventory",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/inventory", "host": ["{{baseUrl}}"], "path": ["inventory"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory"
+              ]
+            }
+          }
         },
         {
           "name": "Get Inventory by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/inventory/{{inv_rifles_alpha}}", "host": ["{{baseUrl}}"], "path": ["inventory", "{{inv_rifles_alpha}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/{{inv_rifles_alpha}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "{{inv_rifles_alpha}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Inventory",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/inventory", "host": ["{{baseUrl}}"], "path": ["inventory"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"equipment_id\": \"{{equip_rifle}}\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"qty_total\": 50,\n  \"qty_available\": 45,\n  \"qty_reserved\": 5,\n  \"qty_damaged\": 0,\n  \"reorder_threshold\": 10\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/inventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"equipment\": { \"id\": \"{{equip_rifle}}\" },\n  \"base\": { \"id\": \"{{base_bravo}}\" },\n  \"qty_total\": 50,\n  \"qty_available\": 45,\n  \"qty_reserved\": 5,\n  \"qty_damaged\": 0,\n  \"reorder_threshold\": 10\n}"
+            }
           }
         },
         {
           "name": "Update Inventory",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/inventory/{{inv_rifles_alpha}}", "host": ["{{baseUrl}}"], "path": ["inventory", "{{inv_rifles_alpha}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"qty_available\": 350,\n  \"qty_reserved\": 120\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/{{inv_rifles_alpha}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "{{inv_rifles_alpha}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"qty_available\": 350,\n  \"qty_reserved\": 120\n}"
+            }
           }
         },
         {
           "name": "Delete Inventory",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/inventory/:id", "host": ["{{baseUrl}}"], "path": ["inventory", ":id"], "variable": [{ "key": "id", "value": "", "description": "Inventory UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Inventory UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "10 — Supplier",
       "item": [
         {
           "name": "Get All Suppliers",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/supplier", "host": ["{{baseUrl}}"], "path": ["supplier"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supplier",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supplier"
+              ]
+            }
+          }
         },
         {
           "name": "Get Supplier by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/supplier/{{supplier_dod}}", "host": ["{{baseUrl}}"], "path": ["supplier", "{{supplier_dod}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supplier/{{supplier_dod}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supplier",
+                "{{supplier_dod}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Supplier",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/supplier", "host": ["{{baseUrl}}"], "path": ["supplier"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"code\": \"SUP-RHEIN\",\n  \"name\": \"Rheinmetall AG\",\n  \"type\": \"CONTRACTOR\",\n  \"country\": \"Germany\",\n  \"is_approved\": true\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/supplier",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supplier"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"code\": \"SUP-RHEIN\",\n  \"name\": \"Rheinmetall AG\",\n  \"type\": \"CONTRACTOR\",\n  \"country\": \"Germany\",\n  \"is_approved\": true\n}"
+            }
           }
         },
         {
           "name": "Update Supplier",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/supplier/{{supplier_dod}}", "host": ["{{baseUrl}}"], "path": ["supplier", "{{supplier_dod}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"is_approved\": true\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/supplier/{{supplier_dod}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supplier",
+                "{{supplier_dod}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"is_approved\": true\n}"
+            }
           }
         },
         {
           "name": "Delete Supplier",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/supplier/:id", "host": ["{{baseUrl}}"], "path": ["supplier", ":id"], "variable": [{ "key": "id", "value": "", "description": "Supplier UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supplier/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supplier",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Supplier UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "11 — Supply Order",
       "item": [
         {
           "name": "Get All Supply Orders",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/supply-order", "host": ["{{baseUrl}}"], "path": ["supply-order"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order"
+              ]
+            }
+          }
         },
         {
           "name": "Get Supply Order by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/supply-order/{{order_001}}", "host": ["{{baseUrl}}"], "path": ["supply-order", "{{order_001}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order/{{order_001}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order",
+                "{{order_001}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Supply Order",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/supply-order", "host": ["{{baseUrl}}"], "path": ["supply-order"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"order_number\": \"ORD-2024-004\",\n  \"requesting_unit_id\": \"{{unit_company}}\",\n  \"requesting_base_id\": \"{{base_bravo}}\",\n  \"supplier_id\": \"{{supplier_dod}}\",\n  \"status\": \"DRAFT\",\n  \"priority\": \"ROUTINE\",\n  \"required_by\": \"2024-05-20\",\n  \"notes\": \"Quarterly armor replenishment\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"order_number\": \"ORD-2024-004\",\n  \"requesting_unit\": { \"id\": \"{{unit_company}}\" },\n  \"requesting_base\": { \"id\": \"{{base_bravo}}\" },\n  \"supplier\": { \"id\": \"{{supplier_dod}}\" },\n  \"status\": \"DRAFT\",\n  \"priority\": \"ROUTINE\",\n  \"required_by\": \"2024-05-20\",\n  \"notes\": \"Quarterly armor replenishment\"\n}"
+            }
           }
         },
         {
           "name": "Update Supply Order",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/supply-order/{{order_001}}", "host": ["{{baseUrl}}"], "path": ["supply-order", "{{order_001}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"APPROVED\",\n  \"priority\": \"URGENT\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order/{{order_001}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order",
+                "{{order_001}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"status\": \"APPROVED\",\n  \"priority\": \"URGENT\"\n}"
+            }
           }
         },
         {
           "name": "Delete Supply Order",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/supply-order/:id", "host": ["{{baseUrl}}"], "path": ["supply-order", ":id"], "variable": [{ "key": "id", "value": "", "description": "Supply Order UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Supply Order UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "12 — Supply Order Item",
       "item": [
         {
           "name": "Get All Supply Order Items",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/supply-order-item", "host": ["{{baseUrl}}"], "path": ["supply-order-item"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order-item",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order-item"
+              ]
+            }
+          }
         },
         {
           "name": "Get Supply Order Item by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/supply-order-item/{{order_item_001}}", "host": ["{{baseUrl}}"], "path": ["supply-order-item", "{{order_item_001}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order-item/{{order_item_001}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order-item",
+                "{{order_item_001}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Supply Order Item",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/supply-order-item", "host": ["{{baseUrl}}"], "path": ["supply-order-item"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"order_id\": \"{{order_001}}\",\n  \"equipment_id\": \"{{equip_armor}}\",\n  \"qty_requested\": 50,\n  \"qty_approved\": 50,\n  \"unit_price_usd\": 1500.00\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order-item",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order-item"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"order\": { \"id\": \"{{order_001}}\" },\n  \"equipment\": { \"id\": \"{{equip_armor}}\" },\n  \"qty_requested\": 50,\n  \"qty_approved\": 50,\n  \"unit_price_usd\": 1500.00\n}"
+            }
           }
         },
         {
           "name": "Update Supply Order Item",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/supply-order-item/{{order_item_001}}", "host": ["{{baseUrl}}"], "path": ["supply-order-item", "{{order_item_001}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"qty_approved\": 90\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order-item/{{order_item_001}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order-item",
+                "{{order_item_001}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"qty_approved\": 90\n}"
+            }
           }
         },
         {
           "name": "Delete Supply Order Item",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/supply-order-item/:id", "host": ["{{baseUrl}}"], "path": ["supply-order-item", ":id"], "variable": [{ "key": "id", "value": "", "description": "Supply Order Item UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supply-order-item/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supply-order-item",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Supply Order Item UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "13 — Shipment",
       "item": [
         {
           "name": "Get All Shipments",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/shipment", "host": ["{{baseUrl}}"], "path": ["shipment"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment"
+              ]
+            }
+          }
         },
         {
           "name": "Get Shipment by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/shipment/{{shipment_001}}", "host": ["{{baseUrl}}"], "path": ["shipment", "{{shipment_001}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipment/{{shipment_001}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment",
+                "{{shipment_001}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Shipment",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/shipment", "host": ["{{baseUrl}}"], "path": ["shipment"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"tracking_code\": \"TRK-2024-004-A\",\n  \"order_id\": \"{{order_003}}\",\n  \"origin_base_id\": \"{{base_alpha}}\",\n  \"destination_base_id\": \"{{base_bravo}}\",\n  \"vehicle_id\": \"{{vehicle_lmtv}}\",\n  \"driver_id\": \"{{personnel_reed}}\",\n  \"status\": \"PREPARING\",\n  \"total_weight_kg\": 450.0,\n  \"estimated_arrival_at\": \"2024-04-12T10:00:00Z\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/shipment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"tracking_code\": \"TRK-2024-004-A\",\n  \"order\": { \"id\": \"{{order_003}}\" },\n  \"origin_base\": { \"id\": \"{{base_alpha}}\" },\n  \"destination_base\": { \"id\": \"{{base_bravo}}\" },\n  \"vehicle\": { \"id\": \"{{vehicle_lmtv}}\" },\n  \"driver\": { \"id\": \"{{personnel_reed}}\" },\n  \"status\": \"PREPARING\",\n  \"total_weight_kg\": 450.0,\n  \"estimated_arrival_at\": \"2024-04-12T10:00:00Z\"\n}"
+            }
           }
         },
         {
           "name": "Update Shipment — marcar entregado",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/shipment/{{shipment_002}}", "host": ["{{baseUrl}}"], "path": ["shipment", "{{shipment_002}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"DELIVERED\",\n  \"delivered_at\": \"2024-03-21T17:30:00Z\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/shipment/{{shipment_002}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment",
+                "{{shipment_002}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"status\": \"DELIVERED\",\n  \"delivered_at\": \"2024-03-21T17:30:00Z\"\n}"
+            }
           }
         },
         {
           "name": "Delete Shipment",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/shipment/:id", "host": ["{{baseUrl}}"], "path": ["shipment", ":id"], "variable": [{ "key": "id", "value": "", "description": "Shipment UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipment/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Shipment UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "14 — Shipment Item",
       "item": [
         {
           "name": "Get All Shipment Items",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/shipment-item", "host": ["{{baseUrl}}"], "path": ["shipment-item"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipment-item",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment-item"
+              ]
+            }
+          }
         },
         {
           "name": "Get Shipment Item by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/shipment-item/{{shipment_item_001}}", "host": ["{{baseUrl}}"], "path": ["shipment-item", "{{shipment_item_001}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipment-item/{{shipment_item_001}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment-item",
+                "{{shipment_item_001}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Shipment Item",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/shipment-item", "host": ["{{baseUrl}}"], "path": ["shipment-item"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"shipment_id\": \"{{shipment_003}}\",\n  \"equipment_id\": \"{{equip_mre}}\",\n  \"quantity\": 200,\n  \"condition\": \"NEW\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/shipment-item",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment-item"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"shipment\": { \"id\": \"{{shipment_003}}\" },\n  \"equipment\": { \"id\": \"{{equip_mre}}\" },\n  \"quantity\": 200,\n  \"condition\": \"NEW\"\n}"
+            }
           }
         },
         {
           "name": "Update Shipment Item",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/shipment-item/{{shipment_item_001}}", "host": ["{{baseUrl}}"], "path": ["shipment-item", "{{shipment_item_001}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"condition\": \"DAMAGED\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/shipment-item/{{shipment_item_001}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment-item",
+                "{{shipment_item_001}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"condition\": \"DAMAGED\"\n}"
+            }
           }
         },
         {
           "name": "Delete Shipment Item",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/shipment-item/:id", "host": ["{{baseUrl}}"], "path": ["shipment-item", ":id"], "variable": [{ "key": "id", "value": "", "description": "Shipment Item UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipment-item/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipment-item",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Shipment Item UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "15 — Mission",
       "item": [
         {
           "name": "Get All Missions",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/mission", "host": ["{{baseUrl}}"], "path": ["mission"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mission",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission"
+              ]
+            }
+          }
         },
         {
           "name": "Get Mission by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/mission/{{mission_iron_shield}}", "host": ["{{baseUrl}}"], "path": ["mission", "{{mission_iron_shield}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mission/{{mission_iron_shield}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission",
+                "{{mission_iron_shield}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Mission",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/mission", "host": ["{{baseUrl}}"], "path": ["mission"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"codename\": \"THUNDER RUN\",\n  \"commanding_unit_id\": \"{{unit_battalion}}\",\n  \"base_id\": \"{{base_alpha}}\",\n  \"classification\": \"CONFIDENTIAL\",\n  \"status\": \"PLANNING\",\n  \"start_at\": \"2024-06-01T04:00:00Z\",\n  \"objective\": \"Rapid armored advance to secure northern checkpoint\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/mission",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"codename\": \"THUNDER RUN\",\n  \"commanding_unit\": { \"id\": \"{{unit_battalion}}\" },\n  \"base\": { \"id\": \"{{base_alpha}}\" },\n  \"classification\": \"CONFIDENTIAL\",\n  \"status\": \"PLANNING\",\n  \"start_at\": \"2024-06-01T04:00:00Z\",\n  \"objective\": \"Rapid armored advance to secure northern checkpoint\"\n}"
+            }
           }
         },
         {
           "name": "Update Mission",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/mission/{{mission_iron_shield}}", "host": ["{{baseUrl}}"], "path": ["mission", "{{mission_iron_shield}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"COMPLETED\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/mission/{{mission_iron_shield}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission",
+                "{{mission_iron_shield}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"status\": \"COMPLETED\"\n}"
+            }
           }
         },
         {
           "name": "Delete Mission",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/mission/:id", "host": ["{{baseUrl}}"], "path": ["mission", ":id"], "variable": [{ "key": "id", "value": "", "description": "Mission UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mission/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Mission UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "16 — Mission Resource",
       "item": [
         {
           "name": "Get All Mission Resources",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/mission-resource", "host": ["{{baseUrl}}"], "path": ["mission-resource"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mission-resource",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission-resource"
+              ]
+            }
+          }
         },
         {
           "name": "Get Mission Resource by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/mission-resource/{{mres_platoon}}", "host": ["{{baseUrl}}"], "path": ["mission-resource", "{{mres_platoon}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mission-resource/{{mres_platoon}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission-resource",
+                "{{mres_platoon}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Mission Resource",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/mission-resource", "host": ["{{baseUrl}}"], "path": ["mission-resource"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"mission_id\": \"{{mission_iron_shield}}\",\n  \"vehicle_id\": \"{{vehicle_blackhawk}}\",\n  \"quantity\": 1,\n  \"status\": \"ALLOCATED\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/mission-resource",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission-resource"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"mission\": { \"id\": \"{{mission_iron_shield}}\" },\n  \"vehicle\": { \"id\": \"{{vehicle_blackhawk}}\" },\n  \"quantity\": 1,\n  \"status\": \"ALLOCATED\"\n}"
+            }
           }
         },
         {
           "name": "Update Mission Resource",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/mission-resource/{{mres_platoon}}", "host": ["{{baseUrl}}"], "path": ["mission-resource", "{{mres_platoon}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"DEPLOYED\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/mission-resource/{{mres_platoon}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission-resource",
+                "{{mres_platoon}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"status\": \"DEPLOYED\"\n}"
+            }
           }
         },
         {
           "name": "Delete Mission Resource",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/mission-resource/:id", "host": ["{{baseUrl}}"], "path": ["mission-resource", ":id"], "variable": [{ "key": "id", "value": "", "description": "Mission Resource UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mission-resource/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "mission-resource",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Mission Resource UUID"
+                }
+              ]
+            }
           }
         }
       ]
     },
-
     {
       "name": "17 — Maintenance Record",
       "item": [
         {
           "name": "Get All Maintenance Records",
-          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/maintenance-record", "host": ["{{baseUrl}}"], "path": ["maintenance-record"] } }
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance-record",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "maintenance-record"
+              ]
+            }
+          }
         },
         {
           "name": "Get Maintenance Record by ID",
           "request": {
-            "method": "GET", "header": [],
-            "url": { "raw": "{{baseUrl}}/maintenance-record/{{maint_lmtv}}", "host": ["{{baseUrl}}"], "path": ["maintenance-record", "{{maint_lmtv}}"] }
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance-record/{{maint_lmtv}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "maintenance-record",
+                "{{maint_lmtv}}"
+              ]
+            }
           }
         },
         {
           "name": "Create Maintenance Record",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/maintenance-record", "host": ["{{baseUrl}}"], "path": ["maintenance-record"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"vehicle_id\": \"{{vehicle_humvee}}\",\n  \"performed_by\": \"{{personnel_brown}}\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"type\": \"PREVENTIVE\",\n  \"status\": \"SCHEDULED\",\n  \"description\": \"Oil change and brake inspection\",\n  \"cost_usd\": 250.00,\n  \"scheduled_at\": \"2024-04-05T08:00:00Z\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance-record",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "maintenance-record"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"vehicle\": { \"id\": \"{{vehicle_humvee}}\" },\n  \"performer\": { \"id\": \"{{personnel_brown}}\" },\n  \"base\": { \"id\": \"{{base_bravo}}\" },\n  \"type\": \"PREVENTIVE\",\n  \"status\": \"SCHEDULED\",\n  \"description\": \"Oil change and brake inspection\",\n  \"cost_usd\": 250.00,\n  \"scheduled_at\": \"2024-04-05T08:00:00Z\"\n}"
+            }
           }
         },
         {
           "name": "Update Maintenance Record — completar",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{baseUrl}}/maintenance-record/{{maint_lmtv}}", "host": ["{{baseUrl}}"], "path": ["maintenance-record", "{{maint_lmtv}}"] },
-            "body": { "mode": "raw", "options": { "raw": { "language": "json" } }, "raw": "{\n  \"status\": \"COMPLETED\",\n  \"outcome\": \"Engine overhauled. Vehicle operational.\",\n  \"completed_at\": \"2024-03-25T16:00:00Z\"\n}" }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance-record/{{maint_lmtv}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "maintenance-record",
+                "{{maint_lmtv}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"status\": \"COMPLETED\",\n  \"outcome\": \"Engine overhauled. Vehicle operational.\",\n  \"completed_at\": \"2024-03-25T16:00:00Z\"\n}"
+            }
           }
         },
         {
           "name": "Delete Maintenance Record",
           "request": {
-            "method": "DELETE", "header": [],
-            "url": { "raw": "{{baseUrl}}/maintenance-record/:id", "host": ["{{baseUrl}}"], "path": ["maintenance-record", ":id"], "variable": [{ "key": "id", "value": "", "description": "Maintenance Record UUID" }] }
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/maintenance-record/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "maintenance-record",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Maintenance Record UUID"
+                }
+              ]
+            }
           }
         }
       ]
     }
-
   ]
 }

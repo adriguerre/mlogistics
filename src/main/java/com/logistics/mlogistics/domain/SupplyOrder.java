@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.OrderPriority;
 import com.logistics.mlogistics.domain.enums.OrderStatus;
 import jakarta.persistence.*;
@@ -26,17 +27,24 @@ public class SupplyOrder {
     @Column(name = "order_number", nullable = false, unique = true, length = 60)
     private String orderNumber;
 
-    @Column(name = "requesting_unit_id")
-    private UUID requestingUnitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "requesting_unit_id")
+    @JsonIgnoreProperties({"home_base", "commander", "units"})
+    private Unit requestingUnit;
 
-    @Column(name = "requesting_base_id")
-    private UUID requestingBaseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "requesting_base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base requestingBase;
 
-    @Column(name = "supplier_id", nullable = false)
-    private UUID supplierId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id", nullable = false)
+    private Supplier supplier;
 
-    @Column(name = "approved_by")
-    private UUID approvedBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "approved_by")
+    @JsonIgnoreProperties({"unit", "base"})
+    private Personnel approvedBy;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
@@ -67,14 +75,14 @@ public class SupplyOrder {
     public void setId(UUID id) { this.id = id; }
     public String getOrderNumber() { return orderNumber; }
     public void setOrderNumber(String orderNumber) { this.orderNumber = orderNumber; }
-    public UUID getRequestingUnitId() { return requestingUnitId; }
-    public void setRequestingUnitId(UUID requestingUnitId) { this.requestingUnitId = requestingUnitId; }
-    public UUID getRequestingBaseId() { return requestingBaseId; }
-    public void setRequestingBaseId(UUID requestingBaseId) { this.requestingBaseId = requestingBaseId; }
-    public UUID getSupplierId() { return supplierId; }
-    public void setSupplierId(UUID supplierId) { this.supplierId = supplierId; }
-    public UUID getApprovedBy() { return approvedBy; }
-    public void setApprovedBy(UUID approvedBy) { this.approvedBy = approvedBy; }
+    public Unit getRequestingUnit() { return requestingUnit; }
+    public void setRequestingUnit(Unit requestingUnit) { this.requestingUnit = requestingUnit; }
+    public Base getRequestingBase() { return requestingBase; }
+    public void setRequestingBase(Base requestingBase) { this.requestingBase = requestingBase; }
+    public Supplier getSupplier() { return supplier; }
+    public void setSupplier(Supplier supplier) { this.supplier = supplier; }
+    public Personnel getApprovedBy() { return approvedBy; }
+    public void setApprovedBy(Personnel approvedBy) { this.approvedBy = approvedBy; }
     public OrderStatus getStatus() { return status; }
     public void setStatus(OrderStatus status) { this.status = status; }
     public OrderPriority getPriority() { return priority; }

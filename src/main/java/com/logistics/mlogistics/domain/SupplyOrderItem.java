@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -13,11 +14,15 @@ public class SupplyOrderItem {
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "order_id", nullable = false)
-    private UUID orderId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false)
+    @JsonIgnoreProperties({"requesting_unit", "requesting_base", "supplier", "approved_by"})
+    private SupplyOrder order;
 
-    @Column(name = "equipment_id", nullable = false)
-    private UUID equipmentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipment_id", nullable = false)
+    @JsonIgnoreProperties({"category"})
+    private Equipment equipment;
 
     @Column(name = "qty_requested", nullable = false)
     private Integer qtyRequested;
@@ -32,10 +37,10 @@ public class SupplyOrderItem {
 
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
-    public UUID getOrderId() { return orderId; }
-    public void setOrderId(UUID orderId) { this.orderId = orderId; }
-    public UUID getEquipmentId() { return equipmentId; }
-    public void setEquipmentId(UUID equipmentId) { this.equipmentId = equipmentId; }
+    public SupplyOrder getOrder() { return order; }
+    public void setOrder(SupplyOrder order) { this.order = order; }
+    public Equipment getEquipment() { return equipment; }
+    public void setEquipment(Equipment equipment) { this.equipment = equipment; }
     public Integer getQtyRequested() { return qtyRequested; }
     public void setQtyRequested(Integer qtyRequested) { this.qtyRequested = qtyRequested; }
     public Integer getQtyApproved() { return qtyApproved; }

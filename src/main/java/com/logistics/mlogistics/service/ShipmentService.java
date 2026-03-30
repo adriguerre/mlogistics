@@ -34,11 +34,11 @@ public class ShipmentService {
     public Optional<Shipment> update(UUID id, Shipment updated) {
         return repository.findById(id).map(existing -> {
             if (updated.getTrackingCode() != null) existing.setTrackingCode(updated.getTrackingCode());
-            if (updated.getOrderId() != null) existing.setOrderId(updated.getOrderId());
-            if (updated.getOriginBaseId() != null) existing.setOriginBaseId(updated.getOriginBaseId());
-            if (updated.getDestinationBaseId() != null) existing.setDestinationBaseId(updated.getDestinationBaseId());
-            if (updated.getVehicleId() != null) existing.setVehicleId(updated.getVehicleId());
-            if (updated.getDriverId() != null) existing.setDriverId(updated.getDriverId());
+            if (updated.getOrder() != null) existing.setOrder(updated.getOrder());
+            if (updated.getOriginBase() != null) existing.setOriginBase(updated.getOriginBase());
+            if (updated.getDestinationBase() != null) existing.setDestinationBase(updated.getDestinationBase());
+            if (updated.getVehicle() != null) existing.setVehicle(updated.getVehicle());
+            if (updated.getDriver() != null) existing.setDriver(updated.getDriver());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             if (updated.getTotalWeightKg() != null) existing.setTotalWeightKg(updated.getTotalWeightKg());
             if (updated.getDispatchedAt() != null) existing.setDispatchedAt(updated.getDispatchedAt());

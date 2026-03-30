@@ -33,9 +33,9 @@ public class InventoryService {
 
     public Optional<Inventory> update(UUID id, Inventory updated) {
         return repository.findById(id).map(existing -> {
-            if (updated.getEquipmentId() != null) existing.setEquipmentId(updated.getEquipmentId());
-            if (updated.getBaseId() != null) existing.setBaseId(updated.getBaseId());
-            if (updated.getUnitId() != null) existing.setUnitId(updated.getUnitId());
+            if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
+            if (updated.getBase() != null) existing.setBase(updated.getBase());
+            if (updated.getUnit() != null) existing.setUnit(updated.getUnit());
             if (updated.getQtyTotal() != null) existing.setQtyTotal(updated.getQtyTotal());
             if (updated.getQtyAvailable() != null) existing.setQtyAvailable(updated.getQtyAvailable());
             if (updated.getQtyReserved() != null) existing.setQtyReserved(updated.getQtyReserved());

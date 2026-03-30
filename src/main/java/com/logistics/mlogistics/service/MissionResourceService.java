@@ -33,10 +33,10 @@ public class MissionResourceService {
 
     public Optional<MissionResource> update(UUID id, MissionResource updated) {
         return repository.findById(id).map(existing -> {
-            if (updated.getMissionId() != null) existing.setMissionId(updated.getMissionId());
-            if (updated.getUnitId() != null) existing.setUnitId(updated.getUnitId());
-            if (updated.getEquipmentId() != null) existing.setEquipmentId(updated.getEquipmentId());
-            if (updated.getVehicleId() != null) existing.setVehicleId(updated.getVehicleId());
+            if (updated.getMission() != null) existing.setMission(updated.getMission());
+            if (updated.getUnit() != null) existing.setUnit(updated.getUnit());
+            if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
+            if (updated.getVehicle() != null) existing.setVehicle(updated.getVehicle());
             if (updated.getQuantity() != null) existing.setQuantity(updated.getQuantity());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             return repository.save(existing);

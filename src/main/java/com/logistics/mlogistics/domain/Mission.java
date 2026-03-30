@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.MissionClassification;
 import com.logistics.mlogistics.domain.enums.MissionStatus;
 import jakarta.persistence.*;
@@ -24,11 +25,15 @@ public class Mission {
     @Column(name = "codename", nullable = false, unique = true, length = 100)
     private String codename;
 
-    @Column(name = "commanding_unit_id")
-    private UUID commandingUnitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "commanding_unit_id")
+    @JsonIgnoreProperties({"home_base", "commander", "units"})
+    private Unit commandingUnit;
 
-    @Column(name = "base_id")
-    private UUID baseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base base;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
@@ -67,11 +72,11 @@ public class Mission {
     public String getCodename() { return codename; }
     public void setCodename(String codename) { this.codename = codename; }
 
-    public UUID getCommandingUnitId() { return commandingUnitId; }
-    public void setCommandingUnitId(UUID commandingUnitId) { this.commandingUnitId = commandingUnitId; }
+    public Unit getCommandingUnit() { return commandingUnit; }
+    public void setCommandingUnit(Unit commandingUnit) { this.commandingUnit = commandingUnit; }
 
-    public UUID getBaseId() { return baseId; }
-    public void setBaseId(UUID baseId) { this.baseId = baseId; }
+    public Base getBase() { return base; }
+    public void setBase(Base base) { this.base = base; }
 
     public MissionClassification getClassification() { return classification; }
     public void setClassification(MissionClassification classification) { this.classification = classification; }

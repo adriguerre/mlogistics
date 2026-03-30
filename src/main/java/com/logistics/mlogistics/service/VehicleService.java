@@ -36,9 +36,9 @@ public class VehicleService {
             if (updated.getPlate() != null) existing.setPlate(updated.getPlate());
             if (updated.getModel() != null) existing.setModel(updated.getModel());
             if (updated.getType() != null) existing.setType(updated.getType());
-            if (updated.getBaseId() != null) existing.setBaseId(updated.getBaseId());
-            if (updated.getUnitId() != null) existing.setUnitId(updated.getUnitId());
-            if (updated.getCurrentBaseId() != null) existing.setCurrentBaseId(updated.getCurrentBaseId());
+            if (updated.getBase() != null) existing.setBase(updated.getBase());
+            if (updated.getUnit() != null) existing.setUnit(updated.getUnit());
+            if (updated.getCurrentBase() != null) existing.setCurrentBase(updated.getCurrentBase());
             if (updated.getMaxPayloadKg() != null) existing.setMaxPayloadKg(updated.getMaxPayloadKg());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             if (updated.getPassengerCapacity() != null) existing.setPassengerCapacity(updated.getPassengerCapacity());

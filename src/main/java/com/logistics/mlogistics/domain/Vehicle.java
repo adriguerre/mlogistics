@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.VehicleStatus;
 import com.logistics.mlogistics.domain.enums.VehicleType;
 import jakarta.persistence.*;
@@ -33,11 +34,15 @@ public class Vehicle {
     @Column(name = "type", nullable = false, columnDefinition = "vehicle_type")
     private VehicleType type;
 
-    @Column(name = "base_id")
-    private UUID baseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base base;
 
-    @Column(name = "unit_id")
-    private UUID unitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id")
+    @JsonIgnoreProperties({"home_base", "commander", "units"})
+    private Unit unit;
 
     @Column(name = "max_payload_kg", precision = 10, scale = 2)
     private BigDecimal maxPayloadKg;
@@ -51,8 +56,10 @@ public class Vehicle {
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private Timestamp createdAt;
 
-    @Column(name = "current_base_id")
-    private UUID currentBaseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "current_base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base currentBase;
 
     @Column(name = "passenger_capacity")
     private Integer passengerCapacity;
@@ -67,12 +74,12 @@ public class Vehicle {
     public void setModel(String model) { this.model = model; }
     public VehicleType getType() { return type; }
     public void setType(VehicleType type) { this.type = type; }
-    public UUID getBaseId() { return baseId; }
-    public void setBaseId(UUID baseId) { this.baseId = baseId; }
-    public UUID getUnitId() { return unitId; }
-    public void setUnitId(UUID unitId) { this.unitId = unitId; }
-    public UUID getCurrentBaseId() { return currentBaseId; }
-    public void setCurrentBaseId(UUID currentBaseId) { this.currentBaseId = currentBaseId; }
+    public Base getBase() { return base; }
+    public void setBase(Base base) { this.base = base; }
+    public Unit getUnit() { return unit; }
+    public void setUnit(Unit unit) { this.unit = unit; }
+    public Base getCurrentBase() { return currentBase; }
+    public void setCurrentBase(Base currentBase) { this.currentBase = currentBase; }
     public BigDecimal getMaxPayloadKg() { return maxPayloadKg; }
     public void setMaxPayloadKg(BigDecimal maxPayloadKg) { this.maxPayloadKg = maxPayloadKg; }
     public VehicleStatus getStatus() { return status; }

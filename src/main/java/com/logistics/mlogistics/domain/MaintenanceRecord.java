@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.MaintenanceStatus;
 import com.logistics.mlogistics.domain.enums.MaintenanceType;
 import jakarta.persistence.*;
@@ -18,17 +19,25 @@ public class MaintenanceRecord {
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "equipment_id")
-    private UUID equipmentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipment_id")
+    @JsonIgnoreProperties({"category"})
+    private Equipment equipment;
 
-    @Column(name = "vehicle_id")
-    private UUID vehicleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id")
+    @JsonIgnoreProperties({"base", "unit", "current_base"})
+    private Vehicle vehicle;
 
-    @Column(name = "performed_by")
-    private UUID performedBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "performed_by")
+    @JsonIgnoreProperties({"unit", "base"})
+    private Personnel performer;
 
-    @Column(name = "base_id")
-    private UUID baseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base base;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
@@ -60,17 +69,17 @@ public class MaintenanceRecord {
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
 
-    public UUID getEquipmentId() { return equipmentId; }
-    public void setEquipmentId(UUID equipmentId) { this.equipmentId = equipmentId; }
+    public Equipment getEquipment() { return equipment; }
+    public void setEquipment(Equipment equipment) { this.equipment = equipment; }
 
-    public UUID getVehicleId() { return vehicleId; }
-    public void setVehicleId(UUID vehicleId) { this.vehicleId = vehicleId; }
+    public Vehicle getVehicle() { return vehicle; }
+    public void setVehicle(Vehicle vehicle) { this.vehicle = vehicle; }
 
-    public UUID getPerformedBy() { return performedBy; }
-    public void setPerformedBy(UUID performedBy) { this.performedBy = performedBy; }
+    public Personnel getPerformer() { return performer; }
+    public void setPerformer(Personnel performer) { this.performer = performer; }
 
-    public UUID getBaseId() { return baseId; }
-    public void setBaseId(UUID baseId) { this.baseId = baseId; }
+    public Base getBase() { return base; }
+    public void setBase(Base base) { this.base = base; }
 
     public MaintenanceType getType() { return type; }
     public void setType(MaintenanceType type) { this.type = type; }

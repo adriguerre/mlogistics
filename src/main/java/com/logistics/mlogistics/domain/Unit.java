@@ -49,7 +49,8 @@ public class Unit {
 
     @OneToOne
     @JoinColumn(name = "commander_id")
-    @JsonProperty("commander_id")
+    @JsonProperty("commander")
+    @JsonIgnoreProperties({"unit"})
     private Personnel commanderId;
 
     @Generated(event = EventType.INSERT)

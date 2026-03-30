@@ -34,8 +34,8 @@ public class MissionService {
     public Optional<Mission> update(UUID id, Mission updated) {
         return repository.findById(id).map(existing -> {
             if (updated.getCodename() != null) existing.setCodename(updated.getCodename());
-            if (updated.getCommandingUnitId() != null) existing.setCommandingUnitId(updated.getCommandingUnitId());
-            if (updated.getBaseId() != null) existing.setBaseId(updated.getBaseId());
+            if (updated.getCommandingUnit() != null) existing.setCommandingUnit(updated.getCommandingUnit());
+            if (updated.getBase() != null) existing.setBase(updated.getBase());
             if (updated.getClassification() != null) existing.setClassification(updated.getClassification());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             if (updated.getTargetLatitude() != null) existing.setTargetLatitude(updated.getTargetLatitude());

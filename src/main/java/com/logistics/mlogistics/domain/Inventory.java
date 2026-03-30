@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,14 +17,20 @@ public class Inventory {
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "equipment_id", nullable = false)
-    private UUID equipmentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipment_id", nullable = false)
+    @JsonIgnoreProperties({"category"})
+    private Equipment equipment;
 
-    @Column(name = "base_id")
-    private UUID baseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base base;
 
-    @Column(name = "unit_id")
-    private UUID unitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id")
+    @JsonIgnoreProperties({"home_base", "commander", "units"})
+    private Unit unit;
 
     @Column(name = "qty_total", nullable = false)
     private Integer qtyTotal;
@@ -49,14 +56,14 @@ public class Inventory {
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
 
-    public UUID getEquipmentId() { return equipmentId; }
-    public void setEquipmentId(UUID equipmentId) { this.equipmentId = equipmentId; }
+    public Equipment getEquipment() { return equipment; }
+    public void setEquipment(Equipment equipment) { this.equipment = equipment; }
 
-    public UUID getBaseId() { return baseId; }
-    public void setBaseId(UUID baseId) { this.baseId = baseId; }
+    public Base getBase() { return base; }
+    public void setBase(Base base) { this.base = base; }
 
-    public UUID getUnitId() { return unitId; }
-    public void setUnitId(UUID unitId) { this.unitId = unitId; }
+    public Unit getUnit() { return unit; }
+    public void setUnit(Unit unit) { this.unit = unit; }
 
     public Integer getQtyTotal() { return qtyTotal; }
     public void setQtyTotal(Integer qtyTotal) { this.qtyTotal = qtyTotal; }

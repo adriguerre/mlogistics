@@ -37,7 +37,7 @@ public class EquipmentService {
             if (updated.getName() != null) existing.setName(updated.getName());
             if (updated.getModel() != null) existing.setModel(updated.getModel());
             if (updated.getManufacturer() != null) existing.setManufacturer(updated.getManufacturer());
-            if (updated.getCategoryId() != null) existing.setCategoryId(updated.getCategoryId());
+            if (updated.getCategory() != null) existing.setCategory(updated.getCategory());
             if (updated.getUnitWeightKg() != null) existing.setUnitWeightKg(updated.getUnitWeightKg());
             if (updated.getUnitCostUsd() != null) existing.setUnitCostUsd(updated.getUnitCostUsd());
             if (updated.getClassification() != null) existing.setClassification(updated.getClassification());

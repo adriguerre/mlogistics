@@ -33,10 +33,10 @@ public class MaintenanceRecordService {
 
     public Optional<MaintenanceRecord> update(UUID id, MaintenanceRecord updated) {
         return repository.findById(id).map(existing -> {
-            if (updated.getEquipmentId() != null) existing.setEquipmentId(updated.getEquipmentId());
-            if (updated.getVehicleId() != null) existing.setVehicleId(updated.getVehicleId());
-            if (updated.getPerformedBy() != null) existing.setPerformedBy(updated.getPerformedBy());
-            if (updated.getBaseId() != null) existing.setBaseId(updated.getBaseId());
+            if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
+            if (updated.getVehicle() != null) existing.setVehicle(updated.getVehicle());
+            if (updated.getPerformer() != null) existing.setPerformer(updated.getPerformer());
+            if (updated.getBase() != null) existing.setBase(updated.getBase());
             if (updated.getType() != null) existing.setType(updated.getType());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             if (updated.getDescription() != null) existing.setDescription(updated.getDescription());

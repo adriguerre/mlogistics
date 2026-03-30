@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.ResourceStatus;
 import jakarta.persistence.*;
 import java.util.UUID;
@@ -15,17 +16,25 @@ public class MissionResource {
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "mission_id", nullable = false)
-    private UUID missionId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mission_id", nullable = false)
+    @JsonIgnoreProperties({"commanding_unit", "base"})
+    private Mission mission;
 
-    @Column(name = "unit_id")
-    private UUID unitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id")
+    @JsonIgnoreProperties({"home_base", "commander", "units"})
+    private Unit unit;
 
-    @Column(name = "equipment_id")
-    private UUID equipmentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipment_id")
+    @JsonIgnoreProperties({"category"})
+    private Equipment equipment;
 
-    @Column(name = "vehicle_id")
-    private UUID vehicleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id")
+    @JsonIgnoreProperties({"base", "unit", "current_base"})
+    private Vehicle vehicle;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
@@ -40,17 +49,17 @@ public class MissionResource {
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
 
-    public UUID getMissionId() { return missionId; }
-    public void setMissionId(UUID missionId) { this.missionId = missionId; }
+    public Mission getMission() { return mission; }
+    public void setMission(Mission mission) { this.mission = mission; }
 
-    public UUID getUnitId() { return unitId; }
-    public void setUnitId(UUID unitId) { this.unitId = unitId; }
+    public Unit getUnit() { return unit; }
+    public void setUnit(Unit unit) { this.unit = unit; }
 
-    public UUID getEquipmentId() { return equipmentId; }
-    public void setEquipmentId(UUID equipmentId) { this.equipmentId = equipmentId; }
+    public Equipment getEquipment() { return equipment; }
+    public void setEquipment(Equipment equipment) { this.equipment = equipment; }
 
-    public UUID getVehicleId() { return vehicleId; }
-    public void setVehicleId(UUID vehicleId) { this.vehicleId = vehicleId; }
+    public Vehicle getVehicle() { return vehicle; }
+    public void setVehicle(Vehicle vehicle) { this.vehicle = vehicle; }
 
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { this.quantity = quantity; }

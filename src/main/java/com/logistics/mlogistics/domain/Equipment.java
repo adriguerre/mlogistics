@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.EquipClassification;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
@@ -33,8 +34,9 @@ public class Equipment {
     @Column(name = "manufacturer", length = 150)
     private String manufacturer;
 
-    @Column(name = "category_id", nullable = false)
-    private UUID categoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private EquipmentCategory category;
 
     @Column(name = "unit_weight_kg")
     private BigDecimal unitWeightKg;
@@ -74,8 +76,8 @@ public class Equipment {
     public String getManufacturer() { return manufacturer; }
     public void setManufacturer(String manufacturer) { this.manufacturer = manufacturer; }
 
-    public UUID getCategoryId() { return categoryId; }
-    public void setCategoryId(UUID categoryId) { this.categoryId = categoryId; }
+    public EquipmentCategory getCategory() { return category; }
+    public void setCategory(EquipmentCategory category) { this.category = category; }
 
     public BigDecimal getUnitWeightKg() { return unitWeightKg; }
     public void setUnitWeightKg(BigDecimal unitWeightKg) { this.unitWeightKg = unitWeightKg; }

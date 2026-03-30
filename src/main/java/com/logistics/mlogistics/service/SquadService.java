@@ -35,10 +35,10 @@ public class SquadService {
         return squadRepository.findById(id).map(existing -> {
             if (updated.getName() != null) existing.setName(updated.getName());
             if (updated.getType() != null) existing.setType(updated.getType());
-            if (updated.getUnitId() != null) existing.setUnitId(updated.getUnitId());
+            if (updated.getUnit() != null) existing.setUnit(updated.getUnit());
             if (updated.getPersonnelCount() != null) existing.setPersonnelCount(updated.getPersonnelCount());
-            if (updated.getCurrentBaseId() != null) existing.setCurrentBaseId(updated.getCurrentBaseId());
-            if (updated.getCurrentVehicleId() != null) existing.setCurrentVehicleId(updated.getCurrentVehicleId());
+            if (updated.getCurrentBase() != null) existing.setCurrentBase(updated.getCurrentBase());
+            if (updated.getCurrentVehicle() != null) existing.setCurrentVehicle(updated.getCurrentVehicle());
             return squadRepository.save(existing);
         });
     }

@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.ItemCondition;
 import jakarta.persistence.*;
 import java.util.UUID;
@@ -15,11 +16,15 @@ public class ShipmentItem {
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "shipment_id", nullable = false)
-    private UUID shipmentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shipment_id", nullable = false)
+    @JsonIgnoreProperties({"order", "origin_base", "destination_base", "vehicle", "driver"})
+    private Shipment shipment;
 
-    @Column(name = "equipment_id", nullable = false)
-    private UUID equipmentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipment_id", nullable = false)
+    @JsonIgnoreProperties({"category"})
+    private Equipment equipment;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
@@ -33,10 +38,10 @@ public class ShipmentItem {
 
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
-    public UUID getShipmentId() { return shipmentId; }
-    public void setShipmentId(UUID shipmentId) { this.shipmentId = shipmentId; }
-    public UUID getEquipmentId() { return equipmentId; }
-    public void setEquipmentId(UUID equipmentId) { this.equipmentId = equipmentId; }
+    public Shipment getShipment() { return shipment; }
+    public void setShipment(Shipment shipment) { this.shipment = shipment; }
+    public Equipment getEquipment() { return equipment; }
+    public void setEquipment(Equipment equipment) { this.equipment = equipment; }
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { this.quantity = quantity; }
     public ItemCondition getCondition() { return condition; }

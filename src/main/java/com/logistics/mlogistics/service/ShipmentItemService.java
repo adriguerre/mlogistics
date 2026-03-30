@@ -33,8 +33,8 @@ public class ShipmentItemService {
 
     public Optional<ShipmentItem> update(UUID id, ShipmentItem updated) {
         return repository.findById(id).map(existing -> {
-            if (updated.getShipmentId() != null) existing.setShipmentId(updated.getShipmentId());
-            if (updated.getEquipmentId() != null) existing.setEquipmentId(updated.getEquipmentId());
+            if (updated.getShipment() != null) existing.setShipment(updated.getShipment());
+            if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
             if (updated.getQuantity() != null) existing.setQuantity(updated.getQuantity());
             if (updated.getCondition() != null) existing.setCondition(updated.getCondition());
             return repository.save(existing);

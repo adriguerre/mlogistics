@@ -34,9 +34,9 @@ public class SupplyOrderService {
     public Optional<SupplyOrder> update(UUID id, SupplyOrder updated) {
         return repository.findById(id).map(existing -> {
             if (updated.getOrderNumber() != null) existing.setOrderNumber(updated.getOrderNumber());
-            if (updated.getRequestingUnitId() != null) existing.setRequestingUnitId(updated.getRequestingUnitId());
-            if (updated.getRequestingBaseId() != null) existing.setRequestingBaseId(updated.getRequestingBaseId());
-            if (updated.getSupplierId() != null) existing.setSupplierId(updated.getSupplierId());
+            if (updated.getRequestingUnit() != null) existing.setRequestingUnit(updated.getRequestingUnit());
+            if (updated.getRequestingBase() != null) existing.setRequestingBase(updated.getRequestingBase());
+            if (updated.getSupplier() != null) existing.setSupplier(updated.getSupplier());
             if (updated.getApprovedBy() != null) existing.setApprovedBy(updated.getApprovedBy());
             if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
             if (updated.getPriority() != null) existing.setPriority(updated.getPriority());

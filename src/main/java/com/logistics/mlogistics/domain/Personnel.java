@@ -1,5 +1,8 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.logistics.mlogistics.domain.enums.PersonnelStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
@@ -13,6 +16,7 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @DynamicInsert
 @Table(name = "personnel")
+@JsonPropertyOrder({"id", "service_id", "first_name", "last_name", "rank_id", "unit_id", "base_id", "status", "created_at"})
 public class Personnel {
 
     @Id
@@ -29,14 +33,19 @@ public class Personnel {
     @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
-    @Column(name = "rank_id", nullable = false)
-    private UUID rankId;
+    @JoinColumn(name = "rank_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonProperty("rank")
+    private Rank rank;
 
-    @Column(name = "unit_id")
-    private UUID unitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
 
-    @Column(name = "base_id")
-    private UUID baseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base base;
 
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Enumerated(EnumType.STRING)
@@ -57,14 +66,26 @@ public class Personnel {
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
-    public UUID getRankId() { return rankId; }
-    public void setRankId(UUID rankId) { this.rankId = rankId; }
-    public UUID getUnitId() { return unitId; }
-    public void setUnitId(UUID unitId) { this.unitId = unitId; }
-    public UUID getBaseId() { return baseId; }
-    public void setBaseId(UUID baseId) { this.baseId = baseId; }
     public PersonnelStatus getStatus() { return status; }
     public void setStatus(PersonnelStatus status) { this.status = status; }
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Base getBase() {return base;}
+    public void setBase(Base base) {this.base = base;}
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rankId) {
+        this.rank = rankId;
+    }
 }

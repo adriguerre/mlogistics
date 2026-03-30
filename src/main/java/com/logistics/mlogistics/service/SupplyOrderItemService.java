@@ -33,8 +33,8 @@ public class SupplyOrderItemService {
 
     public Optional<SupplyOrderItem> update(UUID id, SupplyOrderItem updated) {
         return repository.findById(id).map(existing -> {
-            if (updated.getOrderId() != null) existing.setOrderId(updated.getOrderId());
-            if (updated.getEquipmentId() != null) existing.setEquipmentId(updated.getEquipmentId());
+            if (updated.getOrder() != null) existing.setOrder(updated.getOrder());
+            if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
             if (updated.getQtyRequested() != null) existing.setQtyRequested(updated.getQtyRequested());
             if (updated.getQtyApproved() != null) existing.setQtyApproved(updated.getQtyApproved());
             if (updated.getUnitPriceUsd() != null) existing.setUnitPriceUsd(updated.getUnitPriceUsd());

@@ -1,5 +1,6 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logistics.mlogistics.domain.enums.SquadType;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
@@ -29,17 +30,23 @@ public class Squad {
     @Column(name = "type", nullable = false, columnDefinition = "squad_type")
     private SquadType type;
 
-    @Column(name = "unit_id")
-    private UUID unitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id")
+    @JsonIgnoreProperties({"home_base", "commander", "units"})
+    private Unit unit;
 
     @Column(name = "personnel_count", nullable = false)
     private Integer personnelCount;
 
-    @Column(name = "current_base_id")
-    private UUID currentBaseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "current_base_id")
+    @JsonIgnoreProperties({"commanding_unit", "units"})
+    private Base currentBase;
 
-    @Column(name = "current_vehicle_id")
-    private UUID currentVehicleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "current_vehicle_id")
+    @JsonIgnoreProperties({"base", "unit", "current_base"})
+    private Vehicle currentVehicle;
 
     @Generated(event = EventType.INSERT)
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
@@ -57,14 +64,14 @@ public class Squad {
     public void setName(String name) { this.name = name; }
     public SquadType getType() { return type; }
     public void setType(SquadType type) { this.type = type; }
-    public UUID getUnitId() { return unitId; }
-    public void setUnitId(UUID unitId) { this.unitId = unitId; }
+    public Unit getUnit() { return unit; }
+    public void setUnit(Unit unit) { this.unit = unit; }
     public Integer getPersonnelCount() { return personnelCount; }
     public void setPersonnelCount(Integer personnelCount) { this.personnelCount = personnelCount; }
-    public UUID getCurrentBaseId() { return currentBaseId; }
-    public void setCurrentBaseId(UUID currentBaseId) { this.currentBaseId = currentBaseId; }
-    public UUID getCurrentVehicleId() { return currentVehicleId; }
-    public void setCurrentVehicleId(UUID currentVehicleId) { this.currentVehicleId = currentVehicleId; }
+    public Base getCurrentBase() { return currentBase; }
+    public void setCurrentBase(Base currentBase) { this.currentBase = currentBase; }
+    public Vehicle getCurrentVehicle() { return currentVehicle; }
+    public void setCurrentVehicle(Vehicle currentVehicle) { this.currentVehicle = currentVehicle; }
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
     public Timestamp getUpdatedAt() { return updatedAt; }
