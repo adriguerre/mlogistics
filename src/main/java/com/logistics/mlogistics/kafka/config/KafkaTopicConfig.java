@@ -1,0 +1,26 @@
+package com.logistics.mlogistics.kafka.config;
+
+import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.config.TopicBuilder;
+
+@Configuration
+public class KafkaTopicConfig {
+
+    public static final String INVENTORY_LOW_STOCK = "inventory.low-stock";
+    public static final String SHIPMENT_DISPATCHED = "shipment.dispatched";
+
+    @Bean
+    public NewTopic inventoryLowStockTopic() {
+        return TopicBuilder.name(INVENTORY_LOW_STOCK)
+                .partitions(1)
+                .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic shipmentDispatchedTopic() {  // nuevo
+        return TopicBuilder.name(SHIPMENT_DISPATCHED).partitions(1).replicas(1).build();
+    }
+}
