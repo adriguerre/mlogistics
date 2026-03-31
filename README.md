@@ -97,3 +97,18 @@ src/main/java/com/logistics/mlogistics/
 datadog/
 └── conf.d/kafka.d/   JMX metric collection config
 ```
+
+## Kafka — Inventory Low Stock Alert
+
+When an inventory update causes `qty_available` to drop below `reorder_threshold`, a `LowStockEvent` is automatically published to the Kafka topic `inventory.low-stock`. A consumer picks it up and logs a `WARN` alert, visible in Datadog Logs Explorer.
+
+**To test:**
+1. `docker compose up -d`
+2. `PUT /inventory/{id}` with `qty_available` below `reorder_threshold`
+3. Check logs: `docker compose logs -f app`
+
+**Expected logs:**
+
+INFO  [KAFKA-EVENT] Low stock event sent — inventory=... equipment='Assault Rifle' qty=20 threshold=50
+
+WARN  [ALERT KAFKA-EVENT] Low stock detected — equipment='Assault Rifle' at base='Fort Alpha' | available=20 / threshold=50
