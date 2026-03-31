@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.SupplyOrder;
 import com.logistics.mlogistics.repository.SupplyOrderRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class SupplyOrderService {
 
     private final SupplyOrderRepository repository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public SupplyOrderService(SupplyOrderRepository repository) {
@@ -27,8 +33,11 @@ public class SupplyOrderService {
         return repository.findById(id);
     }
 
+    @Transactional
     public SupplyOrder create(SupplyOrder entity) {
-        return repository.save(entity);
+        SupplyOrder saved = repository.saveAndFlush(entity);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<SupplyOrder> update(UUID id, SupplyOrder updated) {

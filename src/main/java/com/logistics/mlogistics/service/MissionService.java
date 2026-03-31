@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Mission;
 import com.logistics.mlogistics.repository.MissionRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class MissionService {
 
     private final MissionRepository repository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public MissionService(MissionRepository repository) {
@@ -27,8 +33,11 @@ public class MissionService {
         return repository.findById(id);
     }
 
+    @Transactional
     public Mission create(Mission entity) {
-        return repository.save(entity);
+        Mission saved = repository.saveAndFlush(entity);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Mission> update(UUID id, Mission updated) {

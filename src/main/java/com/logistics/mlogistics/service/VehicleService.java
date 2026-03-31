@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Vehicle;
 import com.logistics.mlogistics.repository.VehicleRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class VehicleService {
 
     private final VehicleRepository vehicleRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public VehicleService(VehicleRepository vehicleRepository) {
@@ -27,8 +33,11 @@ public class VehicleService {
         return vehicleRepository.findById(id);
     }
 
+    @Transactional
     public Vehicle create(Vehicle vehicle) {
-        return vehicleRepository.save(vehicle);
+        Vehicle saved = vehicleRepository.saveAndFlush(vehicle);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Vehicle> update(UUID id, Vehicle updated) {

@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Rank;
 import com.logistics.mlogistics.repository.RankRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class RankService {
 
     private final RankRepository rankRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public RankService(RankRepository rankRepository) {
@@ -27,8 +33,11 @@ public class RankService {
         return rankRepository.findById(id);
     }
 
+    @Transactional
     public Rank create(Rank rank) {
-        return rankRepository.save(rank);
+        Rank saved = rankRepository.saveAndFlush(rank);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Rank> update(UUID id, Rank updated) {

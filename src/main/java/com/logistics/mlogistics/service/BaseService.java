@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Base;
 import com.logistics.mlogistics.repository.BaseRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class BaseService {
 
     private final BaseRepository baseRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public BaseService(BaseRepository baseRepository) {
@@ -27,8 +33,11 @@ public class BaseService {
         return baseRepository.findById(id);
     }
 
+    @Transactional
     public Base create(Base base) {
-        return baseRepository.save(base);
+        Base saved = baseRepository.saveAndFlush(base);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Base> update(UUID id, Base updated) {

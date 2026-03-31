@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Squad;
 import com.logistics.mlogistics.repository.SquadRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class SquadService {
 
     private final SquadRepository squadRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public SquadService(SquadRepository squadRepository) {
@@ -27,8 +33,11 @@ public class SquadService {
         return squadRepository.findById(id);
     }
 
+    @Transactional
     public Squad create(Squad squad) {
-        return squadRepository.save(squad);
+        Squad saved = squadRepository.saveAndFlush(squad);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Squad> update(UUID id, Squad updated) {

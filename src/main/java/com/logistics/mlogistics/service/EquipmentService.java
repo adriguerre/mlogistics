@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Equipment;
 import com.logistics.mlogistics.repository.EquipmentRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class EquipmentService {
 
     private final EquipmentRepository repository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public EquipmentService(EquipmentRepository repository) {
@@ -27,8 +33,11 @@ public class EquipmentService {
         return repository.findById(id);
     }
 
+    @Transactional
     public Equipment create(Equipment entity) {
-        return repository.save(entity);
+        Equipment saved = repository.saveAndFlush(entity);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Equipment> update(UUID id, Equipment updated) {

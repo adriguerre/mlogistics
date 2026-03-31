@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Shipment;
 import com.logistics.mlogistics.repository.ShipmentRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class ShipmentService {
 
     private final ShipmentRepository repository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public ShipmentService(ShipmentRepository repository) {
@@ -27,8 +33,11 @@ public class ShipmentService {
         return repository.findById(id);
     }
 
+    @Transactional
     public Shipment create(Shipment entity) {
-        return repository.save(entity);
+        Shipment saved = repository.saveAndFlush(entity);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<Shipment> update(UUID id, Shipment updated) {

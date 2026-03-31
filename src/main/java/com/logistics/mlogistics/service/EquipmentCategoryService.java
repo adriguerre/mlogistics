@@ -2,8 +2,11 @@ package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.EquipmentCategory;
 import com.logistics.mlogistics.repository.EquipmentCategoryRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,9 @@ import java.util.UUID;
 public class EquipmentCategoryService {
 
     private final EquipmentCategoryRepository repository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public EquipmentCategoryService(EquipmentCategoryRepository repository) {
@@ -27,8 +33,11 @@ public class EquipmentCategoryService {
         return repository.findById(id);
     }
 
+    @Transactional
     public EquipmentCategory create(EquipmentCategory entity) {
-        return repository.save(entity);
+        EquipmentCategory saved = repository.saveAndFlush(entity);
+        entityManager.refresh(saved);
+        return saved;
     }
 
     public Optional<EquipmentCategory> update(UUID id, EquipmentCategory updated) {
