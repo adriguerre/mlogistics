@@ -1,13 +1,24 @@
 package com.logistics.mlogistics.service;
 
+import com.logistics.mlogistics.domain.Base;
 import com.logistics.mlogistics.domain.SupplyOrder;
+import com.logistics.mlogistics.domain.enums.OrderPriority;
+import com.logistics.mlogistics.domain.enums.OrderStatus;
+import com.logistics.mlogistics.kafka.consumer.InventoryEventConsumer;
+import com.logistics.mlogistics.kafka.event.LowStockEvent;
+import com.logistics.mlogistics.domain.Supplier;
+import com.logistics.mlogistics.domain.Unit;
+import com.logistics.mlogistics.repository.BaseRepository;
 import com.logistics.mlogistics.repository.SupplyOrderRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,13 +27,16 @@ import java.util.UUID;
 public class SupplyOrderService {
 
     private final SupplyOrderRepository repository;
+    private final BaseRepository baseRepository;
+    private static final Logger log = LoggerFactory.getLogger(InventoryEventConsumer.class);
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public SupplyOrderService(SupplyOrderRepository repository) {
+    public SupplyOrderService(SupplyOrderRepository repository, BaseRepository baseRepository) {
         this.repository = repository;
+        this.baseRepository = baseRepository;
     }
 
     public List<SupplyOrder> getAll() {
@@ -60,5 +74,23 @@ public class SupplyOrderService {
         if (!repository.existsById(id)) return false;
         repository.deleteById(id);
         return true;
+    }
+
+    @Transactional
+    public void createSupplyOrderFromLowStockEvent(LowStockEvent event) {
+        Base requestingBase = baseRepository.findById(event.getBaseId()).orElse(null);
+        Unit requestingUnit = requestingBase != null ? requestingBase.getCommandingUnit() : null;
+
+        Supplier defaultSupplier = new Supplier();
+        defaultSupplier.setId(UUID.fromString("00000000-0000-0000-0000-000000000801"));
+
+        SupplyOrder newSupplyOrder = new SupplyOrder("ORDER-LOW-STOCK", OrderStatus.DRAFT,
+                OrderPriority.ROUTINE, new Date(2026, 4, 6),
+                "Low Stock of " + event.getEquipmentName(), requestingBase);
+        newSupplyOrder.setRequestingUnit(requestingUnit);
+        newSupplyOrder.setSupplier(defaultSupplier);
+
+        create(newSupplyOrder);
+        log.info("New Supply Order Created [" + newSupplyOrder.getOrderNumber() + "]");
     }
 }

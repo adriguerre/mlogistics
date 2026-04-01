@@ -1,6 +1,8 @@
 package com.logistics.mlogistics.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.logistics.mlogistics.domain.enums.OrderPriority;
 import com.logistics.mlogistics.domain.enums.OrderStatus;
 import jakarta.persistence.*;
@@ -17,6 +19,7 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @DynamicInsert
 @Table(name = "supply_order")
+@JsonPropertyOrder({"id", "order_number", "priority", "notes", "status", "total_cost_usd", "created_at", "required_by", "supplier", "requesting_base", "requesting_unit", "approved_by"})
 public class SupplyOrder {
 
     @Id
@@ -70,6 +73,16 @@ public class SupplyOrder {
     private Timestamp createdAt;
 
     public SupplyOrder() {}
+
+    public SupplyOrder(String orderNumber, OrderStatus status, OrderPriority priority, Date requiredBy, String notes,
+                       Base baseToSupply) {
+        this.orderNumber = orderNumber;
+        this.status = status;
+        this.priority = priority;
+        this.requiredBy = requiredBy;
+        this.notes = notes;
+        this.requestingBase = baseToSupply;
+    }
 
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }

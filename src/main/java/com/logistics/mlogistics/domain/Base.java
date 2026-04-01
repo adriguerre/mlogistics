@@ -73,6 +73,10 @@ public class Base {
 
     public Base() {}
 
+    public Base(UUID id) {
+        this.id = id;
+    }
+
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
     public String getCode() { return code; }
