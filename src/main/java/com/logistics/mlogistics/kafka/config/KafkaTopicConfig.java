@@ -10,6 +10,7 @@ public class KafkaTopicConfig {
 
     public static final String INVENTORY_LOW_STOCK = "inventory.low-stock";
     public static final String SHIPMENT_DISPATCHED = "shipment.dispatched";
+    public static final String SHIPMENT_DELIVERED = "shipment.delivered";
     public static final String SUPPLY_ORDER_APPROVED = "supply-orders.approved";
 
     @Bean
@@ -29,7 +30,12 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic shipmentDispatchedTopic() {  // nuevo
+    public NewTopic shipmentDispatchedTopic() {
         return TopicBuilder.name(SHIPMENT_DISPATCHED).partitions(1).replicas(1).build();
+    }
+
+    @Bean
+    public NewTopic shipmentDeliveredTopic() {
+        return TopicBuilder.name(SHIPMENT_DELIVERED).partitions(1).replicas(1).build();
     }
 }

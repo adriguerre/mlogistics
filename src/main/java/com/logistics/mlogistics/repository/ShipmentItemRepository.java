@@ -17,4 +17,7 @@ public interface ShipmentItemRepository extends JpaRepository<ShipmentItem, UUID
 
     @EntityGraph(attributePaths = {"shipment", "equipment"})
     Optional<ShipmentItem> findById(UUID id);
+
+    @EntityGraph(attributePaths = {"shipment", "equipment"})
+    List<ShipmentItem> findByShipmentId(UUID shipmentId);
 }

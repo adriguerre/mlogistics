@@ -1,10 +1,16 @@
 package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Base;
+import com.logistics.mlogistics.domain.Equipment;
 import com.logistics.mlogistics.domain.Shipment;
+import com.logistics.mlogistics.domain.ShipmentItem;
 import com.logistics.mlogistics.domain.SupplyOrder;
+import com.logistics.mlogistics.domain.enums.ItemCondition;
 import com.logistics.mlogistics.domain.enums.ShipmentStatus;
+import com.logistics.mlogistics.repository.ShipmentItemRepository;
+import com.logistics.mlogistics.kafka.event.ShipmentDeliveredEvent;
 import com.logistics.mlogistics.kafka.event.SupplyOrderApprovedEvent;
+import com.logistics.mlogistics.kafka.producer.ShipmentEventProducer;
 import com.logistics.mlogistics.repository.ShipmentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,13 +29,18 @@ public class ShipmentService {
 
     private static final Logger log = LoggerFactory.getLogger(ShipmentService.class);
     private final ShipmentRepository repository;
+    private final ShipmentItemRepository shipmentItemRepository;
+    private final ShipmentEventProducer eventProducer;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public ShipmentService(ShipmentRepository repository) {
+    public ShipmentService(ShipmentRepository repository, ShipmentItemRepository shipmentItemRepository,
+                           ShipmentEventProducer eventProducer) {
         this.repository = repository;
+        this.shipmentItemRepository = shipmentItemRepository;
+        this.eventProducer = eventProducer;
     }
 
     public List<Shipment> getAll() {
@@ -60,7 +71,16 @@ public class ShipmentService {
             if (updated.getDispatchedAt() != null) existing.setDispatchedAt(updated.getDispatchedAt());
             if (updated.getEstimatedArrivalAt() != null) existing.setEstimatedArrivalAt(updated.getEstimatedArrivalAt());
             if (updated.getDeliveredAt() != null) existing.setDeliveredAt(updated.getDeliveredAt());
-            return repository.save(existing);
+            Shipment saved = repository.save(existing);
+
+            if (ShipmentStatus.DELIVERED.equals(saved.getStatus()) && saved.getDestinationBase() != null) {
+                eventProducer.sendShipmentDelivered(new ShipmentDeliveredEvent(
+                        saved.getId(),
+                        saved.getDestinationBase().getId()
+                ));
+            }
+
+            return saved;
         });
     }
 
@@ -79,7 +99,7 @@ public class ShipmentService {
         destinationBase.setId(event.getDestinationBase());
 
         Shipment shipment = new Shipment();
-        shipment.setTrackingCode("SHIP-" + event.getOrderId().toString().substring(0, 8).toUpperCase());
+        shipment.setTrackingCode("SHIP-" + event.getOrderId().toString().substring(30).toUpperCase());
         shipment.setOrder(order);
         shipment.setDestinationBase(destinationBase);
         shipment.setStatus(ShipmentStatus.PREPARING);
@@ -87,7 +107,20 @@ public class ShipmentService {
             shipment.setEstimatedArrivalAt(new java.sql.Timestamp(event.getEstimated_arrival_at().getTime()));
         }
 
-        create(shipment);
-        log.info("[KAFKA-EVENT] Shipment created from approved supply order — tracking={} order={}", event.getTrackingCode(), event.getOrderId());
+        Shipment saved = create(shipment);
+
+        if (event.getEquipmentId() != null && event.getQtyNeeded() != null) {
+            Equipment equipment = new Equipment();
+            equipment.setId(event.getEquipmentId());
+
+            ShipmentItem item = new ShipmentItem();
+            item.setShipment(saved);
+            item.setEquipment(equipment);
+            item.setQuantity(event.getQtyNeeded());
+            item.setCondition(ItemCondition.NEW);
+            shipmentItemRepository.save(item);
+        }
+
+        log.info("[KAFKA-EVENT] Shipment created from approved supply order — tracking={} order={}", saved.getTrackingCode(), event.getOrderId());
     }
 }

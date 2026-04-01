@@ -1,9 +1,16 @@
 package com.logistics.mlogistics.service;
 
 import com.logistics.mlogistics.domain.Inventory;
+import com.logistics.mlogistics.domain.ShipmentItem;
 import com.logistics.mlogistics.kafka.event.LowStockEvent;
+import com.logistics.mlogistics.kafka.event.ShipmentDeliveredEvent;
 import com.logistics.mlogistics.kafka.producer.InventoryEventProducer;
 import com.logistics.mlogistics.repository.InventoryRepository;
+import com.logistics.mlogistics.repository.ShipmentItemRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +24,20 @@ import java.util.UUID;
 @Service
 public class InventoryService {
 
+    private static final Logger log = LoggerFactory.getLogger(InventoryService.class);
     private final InventoryRepository repository;
     private final InventoryEventProducer eventProducer;
+    private final ShipmentItemRepository shipmentItemRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public InventoryService(InventoryRepository repository, InventoryEventProducer eventProducer) {
+    public InventoryService(InventoryRepository repository, InventoryEventProducer eventProducer,
+                            ShipmentItemRepository shipmentItemRepository) {
         this.repository = repository;
         this.eventProducer = eventProducer;
+        this.shipmentItemRepository = shipmentItemRepository;
     }
 
     public List<Inventory> getAll() {
@@ -78,5 +89,20 @@ public class InventoryService {
         if (!repository.existsById(id)) return false;
         repository.deleteById(id);
         return true;
+    }
+
+    @Transactional
+    public void updateStockOnDelivery(ShipmentDeliveredEvent event) {
+        List<ShipmentItem> items = shipmentItemRepository.findByShipmentId(event.getShipmentId());
+        for (ShipmentItem item : items) {
+            UUID equipmentId = item.getEquipment().getId();
+            repository.findByEquipmentIdAndBaseId(equipmentId, event.getDestinationBaseId()).ifPresent(inventory -> {
+                inventory.setQtyAvailable(inventory.getQtyAvailable() + item.getQuantity());
+                inventory.setQtyTotal(inventory.getQtyTotal() + item.getQuantity());
+                repository.save(inventory);
+                log.info("[KAFKA-EVENT] Stock updated on delivery — equipment={} base={} +{}",
+                        equipmentId, event.getDestinationBaseId(), item.getQuantity());
+            });
+        }
     }
 }

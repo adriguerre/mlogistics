@@ -114,7 +114,7 @@ public class SupplyOrderService {
         Supplier defaultSupplier = new Supplier();
         defaultSupplier.setId(UUID.fromString("00000000-0000-0000-0000-000000000801"));
 
-        SupplyOrder newSupplyOrder = new SupplyOrder("ORD-" + event.getInventoryId().toString().substring(0, 8).toUpperCase(), OrderStatus.DRAFT,
+        SupplyOrder newSupplyOrder = new SupplyOrder("ORD-" + event.getInventoryId().toString().substring(30).toUpperCase(), OrderStatus.DRAFT,
                 OrderPriority.ROUTINE, new Date(2026, 4, 6),
                 "Low Stock of " + event.getEquipmentName(), requestingBase);
         newSupplyOrder.setRequestingUnit(requestingUnit);

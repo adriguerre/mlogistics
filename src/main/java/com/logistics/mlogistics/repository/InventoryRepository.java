@@ -17,4 +17,6 @@ public interface InventoryRepository extends JpaRepository<Inventory, UUID> {
 
     @EntityGraph(attributePaths = {"equipment", "base", "unit"})
     Optional<Inventory> findById(UUID id);
+
+    Optional<Inventory> findByEquipmentIdAndBaseId(UUID equipmentId, UUID baseId);
 }
