@@ -112,3 +112,11 @@ When an inventory update causes `qty_available` to drop below `reorder_threshold
 INFO  [KAFKA-EVENT] Low stock event sent — inventory=... equipment='Assault Rifle' qty=20 threshold=50
 
 WARN  [ALERT KAFKA-EVENT] Low stock detected — equipment='Assault Rifle' at base='Fort Alpha' | available=20 / threshold=50
+
+## Kafka — Shipment Auto-Creation on Supply Order Approved
+
+When a supply order is updated to `APPROVED` status, a new `Shipment` is automatically created in `PREPARING` status linked to that order.
+
+**Trigger:** `PUT /supply-orders/{id}` with `status: APPROVED`
+
+**Result:** New `Shipment` created automatically with status `PREPARING`
