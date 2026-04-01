@@ -8,6 +8,9 @@ import com.logistics.mlogistics.kafka.consumer.InventoryEventConsumer;
 import com.logistics.mlogistics.kafka.event.LowStockEvent;
 import com.logistics.mlogistics.domain.Supplier;
 import com.logistics.mlogistics.domain.Unit;
+import com.logistics.mlogistics.kafka.event.SupplyOrderApprovedEvent;
+import com.logistics.mlogistics.kafka.producer.InventoryEventProducer;
+import com.logistics.mlogistics.kafka.producer.SupplyOrderApprovedProducer;
 import com.logistics.mlogistics.repository.BaseRepository;
 import com.logistics.mlogistics.repository.SupplyOrderRepository;
 import jakarta.persistence.EntityManager;
@@ -29,14 +32,16 @@ public class SupplyOrderService {
     private final SupplyOrderRepository repository;
     private final BaseRepository baseRepository;
     private static final Logger log = LoggerFactory.getLogger(InventoryEventConsumer.class);
+    private final SupplyOrderApprovedProducer eventProducer;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public SupplyOrderService(SupplyOrderRepository repository, BaseRepository baseRepository) {
+    public SupplyOrderService(SupplyOrderRepository repository, BaseRepository baseRepository, SupplyOrderApprovedProducer eventProducer) {
         this.repository = repository;
         this.baseRepository = baseRepository;
+        this.eventProducer = eventProducer;
     }
 
     public List<SupplyOrder> getAll() {
@@ -66,7 +71,20 @@ public class SupplyOrderService {
             if (updated.getRequiredBy() != null) existing.setRequiredBy(updated.getRequiredBy());
             if (updated.getTotalCostUsd() != null) existing.setTotalCostUsd(updated.getTotalCostUsd());
             if (updated.getNotes() != null) existing.setNotes(updated.getNotes());
-            return repository.save(existing);
+
+            SupplyOrder supplyOrder = repository.save(existing);
+
+            if(supplyOrder.getStatus().equals(OrderStatus.APPROVED)){
+                SupplyOrderApprovedEvent event = new SupplyOrderApprovedEvent(
+                        supplyOrder.getId(),
+                        supplyOrder.getRequestingBase().getId(),
+                        supplyOrder.getRequiredBy(),
+                        supplyOrder.getOrderNumber()
+                );
+                eventProducer.sendSupplyOrderApprovedAlert(event);
+            }
+
+            return supplyOrder;
         });
     }
 

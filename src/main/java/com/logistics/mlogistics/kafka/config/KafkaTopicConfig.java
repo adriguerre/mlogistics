@@ -10,10 +10,19 @@ public class KafkaTopicConfig {
 
     public static final String INVENTORY_LOW_STOCK = "inventory.low-stock";
     public static final String SHIPMENT_DISPATCHED = "shipment.dispatched";
+    public static final String SUPPLY_ORDER_APPROVED = "supply-orders.approved";
 
     @Bean
     public NewTopic inventoryLowStockTopic() {
         return TopicBuilder.name(INVENTORY_LOW_STOCK)
+                .partitions(1)
+                .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic supplyOrderApprovedTopic(){
+        return TopicBuilder.name(SUPPLY_ORDER_APPROVED)
                 .partitions(1)
                 .replicas(1)
                 .build();

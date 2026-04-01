@@ -1,7 +1,13 @@
 package com.logistics.mlogistics.service;
 
+import com.logistics.mlogistics.domain.Base;
 import com.logistics.mlogistics.domain.Shipment;
+import com.logistics.mlogistics.domain.SupplyOrder;
+import com.logistics.mlogistics.domain.enums.ShipmentStatus;
+import com.logistics.mlogistics.kafka.event.SupplyOrderApprovedEvent;
 import com.logistics.mlogistics.repository.ShipmentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +21,7 @@ import java.util.UUID;
 @Service
 public class ShipmentService {
 
+    private static final Logger log = LoggerFactory.getLogger(ShipmentService.class);
     private final ShipmentRepository repository;
 
     @PersistenceContext
@@ -61,5 +68,26 @@ public class ShipmentService {
         if (!repository.existsById(id)) return false;
         repository.deleteById(id);
         return true;
+    }
+
+    @Transactional
+    public void createShipmentFromSupplyOrderApproval(SupplyOrderApprovedEvent event) {
+        SupplyOrder order = new SupplyOrder();
+        order.setId(event.getOrderId());
+
+        Base destinationBase = new Base();
+        destinationBase.setId(event.getDestinationBase());
+
+        Shipment shipment = new Shipment();
+        shipment.setTrackingCode(event.getTrackingCode());
+        shipment.setOrder(order);
+        shipment.setDestinationBase(destinationBase);
+        shipment.setStatus(ShipmentStatus.PREPARING);
+        if (event.getEstimated_arrival_at() != null) {
+            shipment.setEstimatedArrivalAt(new java.sql.Timestamp(event.getEstimated_arrival_at().getTime()));
+        }
+
+        create(shipment);
+        log.info("[KAFKA-EVENT] Shipment created from approved supply order — tracking={} order={}", event.getTrackingCode(), event.getOrderId());
     }
 }
