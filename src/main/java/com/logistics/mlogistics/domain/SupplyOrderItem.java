@@ -35,6 +35,15 @@ public class SupplyOrderItem {
 
     public SupplyOrderItem() {}
 
+    public SupplyOrderItem(UUID id, SupplyOrder order, Equipment equipment, Integer qtyRequested, BigDecimal unitPriceUsd, Integer qtyApproved) {
+        this.id = id;
+        this.order = order;
+        this.equipment = equipment;
+        this.qtyRequested = qtyRequested;
+        this.unitPriceUsd = unitPriceUsd;
+        this.qtyApproved = qtyApproved;
+    }
+
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
     public SupplyOrder getOrder() { return order; }

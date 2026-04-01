@@ -17,4 +17,7 @@ public interface SupplyOrderItemRepository extends JpaRepository<SupplyOrderItem
 
     @EntityGraph(attributePaths = {"order", "equipment"})
     Optional<SupplyOrderItem> findById(UUID id);
+
+    @EntityGraph(attributePaths = {"order", "equipment"})
+    List<SupplyOrderItem> findByOrderId(UUID orderId);
 }

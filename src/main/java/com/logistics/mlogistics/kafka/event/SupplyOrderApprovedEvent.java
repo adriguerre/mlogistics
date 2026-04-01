@@ -10,6 +10,8 @@ public class SupplyOrderApprovedEvent {
     public UUID destinationBase;
     public Date estimated_arrival_at;
     public String trackingCode;
+    public UUID equipmentId;
+    public Integer qtyNeeded;
 
     public SupplyOrderApprovedEvent() {
     }
@@ -19,6 +21,15 @@ public class SupplyOrderApprovedEvent {
         this.destinationBase = destinationBase;
         this.estimated_arrival_at = estimated_arrival_at;
         this.trackingCode = trackingCode;
+    }
+
+    public SupplyOrderApprovedEvent(UUID orderId, UUID destinationBase, Date estimated_arrival_at, String trackingCode, UUID equipmentId, Integer qtyNeeded) {
+        this.orderId = orderId;
+        this.destinationBase = destinationBase;
+        this.estimated_arrival_at = estimated_arrival_at;
+        this.trackingCode = trackingCode;
+        this.equipmentId = equipmentId;
+        this.qtyNeeded = qtyNeeded;
     }
 
     public UUID getOrderId() {
@@ -51,5 +62,21 @@ public class SupplyOrderApprovedEvent {
 
     public void setTrackingCode(String trackingCode) {
         this.trackingCode = trackingCode;
+    }
+
+    public UUID getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(UUID equipmentId) {
+        this.equipmentId = equipmentId;
+    }
+
+    public Integer getQtyNeeded() {
+        return qtyNeeded;
+    }
+
+    public void setQtyNeeded(Integer qtyNeeded) {
+        this.qtyNeeded = qtyNeeded;
     }
 }

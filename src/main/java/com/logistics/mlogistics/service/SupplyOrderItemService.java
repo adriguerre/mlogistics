@@ -1,6 +1,9 @@
 package com.logistics.mlogistics.service;
 
+import com.logistics.mlogistics.domain.Equipment;
+import com.logistics.mlogistics.domain.SupplyOrder;
 import com.logistics.mlogistics.domain.SupplyOrderItem;
+import com.logistics.mlogistics.kafka.event.LowStockEvent;
 import com.logistics.mlogistics.repository.SupplyOrderItemRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -49,6 +52,23 @@ public class SupplyOrderItemService {
             if (updated.getUnitPriceUsd() != null) existing.setUnitPriceUsd(updated.getUnitPriceUsd());
             return repository.save(existing);
         });
+    }
+
+    @Transactional
+    public void createSupplyOrderItem(LowStockEvent event, UUID orderId){
+        Equipment equipment = new Equipment();
+        equipment.setId(event.getEquipmentId());
+
+        SupplyOrder supplyOrder = new SupplyOrder();
+        supplyOrder.setId(orderId);
+
+        SupplyOrderItem orderItem = new SupplyOrderItem();
+
+        orderItem.setEquipment(equipment);
+        orderItem.setOrder(supplyOrder);
+        orderItem.setQtyRequested(event.getReorderThreshold() - event.getQtyAvailable());
+
+        create(orderItem);
     }
 
     public boolean delete(UUID id) {

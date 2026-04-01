@@ -79,7 +79,7 @@ public class ShipmentService {
         destinationBase.setId(event.getDestinationBase());
 
         Shipment shipment = new Shipment();
-        shipment.setTrackingCode(event.getTrackingCode());
+        shipment.setTrackingCode("SHIP-" + event.getOrderId().toString().substring(0, 8).toUpperCase());
         shipment.setOrder(order);
         shipment.setDestinationBase(destinationBase);
         shipment.setStatus(ShipmentStatus.PREPARING);

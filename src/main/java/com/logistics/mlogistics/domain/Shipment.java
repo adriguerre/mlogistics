@@ -1,6 +1,7 @@
 package com.logistics.mlogistics.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.logistics.mlogistics.domain.enums.ShipmentStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
@@ -15,6 +16,7 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @DynamicInsert
 @Table(name = "shipment")
+@JsonPropertyOrder({"id", "status", "total_weight_kg", "tracking_code", "estimated_arrival_at", "delivered_at", "created_at"})
 public class Shipment {
 
     @Id
