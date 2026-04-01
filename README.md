@@ -98,25 +98,27 @@ datadog/
 └── conf.d/kafka.d/   JMX metric collection config
 ```
 
-## Kafka — Inventory Low Stock Alert
+## Kafka — Event-Driven Supply Chain Flow
 
-When an inventory update causes `qty_available` to drop below `reorder_threshold`, a `LowStockEvent` is automatically published to the Kafka topic `inventory.low-stock`. A consumer picks it up and logs a `WARN` alert, visible in Datadog Logs Explorer.
+Full automated flow triggered by a low stock detection:
 
-**To test:**
-1. `docker compose up -d`
-2. `PUT /inventory/{id}` with `qty_available` below `reorder_threshold`
-3. Check logs: `docker compose logs -f app`
+### Steps to test the full flow
 
-**Expected logs:**
+1. **Trigger low stock** — `PUT /inventory/{inventory_id}`
+   - Example inventory id: `00000000-0000-0000-0000-000000000701`
+   - Send `qty_available` below `reorder_threshold`
+   - A `SupplyOrder` is automatically created in `DRAFT` status
+   - A `SupplyOrderItem` is created with the equipment and quantity needed
 
-INFO  [KAFKA-EVENT] Low stock event sent — inventory=... equipment='Assault Rifle' qty=20 threshold=50
+2. **Approve the order** — `PUT /supply-orders/{supply_order_id}` with `status: APPROVED`
+   - Check the created `supply_order_id` from the previous step in `GET /supply-orders`
+   - A `Shipment` is automatically created in `PREPARING` status linked to that order
 
-WARN  [ALERT KAFKA-EVENT] Low stock detected — equipment='Assault Rifle' at base='Fort Alpha' | available=20 / threshold=50
+3. **Mark shipment as delivered** — `PUT /shipments/{shipment_id}` with `status: DELIVERED`
+   - Check the created `shipment_id` from the previous step in `GET /shipments`
+   - Inventory `qty_available` is increased at the destination base
 
-## Kafka — Shipment Auto-Creation on Supply Order Approved
-
-When a supply order is updated to `APPROVED` status, a new `Shipment` is automatically created in `PREPARING` status linked to that order.
-
-**Trigger:** `PUT /supply-orders/{id}` with `status: APPROVED`
-
-**Result:** New `Shipment` created automatically with status `PREPARING`
+### Kafka topics involved
+- `inventory.low-stock` — fired when qty drops below threshold
+- `supply-order.approved` — fired when a supply order is approved
+- `shipment.delivered` — fired when a shipment is marked as delivered
