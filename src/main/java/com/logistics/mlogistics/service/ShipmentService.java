@@ -84,6 +84,14 @@ public class ShipmentService {
         });
     }
 
+    public int markOverdueAsDelayed() {
+        return repository.markOverdueShipmentsAsDelayed(
+                ShipmentStatus.IN_TRANSIT,
+                ShipmentStatus.DELAYED,
+                new java.sql.Timestamp(System.currentTimeMillis())
+        );
+    }
+
     public boolean delete(UUID id) {
         if (!repository.existsById(id)) return false;
         repository.deleteById(id);
