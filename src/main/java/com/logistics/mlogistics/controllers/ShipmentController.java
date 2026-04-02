@@ -55,8 +55,11 @@ public class ShipmentController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PostMapping("/{id}")
+    //Admin
+    @PostMapping("deliver/{id}")
     public ResponseEntity<?> deliverShipment(@PathVariable UUID id){
-        service.update()
+        return service.updateShipmentAsDelivered(id)
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }

@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -82,6 +83,19 @@ public class ShipmentService {
 
             return saved;
         });
+    }
+
+    public Optional<Shipment> updateShipmentAsDelivered(UUID id){
+        Optional<Shipment> shipment = shipmentRepository.findById(id);
+        if(shipment.isPresent()){
+            shipment.get().setStatus(ShipmentStatus.DELIVERED);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            shipment.get().setDeliveredAt(timestamp);
+
+            update(id, shipment.get());
+        }
+
+        return shipment;
     }
 
     public int markOverdueAsDelayed() {
