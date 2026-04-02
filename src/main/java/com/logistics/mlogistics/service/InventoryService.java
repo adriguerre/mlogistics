@@ -25,7 +25,7 @@ import java.util.UUID;
 public class InventoryService {
 
     private static final Logger log = LoggerFactory.getLogger(InventoryService.class);
-    private final InventoryRepository repository;
+    private final InventoryRepository inventoryRepository;
     private final InventoryEventProducer eventProducer;
     private final ShipmentItemRepository shipmentItemRepository;
 
@@ -33,30 +33,30 @@ public class InventoryService {
     private EntityManager entityManager;
 
     @Autowired
-    public InventoryService(InventoryRepository repository, InventoryEventProducer eventProducer,
+    public InventoryService(InventoryRepository inventoryRepository, InventoryEventProducer eventProducer,
                             ShipmentItemRepository shipmentItemRepository) {
-        this.repository = repository;
+        this.inventoryRepository = inventoryRepository;
         this.eventProducer = eventProducer;
         this.shipmentItemRepository = shipmentItemRepository;
     }
 
     public List<Inventory> getAll() {
-        return repository.findAll();
+        return inventoryRepository.findAll();
     }
 
     public Optional<Inventory> getById(UUID id) {
-        return repository.findById(id);
+        return inventoryRepository.findById(id);
     }
 
     @Transactional
     public Inventory create(Inventory entity) {
-        Inventory saved = repository.saveAndFlush(entity);
+        Inventory saved = inventoryRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<Inventory> update(UUID id, Inventory updated) {
-        return repository.findById(id).map(existing -> {
+        return inventoryRepository.findById(id).map(existing -> {
             if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
             if (updated.getBase() != null) existing.setBase(updated.getBase());
             if (updated.getUnit() != null) existing.setUnit(updated.getUnit());
@@ -66,7 +66,7 @@ public class InventoryService {
             if (updated.getQtyDamaged() != null) existing.setQtyDamaged(updated.getQtyDamaged());
             if (updated.getReorderThreshold() != null) existing.setReorderThreshold(updated.getReorderThreshold());
             if (updated.getUpdatedAt() != null) existing.setUpdatedAt(updated.getUpdatedAt());
-            Inventory saved = repository.save(existing);
+            Inventory saved = inventoryRepository.save(existing);
 
             if (saved.getQtyAvailable() < saved.getReorderThreshold()) {
                 LowStockEvent event = new LowStockEvent(
@@ -86,8 +86,8 @@ public class InventoryService {
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!inventoryRepository.existsById(id)) return false;
+        inventoryRepository.deleteById(id);
         return true;
     }
 
@@ -96,10 +96,10 @@ public class InventoryService {
         List<ShipmentItem> items = shipmentItemRepository.findByShipmentId(event.getShipmentId());
         for (ShipmentItem item : items) {
             UUID equipmentId = item.getEquipment().getId();
-            repository.findByEquipmentIdAndBaseId(equipmentId, event.getDestinationBaseId()).ifPresent(inventory -> {
+            inventoryRepository.findByEquipmentIdAndBaseId(equipmentId, event.getDestinationBaseId()).ifPresent(inventory -> {
                 inventory.setQtyAvailable(inventory.getQtyAvailable() + item.getQuantity());
                 inventory.setQtyTotal(inventory.getQtyTotal() + item.getQuantity());
-                repository.save(inventory);
+                inventoryRepository.save(inventory);
                 log.info("[KAFKA-EVENT] Stock updated on delivery — equipment={} base={} +{}",
                         equipmentId, event.getDestinationBaseId(), item.getQuantity());
             });

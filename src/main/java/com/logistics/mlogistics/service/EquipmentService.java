@@ -15,33 +15,33 @@ import java.util.UUID;
 @Service
 public class EquipmentService {
 
-    private final EquipmentRepository repository;
+    private final EquipmentRepository equipmentRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public EquipmentService(EquipmentRepository repository) {
-        this.repository = repository;
+    public EquipmentService(EquipmentRepository equipmentRepository) {
+        this.equipmentRepository = equipmentRepository;
     }
 
     public List<Equipment> getAll() {
-        return repository.findAll();
+        return equipmentRepository.findAll();
     }
 
     public Optional<Equipment> getById(UUID id) {
-        return repository.findById(id);
+        return equipmentRepository.findById(id);
     }
 
     @Transactional
     public Equipment create(Equipment entity) {
-        Equipment saved = repository.saveAndFlush(entity);
+        Equipment saved = equipmentRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<Equipment> update(UUID id, Equipment updated) {
-        return repository.findById(id).map(existing -> {
+        return equipmentRepository.findById(id).map(existing -> {
             if (updated.getSku() != null) existing.setSku(updated.getSku());
             if (updated.getName() != null) existing.setName(updated.getName());
             if (updated.getModel() != null) existing.setModel(updated.getModel());
@@ -52,13 +52,13 @@ public class EquipmentService {
             if (updated.getClassification() != null) existing.setClassification(updated.getClassification());
             if (updated.getRequiresMaintenance() != null) existing.setRequiresMaintenance(updated.getRequiresMaintenance());
             if (updated.getMaintenanceIntervalDays() != null) existing.setMaintenanceIntervalDays(updated.getMaintenanceIntervalDays());
-            return repository.save(existing);
+            return equipmentRepository.save(existing);
         });
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!equipmentRepository.existsById(id)) return false;
+        equipmentRepository.deleteById(id);
         return true;
     }
 }

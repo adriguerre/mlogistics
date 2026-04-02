@@ -15,45 +15,45 @@ import java.util.UUID;
 @Service
 public class SupplierService {
 
-    private final SupplierRepository repository;
+    private final SupplierRepository supplierRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public SupplierService(SupplierRepository repository) {
-        this.repository = repository;
+    public SupplierService(SupplierRepository supplierRepository) {
+        this.supplierRepository = supplierRepository;
     }
 
     public List<Supplier> getAll() {
-        return repository.findAll();
+        return supplierRepository.findAll();
     }
 
     public Optional<Supplier> getById(UUID id) {
-        return repository.findById(id);
+        return supplierRepository.findById(id);
     }
 
     @Transactional
     public Supplier create(Supplier entity) {
-        Supplier saved = repository.saveAndFlush(entity);
+        Supplier saved = supplierRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<Supplier> update(UUID id, Supplier updated) {
-        return repository.findById(id).map(existing -> {
+        return supplierRepository.findById(id).map(existing -> {
             if (updated.getCode() != null) existing.setCode(updated.getCode());
             if (updated.getName() != null) existing.setName(updated.getName());
             if (updated.getType() != null) existing.setType(updated.getType());
             if (updated.getCountry() != null) existing.setCountry(updated.getCountry());
             if (updated.getIsApproved() != null) existing.setIsApproved(updated.getIsApproved());
-            return repository.save(existing);
+            return supplierRepository.save(existing);
         });
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!supplierRepository.existsById(id)) return false;
+        supplierRepository.deleteById(id);
         return true;
     }
 }

@@ -15,44 +15,44 @@ import java.util.UUID;
 @Service
 public class ShipmentItemService {
 
-    private final ShipmentItemRepository repository;
+    private final ShipmentItemRepository shipmentItemRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public ShipmentItemService(ShipmentItemRepository repository) {
-        this.repository = repository;
+    public ShipmentItemService(ShipmentItemRepository shipmentItemRepository) {
+        this.shipmentItemRepository = shipmentItemRepository;
     }
 
     public List<ShipmentItem> getAll() {
-        return repository.findAll();
+        return shipmentItemRepository.findAll();
     }
 
     public Optional<ShipmentItem> getById(UUID id) {
-        return repository.findById(id);
+        return shipmentItemRepository.findById(id);
     }
 
     @Transactional
     public ShipmentItem create(ShipmentItem entity) {
-        ShipmentItem saved = repository.saveAndFlush(entity);
+        ShipmentItem saved = shipmentItemRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<ShipmentItem> update(UUID id, ShipmentItem updated) {
-        return repository.findById(id).map(existing -> {
+        return shipmentItemRepository.findById(id).map(existing -> {
             if (updated.getShipment() != null) existing.setShipment(updated.getShipment());
             if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
             if (updated.getQuantity() != null) existing.setQuantity(updated.getQuantity());
             if (updated.getCondition() != null) existing.setCondition(updated.getCondition());
-            return repository.save(existing);
+            return shipmentItemRepository.save(existing);
         });
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!shipmentItemRepository.existsById(id)) return false;
+        shipmentItemRepository.deleteById(id);
         return true;
     }
 }

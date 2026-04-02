@@ -2,6 +2,7 @@ package com.logistics.mlogistics.controllers;
 
 import com.logistics.mlogistics.domain.Shipment;
 import com.logistics.mlogistics.service.ShipmentService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +53,10 @@ public class ShipmentController {
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<?> deliverShipment(@PathVariable UUID id){
+        service.update()
     }
 }

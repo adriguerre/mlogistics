@@ -28,7 +28,7 @@ import java.util.UUID;
 public class ShipmentService {
 
     private static final Logger log = LoggerFactory.getLogger(ShipmentService.class);
-    private final ShipmentRepository repository;
+    private final ShipmentRepository shipmentRepository;
     private final ShipmentItemRepository shipmentItemRepository;
     private final ShipmentEventProducer eventProducer;
 
@@ -36,30 +36,30 @@ public class ShipmentService {
     private EntityManager entityManager;
 
     @Autowired
-    public ShipmentService(ShipmentRepository repository, ShipmentItemRepository shipmentItemRepository,
+    public ShipmentService(ShipmentRepository shipmentRepository, ShipmentItemRepository shipmentItemRepository,
                            ShipmentEventProducer eventProducer) {
-        this.repository = repository;
+        this.shipmentRepository = shipmentRepository;
         this.shipmentItemRepository = shipmentItemRepository;
         this.eventProducer = eventProducer;
     }
 
     public List<Shipment> getAll() {
-        return repository.findAll();
+        return shipmentRepository.findAll();
     }
 
     public Optional<Shipment> getById(UUID id) {
-        return repository.findById(id);
+        return shipmentRepository.findById(id);
     }
 
     @Transactional
     public Shipment create(Shipment entity) {
-        Shipment saved = repository.saveAndFlush(entity);
+        Shipment saved = shipmentRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<Shipment> update(UUID id, Shipment updated) {
-        return repository.findById(id).map(existing -> {
+        return shipmentRepository.findById(id).map(existing -> {
             if (updated.getTrackingCode() != null) existing.setTrackingCode(updated.getTrackingCode());
             if (updated.getOrder() != null) existing.setOrder(updated.getOrder());
             if (updated.getOriginBase() != null) existing.setOriginBase(updated.getOriginBase());
@@ -71,7 +71,7 @@ public class ShipmentService {
             if (updated.getDispatchedAt() != null) existing.setDispatchedAt(updated.getDispatchedAt());
             if (updated.getEstimatedArrivalAt() != null) existing.setEstimatedArrivalAt(updated.getEstimatedArrivalAt());
             if (updated.getDeliveredAt() != null) existing.setDeliveredAt(updated.getDeliveredAt());
-            Shipment saved = repository.save(existing);
+            Shipment saved = shipmentRepository.save(existing);
 
             if (ShipmentStatus.DELIVERED.equals(saved.getStatus()) && saved.getDestinationBase() != null) {
                 eventProducer.sendShipmentDelivered(new ShipmentDeliveredEvent(
@@ -85,7 +85,7 @@ public class ShipmentService {
     }
 
     public int markOverdueAsDelayed() {
-        return repository.markOverdueShipmentsAsDelayed(
+        return shipmentRepository.markOverdueShipmentsAsDelayed(
                 ShipmentStatus.IN_TRANSIT,
                 ShipmentStatus.DELAYED,
                 new java.sql.Timestamp(System.currentTimeMillis())
@@ -93,8 +93,8 @@ public class ShipmentService {
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!shipmentRepository.existsById(id)) return false;
+        shipmentRepository.deleteById(id);
         return true;
     }
 

@@ -15,43 +15,43 @@ import java.util.UUID;
 @Service
 public class EquipmentCategoryService {
 
-    private final EquipmentCategoryRepository repository;
+    private final EquipmentCategoryRepository equipmentCategoryRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public EquipmentCategoryService(EquipmentCategoryRepository repository) {
-        this.repository = repository;
+    public EquipmentCategoryService(EquipmentCategoryRepository equipmentCategoryRepository) {
+        this.equipmentCategoryRepository = equipmentCategoryRepository;
     }
 
     public List<EquipmentCategory> getAll() {
-        return repository.findAll();
+        return equipmentCategoryRepository.findAll();
     }
 
     public Optional<EquipmentCategory> getById(UUID id) {
-        return repository.findById(id);
+        return equipmentCategoryRepository.findById(id);
     }
 
     @Transactional
     public EquipmentCategory create(EquipmentCategory entity) {
-        EquipmentCategory saved = repository.saveAndFlush(entity);
+        EquipmentCategory saved = equipmentCategoryRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<EquipmentCategory> update(UUID id, EquipmentCategory updated) {
-        return repository.findById(id).map(existing -> {
+        return equipmentCategoryRepository.findById(id).map(existing -> {
             if (updated.getCode() != null) existing.setCode(updated.getCode());
             if (updated.getName() != null) existing.setName(updated.getName());
             if (updated.getDescription() != null) existing.setDescription(updated.getDescription());
-            return repository.save(existing);
+            return equipmentCategoryRepository.save(existing);
         });
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!equipmentCategoryRepository.existsById(id)) return false;
+        equipmentCategoryRepository.deleteById(id);
         return true;
     }
 }

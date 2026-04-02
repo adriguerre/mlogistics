@@ -4,7 +4,6 @@ import com.logistics.mlogistics.domain.Base;
 import com.logistics.mlogistics.domain.SupplyOrder;
 import com.logistics.mlogistics.domain.enums.OrderPriority;
 import com.logistics.mlogistics.domain.enums.OrderStatus;
-import com.logistics.mlogistics.kafka.consumer.InventoryEventConsumer;
 import com.logistics.mlogistics.kafka.event.LowStockEvent;
 import com.logistics.mlogistics.domain.Supplier;
 import com.logistics.mlogistics.domain.Unit;
@@ -33,41 +32,41 @@ import java.util.UUID;
 @Service
 public class SupplyOrderService {
 
-    private final SupplyOrderRepository repository;
+    private final SupplyOrderRepository supplyOrderRepository;
     private final BaseRepository baseRepository;
     private final SupplyOrderItemRepository supplyOrderItemRepository;
-    private static final Logger log = LoggerFactory.getLogger(InventoryEventConsumer.class);
+    private static final Logger log = LoggerFactory.getLogger(SupplyOrderService.class);
     private final SupplyOrderApprovedProducer eventProducer;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public SupplyOrderService(SupplyOrderRepository repository, BaseRepository baseRepository,
+    public SupplyOrderService(SupplyOrderRepository supplyOrderRepository, BaseRepository baseRepository,
                               SupplyOrderItemRepository supplyOrderItemRepository, SupplyOrderApprovedProducer eventProducer) {
-        this.repository = repository;
+        this.supplyOrderRepository = supplyOrderRepository;
         this.baseRepository = baseRepository;
         this.supplyOrderItemRepository = supplyOrderItemRepository;
         this.eventProducer = eventProducer;
     }
 
     public List<SupplyOrder> getAll() {
-        return repository.findAll();
+        return supplyOrderRepository.findAll();
     }
 
     public Optional<SupplyOrder> getById(UUID id) {
-        return repository.findById(id);
+        return supplyOrderRepository.findById(id);
     }
 
     @Transactional
     public SupplyOrder create(SupplyOrder entity) {
-        SupplyOrder saved = repository.saveAndFlush(entity);
+        SupplyOrder saved = supplyOrderRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<SupplyOrder> update(UUID id, SupplyOrder updated) {
-        return repository.findById(id).map(existing -> {
+        return supplyOrderRepository.findById(id).map(existing -> {
             if (updated.getOrderNumber() != null) existing.setOrderNumber(updated.getOrderNumber());
             if (updated.getRequestingUnit() != null) existing.setRequestingUnit(updated.getRequestingUnit());
             if (updated.getRequestingBase() != null) existing.setRequestingBase(updated.getRequestingBase());
@@ -79,7 +78,7 @@ public class SupplyOrderService {
             if (updated.getTotalCostUsd() != null) existing.setTotalCostUsd(updated.getTotalCostUsd());
             if (updated.getNotes() != null) existing.setNotes(updated.getNotes());
 
-            SupplyOrder supplyOrder = repository.save(existing);
+            SupplyOrder supplyOrder = supplyOrderRepository.save(existing);
 
             if(supplyOrder.getStatus().equals(OrderStatus.APPROVED)){
                 SupplyOrderApprovedEvent event = new SupplyOrderApprovedEvent(
@@ -101,8 +100,8 @@ public class SupplyOrderService {
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!supplyOrderRepository.existsById(id)) return false;
+        supplyOrderRepository.deleteById(id);
         return true;
     }
 

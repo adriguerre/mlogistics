@@ -18,39 +18,39 @@ import java.util.UUID;
 @Service
 public class SupplyOrderItemService {
 
-    private final SupplyOrderItemRepository repository;
+    private final SupplyOrderItemRepository supplyOrderItemRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public SupplyOrderItemService(SupplyOrderItemRepository repository) {
-        this.repository = repository;
+    public SupplyOrderItemService(SupplyOrderItemRepository supplyOrderItemRepository) {
+        this.supplyOrderItemRepository = supplyOrderItemRepository;
     }
 
     public List<SupplyOrderItem> getAll() {
-        return repository.findAll();
+        return supplyOrderItemRepository.findAll();
     }
 
     public Optional<SupplyOrderItem> getById(UUID id) {
-        return repository.findById(id);
+        return supplyOrderItemRepository.findById(id);
     }
 
     @Transactional
     public SupplyOrderItem create(SupplyOrderItem entity) {
-        SupplyOrderItem saved = repository.saveAndFlush(entity);
+        SupplyOrderItem saved = supplyOrderItemRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<SupplyOrderItem> update(UUID id, SupplyOrderItem updated) {
-        return repository.findById(id).map(existing -> {
+        return supplyOrderItemRepository.findById(id).map(existing -> {
             if (updated.getOrder() != null) existing.setOrder(updated.getOrder());
             if (updated.getEquipment() != null) existing.setEquipment(updated.getEquipment());
             if (updated.getQtyRequested() != null) existing.setQtyRequested(updated.getQtyRequested());
             if (updated.getQtyApproved() != null) existing.setQtyApproved(updated.getQtyApproved());
             if (updated.getUnitPriceUsd() != null) existing.setUnitPriceUsd(updated.getUnitPriceUsd());
-            return repository.save(existing);
+            return supplyOrderItemRepository.save(existing);
         });
     }
 
@@ -72,8 +72,8 @@ public class SupplyOrderItemService {
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!supplyOrderItemRepository.existsById(id)) return false;
+        supplyOrderItemRepository.deleteById(id);
         return true;
     }
 }

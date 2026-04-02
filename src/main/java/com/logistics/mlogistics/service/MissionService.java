@@ -15,33 +15,33 @@ import java.util.UUID;
 @Service
 public class MissionService {
 
-    private final MissionRepository repository;
+    private final MissionRepository missionRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public MissionService(MissionRepository repository) {
-        this.repository = repository;
+    public MissionService(MissionRepository missionRepository) {
+        this.missionRepository = missionRepository;
     }
 
     public List<Mission> getAll() {
-        return repository.findAll();
+        return missionRepository.findAll();
     }
 
     public Optional<Mission> getById(UUID id) {
-        return repository.findById(id);
+        return missionRepository.findById(id);
     }
 
     @Transactional
     public Mission create(Mission entity) {
-        Mission saved = repository.saveAndFlush(entity);
+        Mission saved = missionRepository.saveAndFlush(entity);
         entityManager.refresh(saved);
         return saved;
     }
 
     public Optional<Mission> update(UUID id, Mission updated) {
-        return repository.findById(id).map(existing -> {
+        return missionRepository.findById(id).map(existing -> {
             if (updated.getCodename() != null) existing.setCodename(updated.getCodename());
             if (updated.getCommandingUnit() != null) existing.setCommandingUnit(updated.getCommandingUnit());
             if (updated.getBase() != null) existing.setBase(updated.getBase());
@@ -52,13 +52,13 @@ public class MissionService {
             if (updated.getStartAt() != null) existing.setStartAt(updated.getStartAt());
             if (updated.getEndAt() != null) existing.setEndAt(updated.getEndAt());
             if (updated.getObjective() != null) existing.setObjective(updated.getObjective());
-            return repository.save(existing);
+            return missionRepository.save(existing);
         });
     }
 
     public boolean delete(UUID id) {
-        if (!repository.existsById(id)) return false;
-        repository.deleteById(id);
+        if (!missionRepository.existsById(id)) return false;
+        missionRepository.deleteById(id);
         return true;
     }
 }
