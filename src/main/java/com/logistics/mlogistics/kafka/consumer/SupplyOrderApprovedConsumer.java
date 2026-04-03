@@ -21,12 +21,17 @@ public class SupplyOrderApprovedConsumer {
 
     @KafkaListener(topics = KafkaTopicConfig.SUPPLY_ORDER_APPROVED, groupId = "supply-order-approved-group")
     public void supplyOrderApproved(String message){
-      try{
+
           SupplyOrderApprovedEvent event = objectMapper.readValue(message, SupplyOrderApprovedEvent.class);
+          //if(event.getTrackingCode().contains("ORD")) //Simulate DB failure
+          //    throw new RuntimeException("Simulated DB Failure");
           log.warn("[ALERT KAFKA-EVENT Supply Order APPROVED - ORDER ID: {} - DESTINATION: {}", event.getOrderId(), event.getDestinationBase());
           shipmentService.createShipmentFromSupplyOrderApproval(event);
-      }catch(Exception e){
-          log.error("[KAFKA-EVENT-CONSUMER] Failed to deserialize supplyOrderApprovedEvent: {}", message, e);
-      }
+
+    }
+
+    @KafkaListener(topics = KafkaTopicConfig.SUPPLY_ORDER_APPROVED + "-dlt", groupId = "mlogistics-dlt-group")
+    public void handleDeadLetter(String message) {
+        log.error("[KAFKA-EVENT-DLQ] Message could not be processed after retries: {}", message);
     }
 }

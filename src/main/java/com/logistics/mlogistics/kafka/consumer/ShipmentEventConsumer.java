@@ -31,4 +31,9 @@ public class ShipmentEventConsumer {
             log.error("[KAFKA] Failed to process ShipmentDeliveredEvent: {}", message, e);
         }
     }
+
+    @KafkaListener(topics = KafkaTopicConfig.SHIPMENT_DELIVERED + "-dlt", groupId = "mlogistics-dlt-group")
+    public void handleDeadLetter(String message) {
+        log.error("[KAFKA-EVENT-DLQ] Message could not be processed after retries: {}", message);
+    }
 }

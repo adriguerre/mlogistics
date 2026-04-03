@@ -59,6 +59,7 @@ services:
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
       # 9092 → internal Docker traffic (kafka:9092)
       # 29092 → external host traffic (localhost:29092)
       # 9093 → controller (KRaft)

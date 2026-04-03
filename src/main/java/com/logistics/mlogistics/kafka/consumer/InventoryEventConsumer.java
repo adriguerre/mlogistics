@@ -29,7 +29,9 @@ public class InventoryEventConsumer {
     @KafkaListener(topics = KafkaTopicConfig.INVENTORY_LOW_STOCK, groupId = "mlogistics-group")
     public void onLowStock(String message) {
         try {
+
             LowStockEvent event = objectMapper.readValue(message, LowStockEvent.class);
+
             log.warn("[ALERT KAFKA-EVENT] Low stock detected — equipment='{}' at base='{}' | available={} / threshold={}",
                     event.getEquipmentName(),
                     event.getBaseName(),
@@ -42,5 +44,10 @@ public class InventoryEventConsumer {
         } catch (Exception e) {
             log.error("[KAFKA] Failed to deserialize LowStockEvent: {}", message, e);
         }
+    }
+
+    @KafkaListener(topics = KafkaTopicConfig.INVENTORY_LOW_STOCK + "-dlt", groupId = "mlogistics-dlt-group")
+    public void handleDeadLetter(String message) {
+        log.error("[KAFKA-EVENT-DLQ] Message could not be processed after retries: {}", message);
     }
 }

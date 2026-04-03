@@ -38,4 +38,23 @@ public class KafkaTopicConfig {
     public NewTopic shipmentDeliveredTopic() {
         return TopicBuilder.name(SHIPMENT_DELIVERED).partitions(1).replicas(1).build();
     }
+
+
+
+    //DLT
+    @Bean
+    public NewTopic inventoryLowStockDlt(){
+        return TopicBuilder.name(INVENTORY_LOW_STOCK + "-dlt").build();
+    }
+
+    @Bean
+    public NewTopic supplyOrderApprovedDlt() {
+        return TopicBuilder.name(SUPPLY_ORDER_APPROVED + "-dlt").build();
+    }
+
+    @Bean
+    public NewTopic shipmentDeliveredDlt() {
+        return TopicBuilder.name(SHIPMENT_DELIVERED + "-dlt").build();
+    }
+
 }
