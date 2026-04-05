@@ -73,6 +73,11 @@ Under normal circumstances the project connects to a real external database. How
 docker compose up --build -d
 ```
 
+```bash
+docker compose down      # stop containers, keep data
+docker compose down -v   # stop containers and remove volumes (clean reset)
+```
+
 Services started:
 - `postgres` → `localhost:5432`
 - `kafka` → `localhost:29092`
