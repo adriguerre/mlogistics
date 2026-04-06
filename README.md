@@ -78,6 +78,13 @@ docker compose down      # stop containers, keep data
 docker compose down -v   # stop containers and remove volumes (clean reset)
 ```
 
+### API Documentation
+
+Interactive API documentation available via Swagger UI once the project is running:
+
+http://localhost:8080/mlogistics/api/v1/swagger-ui/index.html
+
+
 Services started:
 - `postgres` → `localhost:5432`
 - `kafka` → `localhost:29092`
