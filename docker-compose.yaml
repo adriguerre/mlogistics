@@ -11,8 +11,8 @@ services:
       POSTGRES_DB: mlogisticsdb
     volumes:
       - pg_data:/var/lib/postgresql/data
-      - ./docs/military_logistics_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
-      - ./docs/sample_data.sql:/docker-entrypoint-initdb.d/02_data.sql:ro
+      - ./docker/init/military_logistics_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./docker/init/sample_data.sql:/docker-entrypoint-initdb.d/02_data.sql:ro
     ports:
       - "5432:5432"
     healthcheck:
