@@ -73,6 +73,18 @@ Under normal circumstances the project connects to a real external database. How
 docker compose up --build -d
 ```
 
+```bash
+docker compose down      # stop containers, keep data
+docker compose down -v   # stop containers and remove volumes (clean reset)
+```
+
+### API Documentation
+
+Interactive API documentation available via Swagger UI once the project is running:
+
+http://localhost:8080/mlogistics/api/v1/swagger-ui/index.html
+
+
 Services started:
 - `postgres` → `localhost:5432`
 - `kafka` → `localhost:29092`
@@ -97,6 +109,17 @@ src/main/java/com/logistics/mlogistics/
 datadog/
 └── conf.d/kafka.d/   JMX metric collection config
 ```
+### Dead Letter Queue (DLQ)
+
+Each consumer topic has a corresponding DLT (Dead Letter Topic). If a consumer fails to process a message after **3 retries** (3 second intervals), the message is automatically forwarded to the DLT and logged as an error.
+
+| Topic | DLT |
+|---|---|
+| `inventory.low-stock` | `inventory.low-stock-dlt` |
+| `supply-orders.approved` | `supply-orders.approved-dlt` |
+| `shipment.delivered` | `shipment.delivered-dlt` |
+
+To observe DLQ behaviour in action, look for `[KAFKA-EVENT-DLQ]` in the logs after a consumer failure.
 
 ## Kafka — Event-Driven Supply Chain Flow
 
@@ -122,3 +145,11 @@ Full automated flow triggered by a low stock detection:
 - `inventory.low-stock` — fired when qty drops below threshold
 - `supply-order.approved` — fired when a supply order is approved
 - `shipment.delivered` — fired when a shipment is marked as delivered
+
+## Scheduled Jobs
+
+### Delayed shipment detection
+
+A scheduled job runs every **60 seconds** and automatically marks shipments as `DELAYED` if they are `IN_TRANSIT` and their `estimated_arrival_at` is in the past.
+
+Log to look for: `[SCHEDULER]`
