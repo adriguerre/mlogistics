@@ -11,7 +11,9 @@ import java.sql.Timestamp;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @Entity
@@ -73,7 +75,8 @@ public class Base {
 
     public Base() {}
 
-    public Base(UUID id) {
+    @JsonCreator
+    public Base(@JsonProperty("id") UUID id) {
         this.id = id;
     }
 

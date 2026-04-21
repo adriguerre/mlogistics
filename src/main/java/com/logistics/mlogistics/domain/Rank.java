@@ -1,5 +1,7 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.logistics.mlogistics.domain.enums.BranchType;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
@@ -39,6 +41,11 @@ public class Rank {
     private Timestamp createdAt;
 
     public Rank() {}
+
+    @JsonCreator
+    public Rank(@JsonProperty("id") UUID id) {
+        this.id = id;
+    }
 
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }

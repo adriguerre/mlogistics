@@ -1,6 +1,12 @@
 package com.logistics.mlogistics.service;
 
+import com.logistics.mlogistics.domain.Base;
 import com.logistics.mlogistics.domain.Personnel;
+import com.logistics.mlogistics.domain.Rank;
+import com.logistics.mlogistics.domain.Unit;
+import com.logistics.mlogistics.domain.enums.PersonnelStatus;
+import com.logistics.mlogistics.dto.personnel.PersonnelRequest;
+import com.logistics.mlogistics.dto.personnel.PersonnelResponse;
 import com.logistics.mlogistics.repository.PersonnelRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -25,31 +31,31 @@ public class PersonnelService {
         this.personnelRepository = personnelRepository;
     }
 
-    public List<Personnel> getAll() {
-        return personnelRepository.findAll();
+    public List<PersonnelResponse> getAll() {
+        return personnelRepository.findAll().stream().map(this::toResponse).toList();
     }
 
-    public Optional<Personnel> getById(UUID id) {
-        return personnelRepository.findById(id);
+    public Optional<PersonnelResponse> getById(UUID id) {
+        return personnelRepository.findById(id).map(this::toResponse);
     }
 
     @Transactional
-    public Personnel create(Personnel personnel) {
-        Personnel saved = personnelRepository.saveAndFlush(personnel);
+    public PersonnelResponse create(PersonnelRequest request) {
+        Personnel saved = personnelRepository.saveAndFlush(toEntity(request));
         entityManager.refresh(saved);
-        return saved;
+        return toResponse(saved);
     }
 
-    public Optional<Personnel> update(UUID id, Personnel updated) {
+    public Optional<PersonnelResponse> update(UUID id, PersonnelRequest request) {
         return personnelRepository.findById(id).map(existing -> {
-            if (updated.getServiceId() != null) existing.setServiceId(updated.getServiceId());
-            if (updated.getFirstName() != null) existing.setFirstName(updated.getFirstName());
-            if (updated.getLastName() != null) existing.setLastName(updated.getLastName());
-            if (updated.getRank() != null) existing.setRank(updated.getRank());
-            if (updated.getUnit() != null) existing.setUnit(updated.getUnit());
-            if (updated.getBase() != null) existing.setBase(updated.getBase());
-            if (updated.getStatus() != null) existing.setStatus(updated.getStatus());
-            return personnelRepository.save(existing);
+            if (request.getServiceId() != null) existing.setServiceId(request.getServiceId());
+            if (request.getFirstName() != null) existing.setFirstName(request.getFirstName());
+            if (request.getLastName() != null) existing.setLastName(request.getLastName());
+            if (request.getRankId() != null) existing.setRank(entityManager.getReference(Rank.class, request.getRankId()));
+            if (request.getUnitId() != null) existing.setUnit(entityManager.getReference(Unit.class, request.getUnitId()));
+            if (request.getBaseId() != null) existing.setBase(entityManager.getReference(Base.class, request.getBaseId()));
+            if (request.getStatus() != null) existing.setStatus(PersonnelStatus.valueOf(request.getStatus()));
+            return toResponse(personnelRepository.save(existing));
         });
     }
 
@@ -57,5 +63,31 @@ public class PersonnelService {
         if (!personnelRepository.existsById(id)) return false;
         personnelRepository.deleteById(id);
         return true;
+    }
+
+    private PersonnelResponse toResponse(Personnel p) {
+        PersonnelResponse r = new PersonnelResponse();
+        r.setId(p.getId());
+        r.setServiceId(p.getServiceId());
+        r.setFirstName(p.getFirstName());
+        r.setLastName(p.getLastName());
+        r.setStatus(p.getStatus() != null ? p.getStatus().name() : null);
+        r.setCreatedAt(p.getCreatedAt());
+        if (p.getRank() != null) r.setRankTitle(p.getRank().getTitle());
+        if (p.getUnit() != null) r.setUnitName(p.getUnit().getName());
+        if (p.getBase() != null) r.setBaseName(p.getBase().getName());
+        return r;
+    }
+
+    private Personnel toEntity(PersonnelRequest req) {
+        Personnel p = new Personnel();
+        p.setServiceId(req.getServiceId());
+        p.setFirstName(req.getFirstName());
+        p.setLastName(req.getLastName());
+        if (req.getRankId() != null) p.setRank(entityManager.getReference(Rank.class, req.getRankId()));
+        if (req.getUnitId() != null) p.setUnit(entityManager.getReference(Unit.class, req.getUnitId()));
+        if (req.getBaseId() != null) p.setBase(entityManager.getReference(Base.class, req.getBaseId()));
+        if (req.getStatus() != null) p.setStatus(PersonnelStatus.valueOf(req.getStatus()));
+        return p;
     }
 }

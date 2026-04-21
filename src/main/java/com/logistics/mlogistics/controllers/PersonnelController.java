@@ -1,6 +1,7 @@
 package com.logistics.mlogistics.controllers;
 
-import com.logistics.mlogistics.domain.Personnel;
+import com.logistics.mlogistics.dto.personnel.PersonnelRequest;
+import com.logistics.mlogistics.dto.personnel.PersonnelResponse;
 import com.logistics.mlogistics.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,34 +23,35 @@ public class PersonnelController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll() {
-        List<Personnel> list = personnelService.getAll();
-        if (list.isEmpty()) return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No records found");
+    public ResponseEntity<List<PersonnelResponse>> getAll() {
+        List<PersonnelResponse> list = personnelService.getAll();
+        if (list.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id) {
+    public ResponseEntity<PersonnelResponse> getById(@PathVariable UUID id) {
         return personnelService.getById(id)
-                .<ResponseEntity<?>>map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found"));
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Personnel personnel) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(personnelService.create(personnel));
+    public ResponseEntity<PersonnelResponse> create(@RequestBody PersonnelRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(personnelService.create(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody Personnel personnel) {
-        return personnelService.update(id, personnel)
-                .<ResponseEntity<?>>map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found"));
+    public ResponseEntity<PersonnelResponse> update(@PathVariable UUID id,
+                                                     @RequestBody PersonnelRequest request) {
+        return personnelService.update(id, request)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id) {
-        if (!personnelService.delete(id)) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        if (!personnelService.delete(id)) return ResponseEntity.notFound().build();
         return ResponseEntity.noContent().build();
     }
 }

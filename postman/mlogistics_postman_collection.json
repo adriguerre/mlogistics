@@ -764,7 +764,7 @@
                   "language": "json"
                 }
               },
-              "raw": "{\n  \"service_id\": \"US-011\",\n  \"first_name\": \"Thomas\",\n  \"last_name\": \"Wright\",\n  \"rank\": { \"id\": \"{{rank_sergeant}}\" },\n  \"unit\": { \"id\": \"{{unit_platoon}}\" },\n  \"base\": { \"id\": \"{{base_bravo}}\" },\n  \"status\": \"ACTIVE\"\n}"
+              "raw": "{\n  \"service_id\": \"US-011\",\n  \"first_name\": \"Thomas\",\n  \"last_name\": \"Wright\",\n  \"rank_id\": \"{{rank_sergeant}}\",\n  \"unit_id\": \"{{unit_platoon}}\",\n  \"base_id\": \"{{base_bravo}}\",\n  \"status\": \"ACTIVE\"\n}"
             }
           }
         },
@@ -795,7 +795,7 @@
                   "language": "json"
                 }
               },
-              "raw": "{\n  \"status\": \"ON_LEAVE\"\n}"
+              "raw": "{\n  \"status\": \"ON_LEAVE\",\n  \"base_id\": \"{{base_bravo}}\"\n}"
             }
           }
         },

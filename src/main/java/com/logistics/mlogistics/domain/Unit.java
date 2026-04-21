@@ -1,5 +1,7 @@
 package com.logistics.mlogistics.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.logistics.mlogistics.domain.enums.UnitType;
@@ -11,7 +13,6 @@ import java.sql.Timestamp;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @DynamicInsert
@@ -58,6 +59,11 @@ public class Unit {
     private Timestamp createdAt;
 
     public Unit() {}
+
+    @JsonCreator
+    public Unit(@JsonProperty("id") UUID id) {
+        this.id = id;
+    }
 
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
