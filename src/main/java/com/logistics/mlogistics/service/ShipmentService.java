@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -44,8 +46,8 @@ public class ShipmentService {
         this.eventProducer = eventProducer;
     }
 
-    public List<Shipment> getAll() {
-        return shipmentRepository.findAll();
+    public Page<Shipment> getAll(Pageable pageable) {
+        return shipmentRepository.findAll(pageable);
     }
 
     public Optional<Shipment> getById(UUID id) {

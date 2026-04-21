@@ -10,6 +10,8 @@ import com.logistics.mlogistics.repository.ShipmentItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -40,8 +42,8 @@ public class InventoryService {
         this.shipmentItemRepository = shipmentItemRepository;
     }
 
-    public List<Inventory> getAll() {
-        return inventoryRepository.findAll();
+    public Page<Inventory> getAll(Pageable pageable) {
+        return inventoryRepository.findAll(pageable);
     }
 
     public Optional<Inventory> getById(UUID id) {

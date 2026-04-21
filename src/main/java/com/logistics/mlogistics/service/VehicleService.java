@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,8 +26,8 @@ public class VehicleService {
         this.vehicleRepository = vehicleRepository;
     }
 
-    public List<Vehicle> getAll() {
-        return vehicleRepository.findAll();
+    public Page<Vehicle> getAll(Pageable pageable) {
+        return vehicleRepository.findAll(pageable);
     }
 
     public Optional<Vehicle> getById(UUID id) {

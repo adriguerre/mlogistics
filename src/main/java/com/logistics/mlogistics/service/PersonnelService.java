@@ -4,7 +4,8 @@ import com.logistics.mlogistics.domain.Base;
 import com.logistics.mlogistics.domain.Personnel;
 import com.logistics.mlogistics.domain.Rank;
 import com.logistics.mlogistics.domain.Unit;
-import com.logistics.mlogistics.domain.enums.PersonnelStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.logistics.mlogistics.dto.personnel.PersonnelRequest;
 import com.logistics.mlogistics.dto.personnel.PersonnelResponse;
 import com.logistics.mlogistics.repository.PersonnelRepository;
@@ -31,8 +32,8 @@ public class PersonnelService {
         this.personnelRepository = personnelRepository;
     }
 
-    public List<PersonnelResponse> getAll() {
-        return personnelRepository.findAll().stream().map(this::toResponse).toList();
+    public Page<PersonnelResponse> getAll(Pageable pageable) {
+        return personnelRepository.findAll(pageable).map(this::toResponse);
     }
 
     public Optional<PersonnelResponse> getById(UUID id) {
@@ -54,7 +55,7 @@ public class PersonnelService {
             if (request.getRankId() != null) existing.setRank(entityManager.getReference(Rank.class, request.getRankId()));
             if (request.getUnitId() != null) existing.setUnit(entityManager.getReference(Unit.class, request.getUnitId()));
             if (request.getBaseId() != null) existing.setBase(entityManager.getReference(Base.class, request.getBaseId()));
-            if (request.getStatus() != null) existing.setStatus(PersonnelStatus.valueOf(request.getStatus()));
+            if (request.getStatus() != null) existing.setStatus(request.getStatus());
             return toResponse(personnelRepository.save(existing));
         });
     }
@@ -87,7 +88,7 @@ public class PersonnelService {
         if (req.getRankId() != null) p.setRank(entityManager.getReference(Rank.class, req.getRankId()));
         if (req.getUnitId() != null) p.setUnit(entityManager.getReference(Unit.class, req.getUnitId()));
         if (req.getBaseId() != null) p.setBase(entityManager.getReference(Base.class, req.getBaseId()));
-        if (req.getStatus() != null) p.setStatus(PersonnelStatus.valueOf(req.getStatus()));
+        if (req.getStatus() != null) p.setStatus(req.getStatus());
         return p;
     }
 }

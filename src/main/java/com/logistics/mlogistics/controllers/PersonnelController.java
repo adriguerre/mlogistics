@@ -4,11 +4,13 @@ import com.logistics.mlogistics.dto.personnel.PersonnelRequest;
 import com.logistics.mlogistics.dto.personnel.PersonnelResponse;
 import com.logistics.mlogistics.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,10 +25,8 @@ public class PersonnelController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonnelResponse>> getAll() {
-        List<PersonnelResponse> list = personnelService.getAll();
-        if (list.isEmpty()) return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(list);
+    public ResponseEntity<Page<PersonnelResponse>> getAll(@PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(personnelService.getAll(pageable));
     }
 
     @GetMapping("/{id}")

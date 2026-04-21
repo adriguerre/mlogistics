@@ -1,6 +1,7 @@
 package com.logistics.mlogistics.dto.personnel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.logistics.mlogistics.domain.enums.PersonnelStatus;
 import java.util.UUID;
 
 public class PersonnelRequest {
@@ -17,7 +18,7 @@ public class PersonnelRequest {
     private UUID rankId;
     private UUID unitId;
     private UUID baseId;
-    private String status;
+    private PersonnelStatus status;
 
     public PersonnelRequest() {
     }
@@ -70,11 +71,11 @@ public class PersonnelRequest {
         this.baseId = baseId;
     }
 
-    public String getStatus() {
+    public PersonnelStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PersonnelStatus status) {
         this.status = status;
     }
 }

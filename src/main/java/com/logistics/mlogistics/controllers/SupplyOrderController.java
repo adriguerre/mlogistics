@@ -3,11 +3,13 @@ package com.logistics.mlogistics.controllers;
 import com.logistics.mlogistics.domain.SupplyOrder;
 import com.logistics.mlogistics.service.SupplyOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,10 +24,8 @@ public class SupplyOrderController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll() {
-        List<SupplyOrder> list = service.getAll();
-        if (list.isEmpty()) return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        return ResponseEntity.ok(list);
+    public ResponseEntity<Page<SupplyOrder>> getAll(@PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(service.getAll(pageable));
     }
 
     @GetMapping("/{id}")
